@@ -1,0 +1,147 @@
+@import base
+
+body
+	font 12px "Lucida Grande", Helvetica, Arial, sans-serif
+a
+	color: #00B7FF
+.envoltura
+	margin 0 auto
+	width 960px
+.header
+	height 62px
+	background #41AFAC
+	position absolute
+	left 0
+	right 0
+	border-bottom 10px solid #f2f2f2
+	-moz-box-sizing content-box
+	box-shadow 0 0 1px 0 #aaa
+	.left-col
+		height 62px
+		display table
+		.logo-container
+			display table-cell
+			vertical-align middle
+			.logo
+				display block
+	.menu
+		margin-top 32px
+		ul
+			margin 0
+			padding 0
+			li
+				list-style none
+				display inline-block
+				margin 0 2px
+				a
+					font-size 14px
+					color #fff
+					padding 0 14px
+					display inline-block
+					height 30px
+					line-height 30px
+					text-decoration none
+					&:hover
+						color #A1F2EB
+					&.actual
+						background #f2f2f2
+						color #000
+						text-decoration none
+.cuerpo
+	position absolute
+	left 0
+	right 0
+	top 72px
+	bottom 0
+	.bg-white
+		width 100%
+		position absolute
+		height 100%
+		z-index -1
+		min-width 960px
+	.bg-gray
+		margin-right 280px
+		position absolute
+		right 50%
+		left 0
+		height 100%
+		//background #f3f3f3
+		background #73A7CC
+.left-col
+	//-moz-box-sizing content-box
+	position absolute
+	width 200px
+	top 0
+	left 50%
+	bottom 0
+	margin-left -480px
+	.submenu
+		margin 10px 0 0 0px
+		padding 0
+		li
+			list-style none
+			padding-bottom 5px
+			a
+				font-size 13px
+				color #fff
+				height 26px
+				line-height 26px
+				display block
+				padding 0 12px
+				text-decoration none
+				&:hover
+					color #A1F2EB
+				&.actual
+					background #fff
+					color #73A7CC
+
+.main-col
+	-moz-box-sizing content-box
+	padding 20px
+	width 720px
+	position absolute
+	left 50%
+	top 0
+	bottom 0
+	margin-left -280px
+	h1
+		border-bottom 1px solid #ccc
+		font-size 16px
+		color #464646
+		margin-top 0
+		font-weight bold
+		padding-bottom 5px
+	.content
+		position absolute
+		bottom 0
+		left 20px
+		right 20px
+		top 54px
+		overflow-x hidden
+		overflow-y auto
+	.main-col-left
+		width 500px
+	.main-col-right
+		width 200px
+.footer
+	margin 0 10px
+	height 30px
+	line-height 30px
+	border-top 1px solid #cdcdcd
+	font-size 11px
+	color #666
+
+/* bootstrap fixes */
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"]
+	margin-top 0
+.input-sm
+	padding 5px 6px
+.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12
+	padding-left 7px
+	padding-right 7px
+.alert
+	padding 6px 7px
+	margin-bottom 0
+.table
+	th, td
+		vertical-align middle !important
