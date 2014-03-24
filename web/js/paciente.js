@@ -6,14 +6,16 @@ $(document).ready(mainPaciente);
 function mainPaciente(){
 	$('#FechaNac').mask("99/99/9999");
 	
-	$('#checkFechaNac').change(checkFechaNac);
+	$('#checkFechaNac').change(checkFechaNac).trigger("change");
 	
-	$('#IdPais').change(changeSelectsUbigeo);
+	$('#IdPais').change(changeSelectsUbigeo).trigger("change");
 	
 //	provinSelect = $('#IdProvin');
 //	options = provinSelect.children().clone();
 //	
 //	$('#IdDepart').change(changeDepart).trigger("change");
+//	
+//	
 	$.conditionalize($("#IdDepart"), $("#IdProvin"));
 	$.conditionalize($("#IdProvin"), $("#IdDistrito"));
 }

@@ -26,15 +26,23 @@ class Provincia {
 	}
 	
 	public void get() throws SQLException{
+		if(this.IdProvin == null){
+			return;
+		}
 		String sql = "SELECT * FROM provincias WHERE IdProvin=? LIMIT 1";
 		List<String> data = Arrays.asList(this.IdProvin);
 		db.ejecutar(sql, data);
-		db.rs.next();
-		this.DescProvin = db.rs.getString("DescProvin");
+		//db.rs.next();
+		this.DescProvin = db.results.get(0).get("DescProvin");
 		
 		Departamento depart = new Departamento();
-		depart.IdDepart = db.rs.getString("IdDepart");
+		depart.IdDepart = db.results.get(0).get("IdDepart");
 		depart.get();
 		this.departamento = depart;
 	}	
+
+	public String getHtmlOptions() throws SQLException{
+		db.ejecutar("SELECT * FROM provincias", null);
+		return db.getHtmlOptions("IdProvin", "DescProvin", this.IdProvin, "IdDepart");	
+	}
 }

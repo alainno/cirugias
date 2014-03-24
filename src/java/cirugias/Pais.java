@@ -23,7 +23,11 @@ public class Pais {
 		String sql = "SELECT IdPais, DescPais FROM pais WHERE IdPais=? LIMIT 1";
 		List<String> data = Arrays.asList(this.IdPais);
 		db.ejecutar(sql, data);
-		db.rs.next();
-		this.DescPais = db.rs.getString("DescPais");
+		this.DescPais = db.results.get(0).get("DescPais");
+	}
+	
+	public String getHtmlOptions() throws SQLException{
+		db.ejecutar("SELECT * FROM pais", null);
+		return db.getHtmlOptions("IdPais", "DescPais", this.IdPais, null);	
 	}
 }

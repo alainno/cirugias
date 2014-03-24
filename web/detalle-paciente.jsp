@@ -4,9 +4,9 @@
 		<button type="button" data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Opciones <span class="caret"></span>
 		</button>
 		<ul role="menu" class="dropdown-menu dropdown-menu-right">
-			<li><a href="editar-paciente.html">Modificar Paciente</a>
+			<li><a href="Servlet?v=modificarPaciente&id=${id}">Modificar Paciente</a>
 			</li>
-			<li><a href="nuevo-info-pre.html">Crear Informe Pre Operatorio</a>
+			<li><a href="Servlet?v=nuevoInfoPre&idpac=${id}">Crear Informe Pre Operatorio</a>
 			</li>
 			<li><a href="#">Crear Informe Post Operatorio</a>
 			</li>
@@ -102,22 +102,23 @@
                 </td>
 			</tr>
 			<tr>
+                <th>Ocupación
+                </th>
+                <td>${ocupacion}
+                </td>
+			</tr>
+			<tr>
                 <th>Fecha de Inscripción
                 </th>
                 <td>${fechaInscr}						
                 </td>
 			</tr>
-		</table><!--.main-col-right.right
-		<div><a href="editar-paciente.html" class="btn btn-primary btn-block">Modificar Paciente</a>
-		</div>
-		<div class="mt10"><a href="nuevo-info-pre.html" class="btn btn-success btn-block">Crear Informe Pre Operatorio</a>
-		</div>
-		<div class="mt10"><a href="#" class="btn btn-warning btn-block">Crear Informe Post Operatorio</a>
-		</div>
-		<div class="mt10"><a href="#" class="btn btn-default btn-block">Imprimir Detalles</a>
-		</div>-->
+		</table>
 	<h2>Informes Pre Operatorios
 	</h2>
+	<% if(request.getAttribute("tablaInfoPre").equals("")){ %>
+	<p>No hay informes registrados</p>	
+	<% } else{ %>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -134,7 +135,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+<!--			<tr>
                 <td>17/03/2014
                 </td>
                 <td>ODONTOESTOMATOLOGIA
@@ -145,12 +146,22 @@
                 </td>
                 <td><a href="detalles-info-pre.html" class="btn btn-xs btn-success">Detalles</a>
                 </td>
-			</tr>
+			</tr>-->
+			${tablaInfoPre}
 		</tbody>
 	</table>
+	<% } %>
 	<h2>Informes Post Operatorios
 	</h2>
 	<p>No hay informes registrados
 	</p>
+
+		<div class="mt15">
+			<a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm">Modificar</a>
+			<a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm ml10">Crear Informe Pre Operatorio</a>
+			<a href="#" class="btn btn-warning btn-sm ml10">Crear Informe Post Operatorio</a>
+			<a href="#" class="btn btn-default btn-sm ml10">Imprimir</a>
+		</div>
+	<p></p>
 </div>
 <jsp:include page="footer.jsp"/>

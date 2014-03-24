@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
 
@@ -35,7 +36,8 @@ public class Paciente{
 	//String idDistrito = "";
 	Distrito distrito;
 	String direccion = "";
-	String idOcup = "";
+//	String idOcup = "";
+	Ocupacion ocupacion = null;
 	String numHc = "0";
 	String fechaInscr = "";
 	String errorValidacion = "";
@@ -59,12 +61,17 @@ public class Paciente{
 			String sql = "INSERT INTO pacientes";
 			sql += "(DNI,Nombres,ApPaterno,ApMaterno,FechaNac,Edad,IdPais,Direccion,IdDistrito,IdOcup,Sexo,FechaInscr,NumHC)";
 			sql += " VALUES(?,?,?,?,?,?,?,?,?,?,?,NOW(),?)";
-			List<String> data =  Arrays.asList(this.dni,this.nombres,this.apPaterno,this.apMaterno,this.fechaNac,this.edad,this.pais.IdPais,this.direccion,this.distrito.IdDistrito,this.idOcup,this.sexo/*,this.fechaInscr*/,this.numHc);			
+			List<String> data =  Arrays.asList(this.dni,this.nombres,this.apPaterno,this.apMaterno,this.fechaNac,this.edad,this.pais.IdPais,this.direccion,this.distrito.IdDistrito,this.ocupacion.IdOcup,this.sexo/*,this.fechaInscr*/,this.numHc);
 			db.ejecutar(sql, data);
 			this.idPaciente = db.insertId;
+		} else {
+			String sql = "UPDATE pacientes SET";
+			sql += " DNI=?,Nombres=?,ApPaterno=?,ApMaterno=?,FechaNac=?,Edad=?,IdPais=?,Direccion=?,IdDistrito=?,IdOcup=?,Sexo=?,NumHC=?";
+			sql += " WHERE IdPaciente = ? LIMIT 1";
+			List<String> data =  Arrays.asList(this.dni,this.nombres,this.apPaterno,this.apMaterno,this.fechaNac,this.edad,this.pais.IdPais,this.direccion,this.distrito.IdDistrito,this.ocupacion.IdOcup,this.sexo,this.numHc,this.idPaciente);
+			db.ejecutar(sql, data);
 		}
-		
-		db.finalizar();
+		//db.finalizar();
 	}
 
 	boolean validar() {
@@ -91,51 +98,60 @@ public class Paciente{
 		return true;
 	}
 
-	void get() throws SQLException {
+	void get() throws SQLException, ParseException {
 		String sql = "SELECT * FROM pacientes WHERE IdPaciente = ? LIMIT 1";
 		List<String> data = Arrays.asList(this.idPaciente);
 		db.ejecutar(sql, data);
-		db.rs.next();
+		Map<String,String> row = db.results.get(0);
 		
-		this.dni = db.rs.getString("DNI");
-		this.nombres = db.rs.getString("Nombres");
-		this.apPaterno = db.rs.getString("ApPaterno");
-		this.apMaterno = db.rs.getString("ApMaterno");
-		this.fechaNac = db.rs.getString("FechaNac");
-		this.fechaNac = this.fechaNac == null ? "-" : this.fechaNac;
-		this.edad = "-".equals(this.fechaNac) ? db.rs.getString("Edad") : this.getEdad();
-		//this.idPais = db.rs.getString("IdPais");
-		this.direccion = db.rs.getString("Direccion");
-		//this.idDistrito = db.rs.getString("IdDistrito");
-		String IdDistrito = db.rs.getString("IdDistrito");
-		this.idOcup = db.rs.getString("IdOcup");
-		this.sexo = db.rs.getString("Sexo");
-		this.fechaInscr = db.rs.getString("FechaInscr");
-		this.numHc = db.rs.getString("NumHC");
+		this.dni = db.results.get(0).get("DNI");
+		this.nombres = db.results.get(0).get("Nombres");
+		this.apPaterno = db.results.get(0).get("ApPaterno");
+		this.apMaterno = db.results.get(0).get("ApMaterno");
+		this.fechaNac = db.changeFormatDate(row.get("FechaNac"),"yyyy-MM-dd","dd/MM/yyyy");
+		
+		this.edad = db.results.get(0).get("Edad");
+		this.edad = (this.fechaNac != null) ? this.getEdad() : this.edad;
+		this.direccion = db.results.get(0).get("Direccion");
+		this.sexo = db.results.get(0).get("Sexo");
+		
+		this.numHc = db.results.get(0).get("NumHC");
+		this.fechaInscr = db.changeFormatDate(row.get("FechaInscr"),"yyyy-MM-dd","dd/MM/yyyy");
 		
 		Pais country = new Pais();
-		country.IdPais = db.rs.getString("IdPais");
+		country.IdPais = row.get("IdPais");
 		country.get();
 		this.pais = country;
+
+		Departamento depa = new Departamento();
+		Provincia prov = new Provincia(depa);
 		
-		if(IdDistrito != null){
-			Distrito dist = new Distrito(null);
-			dist.IdDistrito = IdDistrito;
-			//dist.IdDistrito = "1590";
-			dist.get();
-			this.distrito = dist;
-		}
+		Distrito dist = new Distrito(prov);
+		dist.IdDistrito = row.get("IdDistrito");
+		dist.get();
+		this.distrito = dist;
+		
+		Ocupacion ocup = new Ocupacion();
+		ocup.IdOcup = row.get("IdOcup");
+		ocup.get();
+		this.ocupacion = ocup;
 	}
 
 	private String getEdad() {
+		if(this.fechaNac == null){
+			return "";
+		}
 		LocalDate now = new LocalDate();
-		String[] fecha = this.fechaNac.split("-");
-		LocalDate birthday = new LocalDate(Integer.parseInt(fecha[0]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[2]));
+		String[] fecha = this.fechaNac.split("/");
+		LocalDate birthday = new LocalDate(Integer.parseInt(fecha[2]), Integer.parseInt(fecha[1]), Integer.parseInt(fecha[0]));
 		Years age = Years.yearsBetween(birthday, now);
 		return Integer.toString(age.getYears());
 	}
 	
 	public String getTipoEdad(){
+		if(this.edad == null){
+			return "";
+		}
 		int age = Integer.parseInt(this.edad);
 		if(age <= 12){
 			return "NIÑO";

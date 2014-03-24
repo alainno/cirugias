@@ -5,8 +5,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * To change this template, choose Tools | Templates
@@ -24,6 +31,8 @@ public class db {
 	public static ResultSet rs;
 	protected static List<String> data;
 	public static String insertId = "0";
+	//public static List results = new ArrayList();
+	public static List<Map<String, String>> results = new ArrayList<Map<String, String>>();
 	
 	protected static void conectar(){
 		try {
@@ -53,15 +62,18 @@ public class db {
 		db.conectar();
 		db.preparar();
 		db.setParams();
-		db.stmt.execute();
+		boolean rpta = db.stmt.execute();
 		
 		if(sql.toLowerCase().contains("INSERT".toLowerCase())){
 			ResultSet keys = db.stmt.getGeneratedKeys();
 			keys.next();
 			db.insertId = keys.getString(1);		
-		} else{
-			db.rs = db.stmt.getResultSet();
+		} else if(rpta){
+			//db.rs = db.stmt.getResultSet();
+			db.getData();
 		}
+		
+		db.finalizar();
 		
 	}
 
@@ -75,7 +87,7 @@ public class db {
 	}
 	
 	public static void finalizar() throws SQLException{
-		db.rs.close();
+		//db.rs.close();
 		db.stmt.close();
 		db.conn.close();
 	}
@@ -85,4 +97,47 @@ public class db {
 //		db.rs.next();
 //		return db.rs.getString("id");
 //	}
+
+	private static void getData() throws SQLException {
+		db.results.clear();
+		db.rs = db.stmt.getResultSet();
+		ResultSetMetaData metaData = rs.getMetaData();
+		int columnCount = metaData.getColumnCount();
+		while(db.rs.next()){
+			Map<String, String> columns = new LinkedHashMap<String, String>();
+			for (int i = 1; i <= columnCount; i++) {
+//				columns.put(metaData.getColumnLabel(i), db.rs.getObject(i));
+				columns.put(metaData.getColumnLabel(i), db.rs.getString(i));
+			}
+			db.results.add(columns);
+		}
+		db.rs.close();
+	}
+
+	static String changeFormatDate(String date, String from, String to) throws ParseException {
+		if(date != null){
+			SimpleDateFormat sdf = new SimpleDateFormat(from);
+			Date d = sdf.parse(date);
+			sdf.applyPattern(to);
+			return sdf.format(d);
+		}
+		return null;
+	}
+	
+	public static String getHtmlOptions(String value, String label, String selected, String padre) {
+		String html = "";
+		for(Map<String,String> row:db.results){
+			String valor = row.get(value);
+			String etiqueta = row.get(label);
+			html += "<option value='" + valor + "'";
+			if(padre != null){
+				html += " class=\"conditional "+row.get(padre)+"\"";
+			}
+			if(selected != null){
+				html += valor.equals(selected) ? " selected" : "";
+			}
+			html += ">" + etiqueta + "</option>";
+		}
+		return html;
+	}
 }

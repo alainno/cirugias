@@ -29,12 +29,17 @@ class Departamento {
 		String sql = "SELECT * FROM departamentos WHERE IdDepart=? LIMIT 1";
 		List<String> data = Arrays.asList(this.IdDepart);
 		db.ejecutar(sql, data);
-		db.rs.next();
-		this.DescDepart = db.rs.getString("DescDepart");
+//		db.rs.next();
+		this.DescDepart = db.results.get(0).get("DescDepart");
 		
 		/*Pais country = new Pais();
 		country.IdPais = db.rs.getString("IdPais");
 		country.get();
 		this.pais = country;*/
-	}	
+	}
+
+	public String getHtmlOptions() throws SQLException{
+		db.ejecutar("SELECT * FROM departamentos", null);
+		return db.getHtmlOptions("IdDepart", "DescDepart", this.IdDepart, null);	
+	}
 }

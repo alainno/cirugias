@@ -1,15 +1,16 @@
 <jsp:include page="header.jsp"/>
 <h1>Buscar Paciente
 </h1>
-<form role="form" class="form-inline">
+<form role="form" class="form-inline" action="Servlet?v=indexPaciente" method="get">
 	<div class="form-group">
-		<input type="text" placeholder="DNI, Nombre y Apellido ó Nro. de Historia Clínica" size="50" class="form-control input-sm">
+		<input type="text" placeholder="DNI, Nombre y Apellido ó Nro. de Historia Clínica" size="50" class="form-control input-sm" name="q" value="${q}">
 	</div>
 	<button type="submit" class="btn btn-sm btn-default">Buscar
 	</button>&nbsp;
-	<a href="nuevo-paciente.html" class="btn btn-sm btn-primary">Nuevo Paciente</a>
+	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary">Nuevo Paciente</a>
 </form>
-<table class="table table-hover mt15">
+<div class="content content-table">
+<table class="table table-hover">
 	<thead>
 		<tr>
 			<th>Nombres
@@ -27,7 +28,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+		${tabla}
+<!--		<tr>
 			<td>Alain
 			</td>
 			<td>Alejo
@@ -95,7 +97,8 @@
 			</td>
 			<td><a href="vista-paciente.html" class="btn btn-xs btn-primary">Detalles</a>
 			</td>
-		</tr>
+		</tr>-->
 	</tbody>
 </table>
+	</div>
 <jsp:include page="footer.jsp"/>

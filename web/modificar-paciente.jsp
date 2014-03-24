@@ -1,52 +1,52 @@
 <jsp:include page="header.jsp"/>
-<h1>Nuevo Paciente</h1>
+<h1>Modificar Paciente</h1>
 <div class="content">
-	<form role="form" class="form-horizontal" action="Servlet?v=guardarPaciente" method="post">
+	<form role="form" class="form-horizontal" action="Servlet?v=guardarPaciente&id=${id}" method="post">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Nro. de DNI
 			</label>
 			<div class="col-sm-2">
-                <input class="form-control input-sm" name="dni" maxlength="8" required>
+                <input class="form-control input-sm" name="dni" maxlength="8" value="${dni}" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Nombres
 			</label>
 			<div class="col-sm-4">
-                <input class="form-control input-sm" name="nombres" required>
+                <input class="form-control input-sm" name="nombres" required value="${nombres}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Apellido Paterno
 			</label>
 			<div class="col-sm-4">
-                <input class="form-control input-sm" name="apPaterno" required>
+                <input class="form-control input-sm" name="apPaterno" required value="${apPaterno}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Apellido Materno
 			</label>
 			<div class="col-sm-4">
-                <input class="form-control input-sm" name="apMaterno" required>
+                <input class="form-control input-sm" name="apMaterno" required value="${apMaterno}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Fecha de Nacimiento
 			</label>
 			<div class="col-sm-2">
-                <input class="form-control input-sm" name="FechaNac" id="FechaNac" required>
+                <input class="form-control input-sm" name="FechaNac" id="FechaNac" required value="${fechaNac}">
 			</div>
 			<div class="col-sm-2">
                 <div class="checkbox">
 					<label>
-						<input type="checkbox" id="checkFechaNac">Desconocido
+						<input type="checkbox" id="checkFechaNac" ${checked}>Desconocido
 					</label>
                 </div>
 			</div>
 			<label class="col-sm-1 control-label">Edad
 			</label>
 			<div class="col-sm-1">
-                <input disabled class="form-control input-sm" name="Edad" id="Edad" required>
+                <input disabled class="form-control input-sm" name="Edad" id="Edad" required value="${edad}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -54,8 +54,8 @@
 			</label>
 			<div class="col-sm-3">
                 <select class="form-control input-sm" name="Sexo">
-					<option>MASCULINO</option>
-					<option>FEMENINO</option>
+					<option ${sexo=="MASCULINO"?"selected":""}>MASCULINO</option>
+					<option ${sexo=="FEMENINO"?"selected":""}>FEMENINO</option>
                 </select>
 			</div>
 		</div>
@@ -99,7 +99,7 @@
 			<label class="col-sm-3 control-label">Dirección
 			</label>
 			<div class="col-sm-4">
-                <input class="form-control input-sm" name="direccion" required>
+                <input class="form-control input-sm" name="direccion" required value="${direccion}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -115,7 +115,7 @@
 			<label class="col-sm-3 control-label">Historia Clínica
 			</label>
 			<div class="col-sm-2">
-                <input class="form-control input-sm" name="historiac" required>
+                <input class="form-control input-sm" name="historiac" required value="${numHc}">
 			</div>
 		</div>
 		<div class="form-group">

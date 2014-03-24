@@ -63,7 +63,8 @@ a{color:#00b7ff}
 .left-col .submenu li a.actual{background:#fff;color:#73a7cc}
 .main-col{-moz-box-sizing:content-box;padding:20px;width:720px;position:absolute;left:50%;top:0;bottom:0;margin-left:-280px;}
 .main-col h1{border-bottom:1px solid #ccc;font-size:16px;color:#464646;margin-top:0;font-weight:bold;padding-bottom:5px}
-.main-col .content{position:absolute;bottom:0;left:20px;right:20px;top:54px;overflow-x:hidden;overflow-y:auto}
+.main-col .content{position:absolute;bottom:0;left:20px;right:0;top:54px;overflow-x:hidden;overflow-y:auto}
+.main-col .content-table{top:94px}
 .main-col .main-col-left{width:500px}
 .main-col .main-col-right{width:200px}
 .footer{margin:0 10px;height:30px;line-height:30px;border-top:1px solid #cdcdcd;font-size:11px;color:#666}
