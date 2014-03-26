@@ -25,6 +25,9 @@ class DepartHosp {
 	}
 
 	void get() throws SQLException {
+		if(this.IdDepartH == null){
+			return;
+		}
 		String sql = "SELECT * FROM departhosp WHERE IdDepartH=? LIMIT 1";
 		List<String> data = Arrays.asList(this.IdDepartH);
 		db.ejecutar(sql, data);

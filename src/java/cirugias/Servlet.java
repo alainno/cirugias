@@ -126,48 +126,17 @@ public class Servlet extends HttpServlet {
 		return "Short description";
 	}// </editor-fold>
 
-	public void indexPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{
+	public void indexPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException{	
 		String q = request.getParameter("q");
 		if(q != null){
-			request.setAttribute("tabla", "tabla");
-			String[] words = q.trim().split(" +");
-			
-			String sql = "SELECT * FROM pacientes WHERE ";
-			
-			List<String> data = new ArrayList<String>();
-			List<String> comparaciones = new ArrayList<String>();
-			
-			for(String word : words){
-				comparaciones.add("(DNI LIKE ? OR Nombres LIKE ? OR ApPaterno LIKE ? OR ApMaterno LIKE ? OR NumHC LIKE ?)");
-				for(int i=0; i<5; i++){
-					data.add("%" + word + "%");
-				}
-			}
-			
-			int i=0;
-			for(String comparacion : comparaciones){
-				sql += (i>0) ? "OR " + comparacion : comparacion;
-				i++;
-			}
-			
-			db.ejecutar(sql, data);
-			
-			String tableContent = "";
-			for(Map<String,String> row : db.results){
-				tableContent += "<tr>";
-				tableContent += "<td>"+row.get("Nombres")+"</td>";
-				tableContent += "<td>"+row.get("ApPaterno")+"</td>";
-				tableContent += "<td>"+row.get("ApMaterno")+"</td>";
-				tableContent += "<td>"+row.get("DNI")+"</td>";
-				tableContent += "<td>"+row.get("NumHC")+"</td>";
-				tableContent += "<td><a href=\"Servlet?v=detallePaciente&id="+row.get("IdPaciente")+"\" class=\"btn btn-xs btn-primary\">Detalles</a></td>";
-				tableContent += "</tr>";
-			}
-			
-			request.setAttribute("tabla", tableContent);
+			q = q.trim();
+			//if(!q.equals("")){
+				Paciente paciente = new Paciente(null);
+				request.setAttribute("tabla", paciente.buscar(q));
+			//}
 			request.setAttribute("q", q);
-			
 		}
+		
 		request.getRequestDispatcher("/index-paciente.jsp?v=indexPaciente").include(request, response);
 	}
 
@@ -261,7 +230,8 @@ public class Servlet extends HttpServlet {
 		
 		nuevoPaciente.save();
 		
-		response.sendRedirect("Servlet?v=detallePaciente&id=" + nuevoPaciente.idPaciente);
+//		response.sendRedirect("Servlet?v=detallePaciente&id=" + nuevoPaciente.idPaciente);
+		this.jsonRedireccion("Servlet?v=detallePaciente&id=" + nuevoPaciente.idPaciente, response);
 	}
 	
 	// muestra los detalles del paciente
@@ -412,12 +382,15 @@ public class Servlet extends HttpServlet {
 		detInterv.finAnest = request.getParameter("FinAnest");
 		detInterv.fechaInterv = request.getParameter("FechaInterv");
 		
+		detInterv.IdDetalleInterv = request.getParameter("id");
+		
 		if(!detInterv.validar()){
 			this.jsonError(detInterv.errorValidacion, response);
 			return;
 		}
 		detInterv.save();
-		response.sendRedirect("Servlet?v=detalleInfoPre&id=" + detInterv.IdDetalleInterv);
+		//response.sendRedirect("Servlet?v=detalleInfoPre&id=" + detInterv.IdDetalleInterv);
+		this.jsonRedireccion("Servlet?v=detalleInfoPre&id=" + detInterv.IdDetalleInterv, response);
 	}
 	
 	public void detalleInfoPre(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
@@ -430,9 +403,11 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("id", detalle.IdDetalleInterv);
 		request.setAttribute("apellidos", detalle.paciente.apPaterno + " " + detalle.paciente.apMaterno);
 		request.setAttribute("nombres", detalle.paciente.nombres);
-		request.setAttribute("departamento", detalle.servhosp.departHosp.DescDepartH);
-		request.setAttribute("piso", detalle.servhosp.departHosp.Piso);
-		request.setAttribute("servicio", detalle.servhosp.DescServHosp);
+		if(detalle.servhosp != null){
+			request.setAttribute("departamento", detalle.servhosp.departHosp.DescDepartH);
+			request.setAttribute("piso", detalle.servhosp.departHosp.Piso);
+			request.setAttribute("servicio", detalle.servhosp.DescServHosp);
+		}
 		request.setAttribute("sala", detalle.sala.DescSala);
 		request.setAttribute("cama", detalle.cama.DescCama);
 		request.setAttribute("tipoIntervencion", detalle.interv.DescInterv);
@@ -454,7 +429,36 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/detalle-info-pre.jsp").include(request, response);
 	}
 	
-	public void modificarInfoPre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public void modificarInfoPre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+		request.setAttribute("formTitle", "Modificar informe pre operatorio");
+		
+		DetalleInterv detalle = new DetalleInterv(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+		detalle.IdDetalleInterv = request.getParameter("id");
+		detalle.get();
+		
+		request.setAttribute("id", detalle.IdDetalleInterv);
+		request.setAttribute("idpac", detalle.paciente.idPaciente);
+		request.setAttribute("nombre", detalle.paciente.nombres + " " + detalle.paciente.apPaterno + " " + detalle.paciente.apMaterno);
+		request.setAttribute("optsDepartHosp", detalle.servhosp.departHosp.getHtmlOptions());
+		request.setAttribute("optsServicioHosp", detalle.servhosp.getHtmlOptions());
+		request.setAttribute("optsSala", detalle.sala.getHtmlOptions());
+		request.setAttribute("optsCama", detalle.cama.getHtmlOptions());
+		request.setAttribute("optsIntervencion", detalle.interv.getHtmlOptions());
+		request.setAttribute("optsPremedicacion", detalle.premed.getHtmlOptions());
+		request.setAttribute("optsAnestesico", detalle.anestesic.getHtmlOptions());
+		request.setAttribute("cantidad", detalle.cantidad);
+		request.setAttribute("optsAnestesia", detalle.anest.getHtmlOptions());
+		request.setAttribute("inicio", detalle.iniAnest);
+		request.setAttribute("fin", detalle.finAnest);
+		request.setAttribute("fechaInterv", detalle.fechaInterv);
+		request.setAttribute("optsCirujano", detalle.cirujano.getHtmlOptions());
+		request.setAttribute("optsPrimerAyudante", detalle.primerAyudante.getHtmlOptions());
+		request.setAttribute("optsSegundoAyudante", detalle.segundoAyudante.getHtmlOptions());
+		request.setAttribute("optsInstrumentista", detalle.instrumentista.getHtmlOptions());
+		request.setAttribute("optsCirculante", detalle.circulante.getHtmlOptions());
+		request.setAttribute("optsAnestesiologo", detalle.anestesiologo.getHtmlOptions());
+		request.setAttribute("optsEspecialista", detalle.especialista.getHtmlOptions());
+		
 		String masScripts = "<script src=\"js/jquery.maskedinput.min.js\"></script>";
 		masScripts += "<script src=\"js/info-pre.js\"></script>";
 		request.setAttribute("masScripts", masScripts);
@@ -467,10 +471,17 @@ public class Servlet extends HttpServlet {
 		json.put("mensaje", mensaje);
 		this.jsonResponse(json, response);		
 	}
+	
+	private void jsonRedireccion(String url, HttpServletResponse response) throws IOException{
+		Map json = new HashMap();
+		json.put("error", false);
+		json.put("redireccion", url);
+		this.jsonResponse(json, response);		
+	}
 
 	private void jsonResponse(Map json, HttpServletResponse response) throws IOException {
-		//response.setContentType("text/json");
-		//response.getWriter().write(new Gson().toJson(json));
-		response.getWriter().println(new Gson().toJson(json));
+		response.setContentType("text/json");
+		response.getWriter().write(new Gson().toJson(json));
+//		response.getWriter().println(new Gson().toJson(json));
 	}
 } // fin servlet

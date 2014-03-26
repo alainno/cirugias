@@ -10,6 +10,9 @@
 	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary">Nuevo Paciente</a>
 </form>
 <div class="content content-table">
+<% if(request.getAttribute("q") != null){ if(request.getAttribute("tabla").equals("")){ %>
+No se encontraron resultados
+<% } else{ %>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -29,76 +32,8 @@
 	</thead>
 	<tbody>
 		${tabla}
-<!--		<tr>
-			<td>Alain
-			</td>
-			<td>Alejo
-			</td>
-			<td>Huarachi
-			</td>
-			<td>42447799
-			<td>99995555
-			</td>
-			<td><a href="Servlet?v=detallePaciente&id=47" class="btn btn-xs btn-primary">Detalles</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Alain
-			</td>
-			<td>Alejo
-			</td>
-			<td>Huarachi
-			</td>
-			<td>42447799
-			</td>
-			<td>99995555
-			</td>
-			<td><a href="vista-paciente.html" class="btn btn-xs btn-primary">Detalles</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Alain
-			</td>
-			<td>Alejo
-			</td>
-			<td>Huarachi
-			</td>
-			<td>42447799
-			</td>
-			<td>99995555
-			</td>
-			<td><a href="vista-paciente.html" class="btn btn-xs btn-primary">Detalles</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Alain
-			</td>
-			<td>Alejo
-			</td>
-			<td>Huarachi
-			</td>
-			<td>42447799
-			</td>
-			<td>99995555
-			</td>
-			<td><a href="vista-paciente.html" class="btn btn-xs btn-primary">Detalles</a>
-			</td>
-		</tr>
-		<tr>
-			<td>Alain
-			</td>
-			<td>Alejo
-			</td>
-			<td>Huarachi
-			</td>
-			<td>42447799
-			</td>
-			<td>99995555
-			</td>
-			<td><a href="vista-paciente.html" class="btn btn-xs btn-primary">Detalles</a>
-			</td>
-		</tr>-->
 	</tbody>
 </table>
-	</div>
+<% } } %>
+</div>
 <jsp:include page="footer.jsp"/>

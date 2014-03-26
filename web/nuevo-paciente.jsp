@@ -1,7 +1,7 @@
 <jsp:include page="header.jsp"/>
 <h1>Nuevo Paciente</h1>
 <div class="content">
-	<form role="form" class="form-horizontal" action="Servlet?v=guardarPaciente" method="post">
+	<form role="form" class="form-horizontal" action="Servlet?v=guardarPaciente" method="post" id="formPaciente">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Nro. de DNI
 			</label>

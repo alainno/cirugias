@@ -7,6 +7,8 @@ function mainInfoPre(){
 	$('#FechaInterv').mask("99/99/9999");
 		
 	$.conditionalize($("#IdDepartH"), $("#IdServHosp"));
+	
+	$('#formInfoPre').submit(enviarFormInfoPre);
 }
 
 $.conditionalize = function(sourceSelect, conditionalSelect){
@@ -18,4 +20,20 @@ $.conditionalize = function(sourceSelect, conditionalSelect){
         options.clone().filter("."+value).appendTo(conditionalSelect);
 		conditionalSelect.trigger('change');
     }).trigger("change");
+}
+
+function enviarFormInfoPre(){
+	var $form = $(this);
+	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
+		if(json.error){
+			alert(json.mensaje);
+		} else{
+			if(typeof json.redireccion != 'undefined'){
+				document.location = json.redireccion;	
+			} else{
+				location.reload(true);
+			}
+		}
+	}, 'json');
+	return false;
 }

@@ -81,7 +81,7 @@ class DetalleInterv {
 		
 		this.fechaInterv = db.changeFormatDate(this.fechaInterv, "dd/MM/yyyy", "yyyy-MM-dd");
 		
-		if(this.IdDetalleInterv == null){
+		if(this.IdDetalleInterv == null || this.IdDetalleInterv.equals("")){
 			String sql = "INSERT INTO detalle_interv";
 			sql += "(IdPaciente,IdServHosp,IdSala,IdCama,IdInterv,IdPremed,IdAnestesic,Cantidad,IdAnest,IniAnest,FinAnest,FechaInterv,IdCirujano,IdPrimerAyudante,IdSegundoAyudante,IdInstrumentista,IdCirculante,IdAnestesiologo,IdEspecialista)";
 			sql += " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -89,14 +89,18 @@ class DetalleInterv {
 			db.ejecutar(sql, data);
 			this.IdDetalleInterv = db.insertId;
 		} else{
-			
+			String sql = "UPDATE detalle_interv SET"
+					+ " IdPaciente=?,IdServHosp=?,IdSala=?,IdCama=?,IdInterv=?,IdPremed=?,IdAnestesic=?,Cantidad=?,IdAnest=?,IniAnest=?,FinAnest=?,FechaInterv=?,IdCirujano=?,IdPrimerAyudante=?,IdSegundoAyudante=?,IdInstrumentista=?,IdCirculante=?,IdAnestesiologo=?,IdEspecialista=?"
+					+ " WHERE IdDetalleInterv = ? LIMIT 1";
+			List<String> data =  Arrays.asList(this.paciente.idPaciente,this.servhosp.IdServHosp,this.sala.IdSala,this.cama.IdCama,this.interv.IdInterv,this.premed.IdPremed,this.anestesic.IdAnestesic,this.cantidad,this.anest.IdAnest,this.iniAnest,this.finAnest,this.fechaInterv,this.cirujano.IdPersQuir,this.primerAyudante.IdPersQuir,this.segundoAyudante.IdPersQuir,this.instrumentista.IdPersQuir,this.circulante.IdPersQuir,this.anestesiologo.IdPersQuir,this.especialista.IdPersQuir,this.IdDetalleInterv);
+			db.ejecutar(sql, data);
 		}
 	}
 
 	public String getTableByPaciente() throws SQLException, ParseException {
 		String sql = "SELECT * FROM detalle_interv di"
 				+ " LEFT JOIN serviciohosp sh ON di.IdServHosp = sh.IdServHosp"
-				+ " JOIN departhosp dh ON sh.IdDepartHosp = dh.IdDepartH"
+				+ " LEFT JOIN departhosp dh ON sh.IdDepartHosp = dh.IdDepartH"
 				+ " JOIN intervencion i ON di.IdInterv = i.IdInterv"
 				+ " WHERE IdPaciente = ?";
 		List<String> data =  Arrays.asList(this.paciente.idPaciente);
@@ -125,8 +129,8 @@ class DetalleInterv {
 		pac.get();
 		this.paciente = pac;
 		
-//		DepartHosp dh = new DepartHosp();
-		ServicioHosp sh = new ServicioHosp(null);
+		DepartHosp dh = new DepartHosp();
+		ServicioHosp sh = new ServicioHosp(dh);
 		sh.IdServHosp = row.get("IdServHosp");
 		sh.get();
 		this.servhosp = sh;
@@ -163,8 +167,12 @@ class DetalleInterv {
 		anestesia.get();
 		this.anest = anestesia;
 		
-		this.iniAnest = row.get("IniAnest");
-		this.finAnest = row.get("FinAnest");
+		String[] inicio = row.get("IniAnest").split(":");
+		this.iniAnest = inicio[0] + ":" + inicio[1];
+		
+		String[] fin = row.get("FinAnest").split(":");
+		this.finAnest = fin[0] + ":" + fin[1];
+		
 		this.fechaInterv = db.changeFormatDate(row.get("FechaInterv"),"yyyy-MM-dd","dd/MM/yyyy");
 		
 		PersQuir ciru = new PersQuir();

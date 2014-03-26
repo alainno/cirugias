@@ -18,6 +18,24 @@ function mainPaciente(){
 //	
 	$.conditionalize($("#IdDepart"), $("#IdProvin"));
 	$.conditionalize($("#IdProvin"), $("#IdDistrito"));
+	
+	$('#formPaciente').submit(enviarFormPaciente);
+}
+
+function enviarFormPaciente(){
+	var $form = $(this);
+	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
+		if(json.error){
+			alert(json.mensaje);
+		} else{
+			if(typeof json.redireccion != 'undefined'){
+				document.location = json.redireccion;	
+			} else{
+				location.reload(true);
+			}
+		}
+	}, 'json');
+	return false;
 }
 
 function checkFechaNac(){
@@ -43,13 +61,6 @@ function changeSelectsUbigeo(){
 	}
 }
 
-//function changeDepart(){
-//	var value = $(this).val();
-//	provinSelect.children().remove();
-//	options.clone().filter('[rel="'+value+'"]').appendTo(provinSelect);
-//}
-
-
 $.conditionalize = function(sourceSelect, conditionalSelect){
     var options = conditionalSelect.children('.conditional').clone();
 
@@ -60,3 +71,14 @@ $.conditionalize = function(sourceSelect, conditionalSelect){
 		conditionalSelect.trigger('change');
     }).trigger("change");
 }
+
+/* plugin jQuery para enviar formulario con ajax */
+//jQuery.fn.enviarForm = function(respuesta){
+//	$(this).submit(function(){
+//		var $loader = inLoad();
+//		$loader.show();
+//		$form = $(this);
+//		$.post($form.attr('action'), $form.serialize(), function(data){ $loader.hide(); respuesta(data); }, 'json');
+//		return false;
+//	});
+//}

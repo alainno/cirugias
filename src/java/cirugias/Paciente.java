@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -164,5 +165,43 @@ public class Paciente{
 		}else{
 			return "ADULTO MAYOR";
 		}
+	}
+
+	public String buscar(String q) throws SQLException {
+		String[] words = q.trim().split(" +");
+
+		String sql = "SELECT * FROM pacientes WHERE ";
+
+		List<String> data = new ArrayList();
+		List<String> comparaciones = new ArrayList();
+
+		for(String word : words){
+			comparaciones.add("(DNI LIKE ? OR Nombres LIKE ? OR ApPaterno LIKE ? OR ApMaterno LIKE ? OR NumHC LIKE ?)");
+			for(int i=0; i<5; i++){
+				data.add("%" + word + "%");
+			}
+		}
+
+		int i=0;
+		for(String comparacion : comparaciones){
+			sql += (i>0) ? "OR " + comparacion : comparacion;
+			i++;
+		}
+
+		db.ejecutar(sql, data);
+
+		String tableContent = "";
+		for(Map<String,String> row : db.results){
+			tableContent += "<tr>";
+			tableContent += "<td>"+row.get("Nombres")+"</td>";
+			tableContent += "<td>"+row.get("ApPaterno")+"</td>";
+			tableContent += "<td>"+row.get("ApMaterno")+"</td>";
+			tableContent += "<td>"+row.get("DNI")+"</td>";
+			tableContent += "<td>"+row.get("NumHC")+"</td>";
+			tableContent += "<td><a href=\"Servlet?v=detallePaciente&id="+row.get("IdPaciente")+"\" class=\"btn btn-xs btn-primary\">Detalles</a></td>";
+			tableContent += "</tr>";
+		}
+		
+		return tableContent;
 	}
 }
