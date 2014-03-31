@@ -1,0 +1,97 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./") Buscar Paciente
+					li
+						a(href="nuevo-paciente.html") Nuevo Paciente
+			.main-col
+				h1 Detalles del Informe Pre Operatorio
+				.content
+					table.table.table-hover
+						tr
+							th Apellidos
+							td Alejo Huarachi							
+							th Nombres
+							td(colspan="3") Alain Melquiades
+						tr
+							th Departamento
+							td ESTOMATOLOGIA
+							th Piso
+							td(colspan="3") 2
+						tr
+							th Servicio
+							td MEDICINA ESPECIALIZADA
+							th Sala
+							td 24
+							th Cama
+							td 3
+						tr
+							th Tipo de Intervención
+							td(colspan="5") PROGRAMADA
+						tr
+							th Premedicación
+							td(colspan="5") nnn
+						tr
+							th Anestésicos
+							td BUBICAINA
+							th Cantidad
+							td(colspan="3") 100
+						tr
+							th Antestecia
+							td GENERAL ENDOVENOSA
+							th Inicio
+							td 17:25 Hrs.
+							th Final
+							td 18:45 Hrs.
+						tr
+							th Fecha interveción
+							td(colspan="5") 17/03/2014
+						tr
+							th Cirujano
+							td(colspan="5") Med. Juan Quispe Quispe
+						tr
+							th Primer ayudante
+							td(colspan="5") Med. Leopoldo Mamani Rojas
+						tr
+							th Segundo Ayudante
+							td(colspan="5") Med. Nadide Heredia de Humala
+						tr
+							th Instrumentista
+							td(colspan="5") Med. Ollanta Humala Tasso
+						tr
+							th Circulante
+							td(colspan="5") Med. Evo Morales Ayma
+						tr
+							th Anestesiólogo
+							td(colspan="5") Lic. Ana María Pino Jordan
+						tr
+							th Especialista
+							td(colspan="5") Med. Mauricio Rodriguez Rodriguez
+					.mt10
+						a(href="vista-paciente.html").btn.btn-primary Detalles del Paciente
+						a(href="modificar-info-pre.html").btn.btn-success.ml10 Modificar Informe
+						a(href="#").btn.btn-default.ml10 Imprimir Detalles
+
+		include footer

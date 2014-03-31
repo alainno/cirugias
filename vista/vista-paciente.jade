@@ -1,0 +1,121 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./") Buscar Paciente
+					li
+						a(href="nuevo-paciente.html") Nuevo Paciente
+			.main-col
+				h1 Detalles del Paciente
+					.btn-group.right
+						button(type="button").btn.btn-primary.btn-xs.dropdown-toggle(data-toggle="dropdown") Opciones 
+							span.caret
+						ul.dropdown-menu.dropdown-menu-right(role="menu")
+							li
+								a(href="editar-paciente.html") Modificar Paciente
+							li
+								a(href="nuevo-info-pre.html") Crear Informe Pre Operatorio
+							li
+								a(href="#") Crear Informe Post Operatorio
+							li
+								a(href="#") Imprimir Detalles								
+				.content
+					.clearfix
+						//.main-col-left.left
+						table.table.table-hover
+							tr
+								th Nro. de DNI
+								td 42447799
+							tr
+								th Nombres
+								td Alain
+							tr
+								th Apellido Paterno
+								td Alejo
+							tr
+								th Apellido Materno
+								td Huarachi
+							tr
+								th Fecha de Nacimiento
+								td 16/04/1984
+							tr
+								th Edad
+								td 29
+							tr
+								th Tipo de Edad
+								td Jóven
+							tr
+								th Sexo
+								td Masculino
+							tr
+								th País
+								td Perú
+							tr
+								th Departamento
+								td Puno
+							tr
+								th Provincia
+								td Puno
+							tr
+								th Distrito
+								td Puno
+							tr
+								th Dirección
+								td Jr. Tacna 1095
+							tr
+								th Nro. de Historia Clínica
+								td 5555
+							tr
+								th Fecha de Inscripción
+								td 17/03/2014						
+						//.main-col-right.right
+							div
+								a(href="editar-paciente.html").btn.btn-primary.btn-block Modificar Paciente
+							.mt10
+								a(href="nuevo-info-pre.html").btn.btn-success.btn-block Crear Informe Pre Operatorio
+							.mt10
+								a(href="#").btn.btn-warning.btn-block Crear Informe Post Operatorio
+							.mt10
+								a(href="#").btn.btn-default.btn-block Imprimir Detalles
+
+					h2 Informes Pre Operatorios
+					table.table.table-hover
+						thead
+							tr
+								th Fecha
+								th Departamento
+								th Servicio
+								th Tipo de intervención
+								th Opciones
+						tbody
+							tr
+								td 17/03/2014
+								td ODONTOESTOMATOLOGIA
+								td MEDICINA ESPECIALIZADA
+								td PROGRAMADA
+								td
+									a(href="detalles-info-pre.html").btn.btn-xs.btn-success Detalles
+					h2 Informes Post Operatorios
+					p No hay informes registrados
+		include footer

@@ -1,0 +1,111 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./") Buscar Paciente
+					li
+						a(href="nuevo-paciente.html") Nuevo Paciente
+			.main-col
+				h1 Modificar Informe Pre Operatorio 
+					small Alain Alejo Huarachi
+				.content
+					form.form-horizontal(role="form")
+						.form-group
+							label.col-sm-3.control-label Departamento Hospitalario
+							.col-sm-4
+								select.form-control
+							label.col-sm-1.control-label Piso
+							.col-sm-1
+								input.form-control(disabled)
+						div.form-group
+							label.col-sm-3.control-label Servicio Hospitalario
+							div.col-sm-4
+								select.form-control
+							label.col-sm-1.control-label Sala
+							div.col-sm-1
+								select.form-control
+							label.col-sm-1.control-label Cama
+							div.col-sm-1
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Tipo de intervención
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Premedicaciòn
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Anestésicos
+							div.col-sm-4
+								select.form-control
+							label.col-sm-1.control-label Cantidad
+							div.col-sm-1
+								input.form-control
+						div.form-group
+							label.col-sm-3.control-label Anestecia
+							div.col-sm-4
+								select.form-control
+							label.col-sm-1.control-label Inicio
+							div.col-sm-1
+								input.form-control
+							label.col-sm-1.control-label Fin
+							div.col-sm-1
+								input.form-control
+						div.form-group
+							label.col-sm-3.control-label Fecha de intervención
+							div.col-sm-2
+								input.form-control
+						div.form-group
+							label.col-sm-3.control-label Cirujano
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Primer ayudante
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Segundo ayudante
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Instrumentista
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Circulante
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Anestesiólogo
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							label.col-sm-3.control-label Especialista
+							div.col-sm-4
+								select.form-control
+						div.form-group
+							div.col-sm-offset-3.col-sm-4
+								button.btn.btn-primary(type="submit") Guardar
+		include footer

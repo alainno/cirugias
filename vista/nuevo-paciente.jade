@@ -1,0 +1,94 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./") Buscar Paciente
+					li
+						a(href="nuevo-paciente.html").actual.curva-izq Nuevo Paciente
+			.main-col
+				h1 Nuevo Paciente
+				.content
+					form.form-horizontal(role="form")
+						.form-group
+							label.col-sm-3.control-label Nro. de DNI
+							.col-sm-2
+								input.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Nombres
+							div.col-sm-4
+								input.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Apellido Paterno
+							div.col-sm-4
+								input.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Apellido Materno
+							div.col-sm-4
+								input.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Fecha de Nacimiento
+							div.col-sm-2
+								input.form-control.input-sm
+							div.col-sm-2
+								.checkbox
+									label
+										input(type="checkbox")
+										| Desconocido
+							label.col-sm-1.control-label Edad
+							.col-sm-1
+								input.form-control(disabled).input-sm
+						div.form-group
+							label.col-sm-3.control-label Sexo
+							div.col-sm-3
+								select.form-control.input-sm
+									option Masculino
+									option Femenino
+						div.form-group
+							label.col-sm-3.control-label País
+							div.col-sm-3
+								select.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Departamento
+							div.col-sm-3
+								select.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Provincia
+							div.col-sm-3
+								select.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Distrito
+							div.col-sm-3
+								select.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Dirección
+							div.col-sm-4
+								input.form-control.input-sm
+						div.form-group
+							label.col-sm-3.control-label Historia Clínica
+							div.col-sm-3
+								input.form-control.input-sm
+						div.form-group
+							div.col-sm-offset-3.col-sm-4
+								button.btn.btn-sm.btn-primary(type="submit") Guardar
+		include footer

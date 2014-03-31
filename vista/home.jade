@@ -1,0 +1,60 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./").actual.curva-izq
+							span.glyphicon.glyphicon-search
+							|  Buscar Paciente
+					li
+						a(href="nuevo-paciente.html")
+							span.glyphicon.glyphicon-file
+							|  Nuevo Paciente
+			.main-col
+				h1 Buscar Paciente
+				form.form-inline(role="form")
+					div.form-group
+						input(type="text",placeholder="DNI, Nombre y Apellido ó Nro. de Historia Clínica",size="50").form-control.input-sm
+					button.btn.btn-sm.btn-default(type="submit") Buscar
+					&nbsp;
+					a(href="nuevo-paciente.html").btn.btn-sm.btn-primary Nuevo Paciente
+				table.table.table-hover.mt15
+					thead
+						tr
+							th Nombres
+							th Apellido Paterno
+							th Apellido Materno
+							th DNI
+							th Historia Clínica
+							th Opciones
+					tbody
+						- for(i=0;i<5;i++)
+							tr
+								td Alain
+								td Alejo
+								td Huarachi
+								td 42447799
+								td 99995555
+								td
+									a(href="vista-paciente.html").btn.btn-xs.btn-primary Detalles
+		include footer
