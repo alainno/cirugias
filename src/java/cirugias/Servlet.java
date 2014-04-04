@@ -465,6 +465,14 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/form-info-pre.jsp").include(request, response);		
 	}
 	
+	public void demo(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+//		response.setContentType("text/plain");
+		Procedimiento pro = new Procedimiento();
+//		response.getWriter().write(pro.demo());
+		
+		this.jsonResponse(pro.demo(), response);
+	}
+	
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{
 		Map json = new HashMap();
 		json.put("error", true);

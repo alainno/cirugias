@@ -159,7 +159,6 @@
 		<div class="mt15">
 			<a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm">Modificar</a>
 			<a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm ml10">Crear Informe Pre Operatorio</a>
-			<a href="#" class="btn btn-warning btn-sm ml10">Crear Informe Post Operatorio</a>
 			<a href="#" class="btn btn-default btn-sm ml10">Imprimir</a>
 		</div>
 	<p></p>
