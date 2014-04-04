@@ -1,0 +1,202 @@
+!!! 5
+//if lt IE 7
+	html.no-js.lt-ie9.lt-ie8.lt-ie7
+//if IE 7
+	html.no-js.lt-ie9.lt-ie8
+//if IE 8
+	html.no-js.lt-ie9
+// [if gt IE 8] <!
+html.no-js
+	// <![endif]
+	head
+		meta(charset="utf-8")
+		title PJS Template
+		//link(rel='stylesheet', href='css/normalize.css')
+		link(rel='stylesheet', href='css/bootstrap.min.css')
+		link(rel='stylesheet', href='css/style.css')
+		link(rel='stylesheet', href='css/jquery.autocomplete.css')
+		link(rel='stylesheet', href='js/select2/select2.css')
+		script(src="js/modernizr-2.6.2.min.js")
+	body
+		include header
+		.cuerpo
+			.bg-white
+				.bg-gray
+			.left-col
+				ul.submenu
+					li
+						a(href="./") Buscar Paciente
+					li
+						a(href="nuevo-paciente.html") Nuevo Paciente
+			.main-col
+				h1 Nuevo Informe Post Operatorio 
+					small {nombres}
+				.content
+					form.form-horizontal(role="form")
+						.form-group
+							label.col-sm-3.control-label Días antes de la operación
+							.col-sm-1
+								input.form-control.input-sm(name="InterAntOper",value="{InterAntOper}")
+						.form-group
+							label.col-sm-3.control-label Fecha de inicio
+							.col-sm-3
+								.input-group
+									input.form-control.input-sm(name="FechaIniOper",value="{FechaIniOper}",class="inputfecha")
+									span.input-group-addon.glyphicon.glyphicon-calendar
+							label.col-sm-2.control-label Hora de inicio
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="HoraIniOper",value="{HoraIniOper}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+						.form-group
+							label.col-sm-3.control-label Fecha de fin
+							.col-sm-3
+								.input-group
+									input.form-control.input-sm(name="FechaFinOper",value="{FechaFinOper}",class="inputfecha")
+									span.input-group-addon.glyphicon.glyphicon-calendar
+							label.col-sm-2.control-label Hora de fin
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="HoraFinOper",value="{HoraFinOper}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+
+
+						.form-group
+							label.col-sm-3.control-label Sala de operación
+							.col-sm-3
+								select.form-control.input-sm(name="IdSalaOper") {optsSalaOper}
+						.form-group
+							label.col-sm-3.control-label Hora de ingreso
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="OperHoraIni",value="{OperHoraIni}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+							label.col-sm-2.control-label Hora de egreso
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="OperHoraFin",value="{OperHoraFin}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+
+
+						.form-group
+							label.col-sm-3.control-label Sala de recuperación
+							.col-sm-3
+								select.form-control.input-sm(name="IdSalaRecup") {optsSalaRecup}
+
+						.form-group
+							label.col-sm-3.control-label Fecha de ingreso
+							.col-sm-3
+								.input-group
+									input.form-control.input-sm(name="RecupFechaIni",value="{RecupFechaIni}",class="inputfecha")
+									span.input-group-addon.glyphicon.glyphicon-calendar
+							label.col-sm-2.control-label Hora de ingreso
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="RecupHoraIni",value="{RecupHoraIni}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+						.form-group
+							label.col-sm-3.control-label Fecha de egreso
+							.col-sm-3
+								.input-group
+									input.form-control.input-sm(name="RecupFechaFin",value="{RecupFechaFin}",class="inputfecha")
+									span.input-group-addon.glyphicon.glyphicon-calendar
+							label.col-sm-2.control-label Hora de egreso
+							.col-sm-2
+								.input-group
+									input.form-control.input-sm(name="RecupHoraFin",value="{RecupHoraFin}",class="inputhora")
+									span.input-group-addon.glyphicon.glyphicon-time
+
+						.form-group-interv
+							.form-group
+								label.col-sm-3.control-label Intervención Nro. 
+									span.nro 1
+								.col-sm-6
+									.input-group
+										//input.form-control.input-sm.inputautocomplete
+										input#s2(type="hidden")
+										//input(type="hidden",name="IdProced[]",value="{IdProced-1}")
+										//span.input.input-group-btn
+										//	a.btn.btn-default.btn-sm(href="#")
+										//		span.glyphicon.glyphicon-search
+								.col-sm-1
+									button(type="button",class="remInterv").btn.btn-default.btn-sm.oculto
+										span.glyphicon.glyphicon-remove
+							//.form-group
+								label.col-sm-3.control-label Intervención Nro. 2
+								.col-sm-6
+									.input-group
+										input.form-control.input-sm
+										input(type="hidden",name="IdProced[]",value="{IdProced-2}")
+										span.input.input-group-btn
+											a.btn.btn-default.btn-sm(href="#")
+												span.glyphicon.glyphicon-search
+								.col-sm-1
+									button(type="button",class="remInterv").btn.btn-default.btn-sm
+										span.glyphicon.glyphicon-remove
+						.form-group
+							.col-sm-1.col-sm-offset-3
+								button(type="button",id="addInterv").btn.btn-default.btn-sm
+									span.glyphicon.glyphicon-plus
+
+						.form-group
+							label.col-sm-3.control-label Protocolo Operatorio
+							div.col-sm-8
+								input.form-control.input-sm(name="ProtocoloOperat",value="{ProtocoloOperat}")
+						.form-group
+							label.col-sm-3.control-label Diagnóstico Pre Operatorio
+							.col-sm-6
+								.input-group
+									input.form-control.input-sm.inputautocomplete
+									input(type="hidden",name="IdDiagPre",value="{IdDiagPre}")
+									span.input.input-group-btn
+										a.btn.btn-default.btn-sm(href="#")
+											span.glyphicon.glyphicon-search
+						.form-group
+							label.col-sm-3.control-label Diagnóstico Post Operatorio
+							.col-sm-6
+								.input-group
+									input.form-control.input-sm.inputautocomplete
+									input(type="hidden",name="IdDiagPost",value="{IdDiagPost}")
+									span.input.input-group-btn
+										a.btn.btn-default.btn-sm(href="#")
+											span.glyphicon.glyphicon-search
+						.form-group
+							label.col-sm-3.control-label Descripción de envío
+							div.col-sm-8
+								input.form-control.input-sm(name="DescEnvio",value="{DescEnvio}")
+						.form-group
+							label.col-sm-3.control-label Observaciones de envío
+							div.col-sm-8
+								input.form-control.input-sm(name="ObsEnvio",value="{ObsEnvio}")
+
+						.form-group
+							div.col-sm-4.col-sm-offset-3
+								.checkbox
+									label
+										input(type="checkbox",name="Patologia",checked="{checkPatologia}",id="checkPatologia")
+										| ¿Muestra enviada a Patología?
+						.form-group
+							label.col-sm-3.control-label Especificar
+							div.col-sm-8
+								input.form-control.input-sm(name="PatologiaEspec",value="{PatologiaEspec}",disabled="disabled",id="PatologiaEspec")
+						.form-group
+							label.col-sm-3.control-label Complicación
+							.col-sm-4
+								select.form-control.input-sm(name="IdComp") {optsComp}
+						.form-group
+							label.col-sm-3.control-label Especificar
+							.col-sm-8
+								input.form-control.input-sm(name="CompEspec",value="{CompEspec}")
+						.form-group
+							label.col-sm-3.control-label Condición de egreso
+							.col-sm-4
+								select.form-control.input-sm(name="IdCondEgr") {optsCondEgr}
+						.form-group
+							label.col-sm-3.control-label Especificar
+							.col-sm-8
+								input.form-control.input-sm(name="CondEspec",value="{CondEspec}")
+						.form-group
+							.col-sm-offset-3.col-sm-4
+								button.btn.btn-primary(type="submit") Guardar
+								
+		include footer
