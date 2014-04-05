@@ -32,7 +32,7 @@ html.no-js
 				h1 Nuevo Informe Post Operatorio 
 					small {nombres}
 				.content
-					form.form-horizontal(role="form")
+					form.form-horizontal(role="form")#form-info-post
 						.form-group
 							label.col-sm-3.control-label Días antes de la operación
 							.col-sm-1
@@ -111,7 +111,7 @@ html.no-js
 								label.col-sm-3.control-label Intervención Nro. 
 									span.nro 1
 								.col-sm-6.select2-container
-									input.select2(type="hidden")
+									input.select2(type="hidden",name="IdProced[]")
 									//.input-group
 										input.form-control.input-sm.inputautocomplete
 										input(type="hidden",name="IdProced[]",value="{IdProced-1}")
@@ -145,7 +145,8 @@ html.no-js
 						.form-group
 							label.col-sm-3.control-label Diagnóstico Pre Operatorio
 							.col-sm-6
-								.input-group
+								input.select2(type="hidden",name="IdDiagPre",value="{IdDiagPre}")
+								//.input-group
 									input.form-control.input-sm.inputautocomplete
 									input(type="hidden",name="IdDiagPre",value="{IdDiagPre}")
 									span.input.input-group-btn
@@ -154,7 +155,8 @@ html.no-js
 						.form-group
 							label.col-sm-3.control-label Diagnóstico Post Operatorio
 							.col-sm-6
-								.input-group
+								input.select2(type="hidden",name="IdDiagPost",value="{IdDiagPost}")
+								//.input-group
 									input.form-control.input-sm.inputautocomplete
 									input(type="hidden",name="IdDiagPost",value="{IdDiagPost}")
 									span.input.input-group-btn

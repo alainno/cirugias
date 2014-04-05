@@ -55,7 +55,7 @@
         <h1>Nuevo Informe Post Operatorio <small>{nombres}</small>
         </h1>
         <div class="content">
-          <form role="form" class="form-horizontal">
+          <form role="form" id="form-info-post" class="form-horizontal">
             <div class="form-group">
               <label class="col-sm-3 control-label">Días antes de la operación
               </label>
@@ -164,7 +164,7 @@
                 <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">1</span>
                 </label>
                 <div class="col-sm-6 select2-container">
-                  <input type="hidden" class="select2"><!--.input-group
+                  <input type="hidden" name="IdProced[]" class="select2"><!--.input-group
                   <input class="form-control input-sm inputautocomplete">
                   <input type="hidden" name="IdProced[]" value="{IdProced-1}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
                 </div>
@@ -203,20 +203,18 @@
               <label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
               </label>
               <div class="col-sm-6">
-                <div class="input-group">
-                  <input class="form-control input-sm inputautocomplete">
-                  <input type="hidden" name="IdDiagPre" value="{IdDiagPre}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>
-                </div>
+                <input type="hidden" name="IdDiagPre" value="{IdDiagPre}" class="select2"><!--.input-group
+                <input class="form-control input-sm inputautocomplete">
+                <input type="hidden" name="IdDiagPre" value="{IdDiagPre}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3 control-label">Diagnóstico Post Operatorio
               </label>
               <div class="col-sm-6">
-                <div class="input-group">
-                  <input class="form-control input-sm inputautocomplete">
-                  <input type="hidden" name="IdDiagPost" value="{IdDiagPost}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>
-                </div>
+                <input type="hidden" name="IdDiagPost" value="{IdDiagPost}" class="select2"><!--.input-group
+                <input class="form-control input-sm inputautocomplete">
+                <input type="hidden" name="IdDiagPost" value="{IdDiagPost}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
               </div>
             </div>
             <div class="form-group">

@@ -26,14 +26,15 @@ function mainInfoPost(){
 			,id:1
 		}
 	);*/
-	ac = $("input.inputautocomplete").autocomplete(
+
+	/*ac = $("input.inputautocomplete").autocomplete(
 		"demo.txt"
 		,{
 			onItemSelect:selectItem
 			,onFindValue:findValue
 			//,id:1
 		}
-	);
+	);*/
 
 	// select2
 	$("input.select2").select2({
@@ -52,7 +53,21 @@ function mainInfoPost(){
 			}
 		}
 		,minimumInputLength:1
+		,initSelection: function(element, callback){
+			//var data = {id: element.val(), text: element.val()};
+			var data = {id: "hi", text: "hi"};
+        	callback(data);
+		}
 	});
+
+
+	$("#form-info-post").submit(enviarForm);
+}
+
+function enviarForm(){
+	var args = $(this).serialize();
+	console.log(args);
+	return false;
 }
 
 function attachSelect2($input){
@@ -111,20 +126,21 @@ function addInterv(){
 	$controlInterv.find("input").val("");
 	$controlInterv.find("button.remInterv").show();
 
-	$controlInterv.find(".select2-container").html('<input type="hidden" class="select2" />');
+	$controlInterv.find(".select2-container").html('<input type="hidden" name="IdProced[]" class="select2" />');
 	//$input.removeClass("select2");
 
 	attachSelect2($controlInterv.find("input.select2"));
 
 	//var new_id = "automcomplete-interv-" + (hijos + 1);
 	//$controlInterv.find("#autocomplete-interv-1").attr("id", new_id);
+
+	/*
 	$controlInterv.find("input.inputautocomplete").autocompleteArray(
 		["Allen","Albert","Alberto","Alladin"]
 		//,{onFindValue:findValue}
 		,{onItemSelect:selectItem}
 	);
-
-
+	*/
 
 	$(".form-group-interv").append($controlInterv);
 	//alert(html);
