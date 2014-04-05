@@ -36,7 +36,7 @@ function mainInfoPost(){
 	);
 
 	// select2
-	$("#s2").select2({
+	$("input.select2").select2({
 		width:360
 		,ajax:{
 			url:"select2.json"
@@ -51,7 +51,27 @@ function mainInfoPost(){
 				return{results:data.results};
 			}
 		}
+		,minimumInputLength:1
 	});
+}
+
+function attachSelect2($input){
+	$input.select2({
+		width:360
+		,ajax:{
+			url:"select2.json"
+			,dataType:"json"
+			,data:function(term, page){
+				return{
+					q: term
+					,page_limit: 10
+				}
+			}
+			,results:function(data,page){
+				return{results:data.results};
+			}
+		}
+	});	
 }
 
 function findValue(li){
@@ -91,6 +111,11 @@ function addInterv(){
 	$controlInterv.find("input").val("");
 	$controlInterv.find("button.remInterv").show();
 
+	$controlInterv.find(".select2-container").html('<input type="hidden" class="select2" />');
+	//$input.removeClass("select2");
+
+	attachSelect2($controlInterv.find("input.select2"));
+
 	//var new_id = "automcomplete-interv-" + (hijos + 1);
 	//$controlInterv.find("#autocomplete-interv-1").attr("id", new_id);
 	$controlInterv.find("input.inputautocomplete").autocompleteArray(
@@ -98,6 +123,8 @@ function addInterv(){
 		//,{onFindValue:findValue}
 		,{onItemSelect:selectItem}
 	);
+
+
 
 	$(".form-group-interv").append($controlInterv);
 	//alert(html);

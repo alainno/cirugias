@@ -163,15 +163,10 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">1</span>
                 </label>
-                <div class="col-sm-6">
-                  <div class="input-group">
-                    <!--input.form-control.input-sm.inputautocomplete-->
-                    <input id="s2" type="hidden">
-                    <!--input(type="hidden",name="IdProced[]",value="{IdProced-1}")-->
-                    <!--span.input.input-group-btn-->
-                    <!--	a.btn.btn-default.btn-sm(href="#")-->
-                    <!--		span.glyphicon.glyphicon-search-->
-                  </div>
+                <div class="col-sm-6 select2-container">
+                  <input type="hidden" class="select2"><!--.input-group
+                  <input class="form-control input-sm inputautocomplete">
+                  <input type="hidden" name="IdProced[]" value="{IdProced-1}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
                 </div>
                 <div class="col-sm-1">
                   <button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
@@ -303,5 +298,6 @@
     <script src="js/info-post.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
     <script src="js/select2/select2.js"></script>
+    <script src="js/select2/select2_locale_es.js"></script>
   </body>
 </html>

@@ -110,14 +110,14 @@ html.no-js
 							.form-group
 								label.col-sm-3.control-label Intervención Nro. 
 									span.nro 1
-								.col-sm-6
-									.input-group
-										//input.form-control.input-sm.inputautocomplete
-										input#s2(type="hidden")
-										//input(type="hidden",name="IdProced[]",value="{IdProced-1}")
-										//span.input.input-group-btn
-										//	a.btn.btn-default.btn-sm(href="#")
-										//		span.glyphicon.glyphicon-search
+								.col-sm-6.select2-container
+									input.select2(type="hidden")
+									//.input-group
+										input.form-control.input-sm.inputautocomplete
+										input(type="hidden",name="IdProced[]",value="{IdProced-1}")
+										span.input.input-group-btn
+											a.btn.btn-default.btn-sm(href="#")
+												span.glyphicon.glyphicon-search
 								.col-sm-1
 									button(type="button",class="remInterv").btn.btn-default.btn-sm.oculto
 										span.glyphicon.glyphicon-remove
