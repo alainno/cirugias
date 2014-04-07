@@ -111,7 +111,7 @@ html.no-js
 								label.col-sm-3.control-label Intervención Nro. 
 									span.nro 1
 								.col-sm-6.select2-container
-									input.select2(type="hidden",name="IdProced[]")
+									input.select2(type="hidden",name="IdProced[]",value="{IdProced-1}",rel="{DescProced-1}")
 									//.input-group
 										input.form-control.input-sm.inputautocomplete
 										input(type="hidden",name="IdProced[]",value="{IdProced-1}")
@@ -145,7 +145,7 @@ html.no-js
 						.form-group
 							label.col-sm-3.control-label Diagnóstico Pre Operatorio
 							.col-sm-6
-								input.select2(type="hidden",name="IdDiagPre",value="{IdDiagPre}")
+								input.select2(type="hidden",name="IdDiagPre",value="{IdDiagPre}",rel="{DescDiagPre}")
 								//.input-group
 									input.form-control.input-sm.inputautocomplete
 									input(type="hidden",name="IdDiagPre",value="{IdDiagPre}")
@@ -155,7 +155,7 @@ html.no-js
 						.form-group
 							label.col-sm-3.control-label Diagnóstico Post Operatorio
 							.col-sm-6
-								input.select2(type="hidden",name="IdDiagPost",value="{IdDiagPost}")
+								input.select2(type="hidden",name="IdDiagPost",value="{IdDiagPost}",rel="{DescDiagPost}")
 								//.input-group
 									input.form-control.input-sm.inputautocomplete
 									input(type="hidden",name="IdDiagPost",value="{IdDiagPost}")

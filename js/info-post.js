@@ -54,8 +54,8 @@ function mainInfoPost(){
 		}
 		,minimumInputLength:1
 		,initSelection: function(element, callback){
-			//var data = {id: element.val(), text: element.val()};
-			var data = {id: "hi", text: "hi"};
+			var data = {id: element.val(), text: element.attr('rel')};
+			//var data = {id: "hi", text: "hi"};
         	callback(data);
 		}
 	});
