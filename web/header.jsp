@@ -11,11 +11,17 @@
     <!-- <![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>Cirugías
+        <title>Cirugías 
         </title>
         <!--link(rel='stylesheet', href='css/normalize.css')-->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
+		<%
+			String[] estilos = request.getParameterValues("masEstilos");
+			if(estilos != null){
+			for(int i=0;i<estilos.length;i++){ %>
+			<link rel="stylesheet" href="<%=estilos[i]%>">
+		<% }} %>
         <script src="js/modernizr-2.6.2.min.js"></script>
     </head>
     <body>

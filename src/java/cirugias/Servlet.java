@@ -469,8 +469,17 @@ public class Servlet extends HttpServlet {
 //		response.setContentType("text/plain");
 		Procedimiento pro = new Procedimiento();
 //		response.getWriter().write(pro.demo());
-		
 		this.jsonResponse(pro.demo(), response);
+	}
+	
+	public void nuevoInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+//		String masScripts = "<script src=\"js/jquery.maskedinput.min.js\"></script>";
+//		masScripts += "<script src=\"js/select2/select2.js\"></script>";
+//		masScripts += "<script src=\"js/select2/select2_locale_es.js\"></script>";
+//		masScripts += "<script src=\"js/info-post.js\"></script>";
+//		request.setAttribute("masScripts", masScripts);
+		
+		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
 	}
 	
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{
