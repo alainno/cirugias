@@ -50,17 +50,6 @@ public class Servlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, NoSuchMethodException {
 		response.setContentType("text/html;charset=UTF-8");
-		/*try (PrintWriter out = response.getWriter()) {
-			out.println("<!DOCTYPE html>");
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<title>Servlet Servlet</title>");			
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-			out.println("</body>");
-			out.println("</html>");
-		}*/
 		
 		String vista = request.getParameter("v");
 		if(vista == null){
@@ -472,14 +461,29 @@ public class Servlet extends HttpServlet {
 		this.jsonResponse(pro.demo(), response);
 	}
 	
-	public void nuevoInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//		String masScripts = "<script src=\"js/jquery.maskedinput.min.js\"></script>";
-//		masScripts += "<script src=\"js/select2/select2.js\"></script>";
-//		masScripts += "<script src=\"js/select2/select2_locale_es.js\"></script>";
-//		masScripts += "<script src=\"js/info-post.js\"></script>";
-//		request.setAttribute("masScripts", masScripts);
+	public void nuevoInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+
+		Paciente pac = new Paciente(null);
+		pac.idPaciente = request.getParameter("idpac");
+		pac.get();
+		
+		request.setAttribute("idpac", pac.idPaciente);
+		request.setAttribute("nombres", pac.nombres + " " + pac.apPaterno + " " + pac.apMaterno);		
+		
+		SalaOper salao = new SalaOper();
+		request.setAttribute("optsSalaOper", salao.getHtmlOptions());
+		SalaRecup salar = new SalaRecup();
+		request.setAttribute("optsSalaRecup", salar.getHtmlOptions());
+		Complicacion compli = new Complicacion();
+		request.setAttribute("optsComp", compli.getHtmlOptions());
+		CondEgreso conde = new CondEgreso();
+		request.setAttribute("optsCondEgr", conde.getHtmlOptions());
 		
 		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
+	}
+	
+	void detalleInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/detalle-info-post.jsp").include(request, response);
 	}
 	
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{

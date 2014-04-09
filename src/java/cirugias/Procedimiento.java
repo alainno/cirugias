@@ -8,6 +8,7 @@ package cirugias;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,5 +47,24 @@ public class Procedimiento {
 //		return text.trim();
 //		return "Alain|1 Alan|2 Alberto|3";
 		return json;
+	}
+
+	Map buscar(String q) throws SQLException {
+		String sql = "SELECT * FROM procedimientos WHERE IdProced LIKE ? OR DescProced LIKE ?";
+		List<String> data =  Arrays.asList(q + "%", q + "%");
+		db.ejecutar(sql, data);
+		
+		List results = new ArrayList();
+		for(Map<String,String> row : db.results){
+			Map result = new HashMap();
+			result.put("id", row.get("IdProced"));
+			result.put("text", row.get("IdProced") + " - " + row.get("DescProced"));
+			results.add(result);
+		}
+		
+		Map json = new HashMap();
+		json.put("more", false);
+		json.put("results", results);
+		return json;		
 	}
 }
