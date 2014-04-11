@@ -27,6 +27,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Ajax", urlPatterns = {"/Ajax"})
 public class Ajax extends HttpServlet {
+	HttpServletRequest requ;
+	HttpServletResponse resp;
 
 	/**
 	 * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,9 +46,13 @@ public class Ajax extends HttpServlet {
 //		if(vista == null){
 //			vista = "indexPaciente";
 //		}
-		Method method = getClass().getDeclaredMethod(vista, HttpServletRequest.class, HttpServletResponse.class);
+//		Method method = getClass().getDeclaredMethod(vista, HttpServletRequest.class, HttpServletResponse.class);
+		this.requ = request;
+		this.resp = response;
+		Method method = getClass().getDeclaredMethod(vista);
 		try {
-			method.invoke(this, request, response);
+//			method.invoke(this, request, response);
+			method.invoke(this);
 		} catch (IllegalAccessException ex) {
 			Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IllegalArgumentException ex) {
@@ -106,8 +112,10 @@ public class Ajax extends HttpServlet {
 	public String getServletInfo() {
 		return "Short description";
 	}// </editor-fold>
-	void buscarProcs(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException{
-		String q = request.getParameter("q");
+	
+//	void buscarProcs(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException{
+	void buscarProcs() throws IOException, SQLException{
+		String q = this.requ.getParameter("q");
 		if(q == null){
 			return;
 		}
@@ -119,11 +127,12 @@ public class Ajax extends HttpServlet {
 		}
 		
 		Procedimiento proced = new Procedimiento();
-		this.jsonResponse(proced.buscar(q), response);
+		this.jsonResponse(proced.buscar(q), this.resp);
 	}
 	
-	void buscarDiags(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException{
-		String q = request.getParameter("q");
+//	void buscarDiags(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException{
+	void buscarDiags() throws IOException, SQLException{
+		String q = this.requ.getParameter("q");
 		if(q == null){
 			return;
 		}
@@ -135,11 +144,37 @@ public class Ajax extends HttpServlet {
 		}
 		
 		Cie cie = new Cie();
-		this.jsonResponse(cie.buscar(q), response);
+		this.jsonResponse(cie.buscar(q), this.resp);
 	}
 	
-	void guardarInfoPost(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		this.jsonRedireccion("Servlet?v=detalleInfoPost&id=", response);
+	void guardarInfoPost() throws IOException{
+//		DatalleOper detaoper = new DetalleOper();
+//		
+//		detaoper.InterAntOper =	this.requ.getParameter("InterAntOper");
+//		detaoper.FechaIniOper =	this.requ.getParameter("FechaIniOper");
+//		detaoper.FechaFinOper =	this.requ.getParameter("FechaFinOper");
+//		detaoper.HoraIniOper = this.requ.getParameter("HoraIniOper");
+//		detaoper.HoraFinOper = this.requ.getParameter("HoraFinOper");
+//		
+//		detaoper.IdSalaOper = this.requ.getParameter("IdSalaOper");
+//		detaoper.OperHoraIni = this.requ.getParameter("OperHoraIni");
+//		detaoper.OperHoraFin = this.requ.getParameter("OperHoraFin");
+//		
+//		detaoper.IdSalaRecup = this.requ.getParameter("IdSalaRecup");
+//		detaoper.RecupFechaIni = this.requ.getParameter("RecupFechaIni");
+//		detaoper.RecupFechaFin = this.requ.getParameter("RecupFechaFin");
+//		detaoper.RecupHoraIni = this.requ.getParameter("RecupHoraIni");
+//		detaoper.RecupHoraFin = this.requ.getParameter("RecupHoraFin");
+		
+		String[] IdProced = this.requ.getParameterValues("IdProced[]");
+		String out = "";
+		for(int i=0;i<IdProced.length;i++){
+			out += "," + IdProced[i];
+		}
+		
+		this.jsonError(out, resp);
+		
+		//this.jsonRedireccion("Servlet?v=detalleInfoPost&id=", this.resp);
 	}
 
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{

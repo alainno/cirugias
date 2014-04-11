@@ -45,6 +45,7 @@
                 </div>
 			</div>
 		</div>
+		<hr />
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Sala de operación
 			</label>
@@ -69,6 +70,7 @@
                 </div>
 			</div>
 		</div>
+				<hr />
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Sala de recuperación
 			</label>
@@ -109,32 +111,19 @@
                 </div>
 			</div>
 		</div>
+				<hr />
 		<div class="form-group-interv">
 			<div class="form-group">
                 <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">1</span>
                 </label>
                 <div class="col-sm-6 select2-container">
-					<input type="hidden" name="IdProced[]" value="${IdProced_1}" rel="${DescProced_1}" class="select2-interv"><!--.input-group
-					<input class="form-control input-sm inputautocomplete">
-					<input type="hidden" name="IdProced[]" value="${IdProced-1}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
+					<input type="hidden" name="IdProced[]" value="${IdProced_1}" rel="${DescProced_1}" class="select2-interv">
                 </div>
                 <div class="col-sm-1">
 					<button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
 					</button>
                 </div>
-			</div><!--.form-group
-			<label class="col-sm-3 control-label">Intervención Nro. 2
-			</label>
-			<div class="col-sm-6">
-			  <div class="input-group">
-				<input class="form-control input-sm">
-				<input type="hidden" name="IdProced[]" value="${IdProced-2}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>
-			  </div>
 			</div>
-			<div class="col-sm-1">
-			  <button type="button" class="remInterv btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span>
-			  </button>
-			</div>-->
 		</div>
 		<div class="form-group">
 			<div class="col-sm-1 col-sm-offset-3">
@@ -153,18 +142,14 @@
 			<label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPre" value="${IdDiagPre}" rel="${DescDiagPre}" class="select2-diag"><!--.input-group
-                <input class="form-control input-sm inputautocomplete">
-                <input type="hidden" name="IdDiagPre" value="${IdDiagPre}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
+                <input type="hidden" name="IdDiagPre" value="${IdDiagPre}" rel="${DescDiagPre}" class="select2-diag" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Diagnóstico Post Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPost" value="${IdDiagPost}" rel="${DescDiagPost}" class="select2-diag"><!--.input-group
-                <input class="form-control input-sm inputautocomplete">
-                <input type="hidden" name="IdDiagPost" value="${IdDiagPost}"><span class="input input-group-btn"><a href="#" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-search"></span></a></span>-->
+                <input type="hidden" name="IdDiagPost" value="${IdDiagPost}" rel="${DescDiagPost}" class="select2-diag">
 			</div>
 		</div>
 		<div class="form-group">
@@ -185,7 +170,7 @@
 			<div class="col-sm-4 col-sm-offset-3">
                 <div class="checkbox">
 					<label>
-						<input type="checkbox" name="Patologia" checked="${checkPatologia}" id="checkPatologia">¿Muestra enviada a Patología?
+						<input type="checkbox" name="Patologia" ${checkPatologia} id="checkPatologia">¿Muestra enviada a Patología?
 
 					</label>
                 </div>
