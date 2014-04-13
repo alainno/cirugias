@@ -5,7 +5,7 @@
 <h1>Nuevo Informe Post Operatorio <small>${nombres}</small>
 </h1>
 <div class="content">
-	<form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost">
+	<form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${idpac}&iddi=${iddi}&id=${id}">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Días antes de la operación
 			</label>
@@ -171,7 +171,6 @@
                 <div class="checkbox">
 					<label>
 						<input type="checkbox" name="Patologia" ${checkPatologia} id="checkPatologia">¿Muestra enviada a Patología?
-
 					</label>
                 </div>
 			</div>
@@ -210,7 +209,7 @@
 			<label class="col-sm-3 control-label">Especificar
 			</label>
 			<div class="col-sm-8">
-                <input name="CondEspec" value="${CondEspec}" class="form-control input-sm">
+                <input name="CondEgr" value="${CondEgr}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">

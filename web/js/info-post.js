@@ -16,7 +16,7 @@ var opts_interv = {
 			return{results:data.results};
 		}
 	}
-	,minimumInputLength:3
+	,minimumInputLength:1
 	,initSelection: function(element, callback){
 		var data = {id: element.val() || '', text: element.attr('rel') || ''};
 		callback(data);
@@ -38,7 +38,7 @@ var opts_diag = {
 			return{results:data.results};
 		}
 	}
-	,minimumInputLength:3
+	,minimumInputLength:1
 	,initSelection: function(element, callback){
 		var data = {id: element.val() || '', text: element.attr('rel') || ''};
 		callback(data);

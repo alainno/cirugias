@@ -204,4 +204,116 @@ public class Paciente{
 		
 		return tableContent;
 	}
+
+	public String getIdPaciente() {
+		return idPaciente;
+	}
+
+	public void setIdPaciente(String idPaciente) {
+		this.idPaciente = idPaciente;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApPaterno() {
+		return apPaterno;
+	}
+
+	public void setApPaterno(String apPaterno) {
+		this.apPaterno = apPaterno;
+	}
+
+	public String getApMaterno() {
+		return apMaterno;
+	}
+
+	public void setApMaterno(String apMaterno) {
+		this.apMaterno = apMaterno;
+	}
+
+	public String getFechaNac() {
+		return fechaNac;
+	}
+
+	public void setFechaNac(String fechaNac) {
+		this.fechaNac = fechaNac;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public Distrito getDistrito() {
+		return distrito;
+	}
+
+	public void setDistrito(Distrito distrito) {
+		this.distrito = distrito;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Ocupacion getOcupacion() {
+		return ocupacion;
+	}
+
+	public void setOcupacion(Ocupacion ocupacion) {
+		this.ocupacion = ocupacion;
+	}
+
+	public String getNumHc() {
+		return numHc;
+	}
+
+	public void setNumHc(String numHc) {
+		this.numHc = numHc;
+	}
+
+	public String getFechaInscr() {
+		return fechaInscr;
+	}
+
+	public void setFechaInscr(String fechaInscr) {
+		this.fechaInscr = fechaInscr;
+	}
+
+	public String getErrorValidacion() {
+		return errorValidacion;
+	}
+
+	public void setErrorValidacion(String errorValidacion) {
+		this.errorValidacion = errorValidacion;
+	}	
 }

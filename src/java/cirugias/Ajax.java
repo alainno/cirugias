@@ -147,8 +147,12 @@ public class Ajax extends HttpServlet {
 		this.jsonResponse(cie.buscar(q), this.resp);
 	}
 	
-	void guardarInfoPost() throws IOException{
+	public void guardarInfoPost() throws IOException{
 //		DatalleOper detaoper = new DetalleOper();
+//		
+//		detaoper.IdPaciente = this.requ.getParameter("idpac");
+//		detaoper.IdDetalleInterv = this.requ.getParameter("iddi");
+//		//detaoper.IdDetalleOper = this.requ.getParameter("id");
 //		
 //		detaoper.InterAntOper =	this.requ.getParameter("InterAntOper");
 //		detaoper.FechaIniOper =	this.requ.getParameter("FechaIniOper");
@@ -165,15 +169,45 @@ public class Ajax extends HttpServlet {
 //		detaoper.RecupFechaFin = this.requ.getParameter("RecupFechaFin");
 //		detaoper.RecupHoraIni = this.requ.getParameter("RecupHoraIni");
 //		detaoper.RecupHoraFin = this.requ.getParameter("RecupHoraFin");
-		
-		String[] IdProced = this.requ.getParameterValues("IdProced[]");
-		String out = "";
-		for(int i=0;i<IdProced.length;i++){
-			out += "," + IdProced[i];
-		}
-		
-		this.jsonError(out, resp);
-		
+//			
+//		detaoper.ProtocoloOperat = this.requ.getParameter("ProtocoloOperat");
+//		detaoper.IdDiagPre = this.requ.getParameter("IdDiagPre");
+//		detaoper.IdDiagPost = this.requ.getParameter("IdDiagPost");
+//		detaoper.DescEnvio = this.requ.getParameter("DescEnvio");
+//		detaoper.ObsEnvio = this.requ.getParameter("ObsEnvio");
+//		detaoper.Patologia = this.requ.getParameter("Patologia");
+//		detaoper.PatologiaEspec = this.requ.getParameter("PatologiaEspec");
+//		detaoper.IdComp = this.requ.getParameter("IdComp");
+//		detaoper.CompEspec = this.requ.getParameter("CompEspec");
+//		detaoper.IdComp = this.requ.getParameter("IdCondEgr");
+//		detaoper.CondEgr = this.requ.getParameter("CondEgr");
+//	
+//		if(!detaoper.validar()){
+//			this.jsonError(detaoper.errorValidacion, this.resp);
+//			return;
+//		}
+//		detaoper.save();
+//		
+//		//detaproc.IdProced
+//	
+//		String[] IdProced = this.requ.getParameterValues("IdProced[]");
+//		for(int i=0;i<IdProced.length;i++){
+//			DetalleProcs detaproc = new DetalleProcs();
+//			detaproc.IdProced = IdProced[i];
+//			detaproc.IdDetalleOper = detaoper.IdDetalleOper;
+//			detaproc.save();
+//		}
+//		
+//		this.jsonError(out, resp);
+		//		String[] IdProced = this.requ.getParameterValues("IdProced[]");
+//		String out = "";
+//		for(int i=0;i<IdProced.length;i++){
+//			out += "," + IdProced[i];
+//		}
+//		
+//		this.jsonError(out, resp);
+				
+				
 		//this.jsonRedireccion("Servlet?v=detalleInfoPost&id=", this.resp);
 	}
 

@@ -454,12 +454,12 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/form-info-pre.jsp").include(request, response);		
 	}
 	
-	public void demo(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
+	//public void demo(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException{
 //		response.setContentType("text/plain");
-		Procedimiento pro = new Procedimiento();
+	//	Procedimiento pro = new Procedimiento();
 //		response.getWriter().write(pro.demo());
-		this.jsonResponse(pro.demo(), response);
-	}
+		//this.jsonResponse(pro.demo(), response);
+	//}
 	
 	public void nuevoInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
 
@@ -482,8 +482,42 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
 	}
 	
-	void detalleInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	public void detalleInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+		DetalleOper detaoper = new DetalleOper();
+		//detaoper.setIdDetalleOper(request.getParameter("id"));
+		detaoper.IdDetalleOper = request.getParameter("id");
+		detaoper.get();
+		
+		request.setAttribute("detaoper", detaoper);
+//		
+//		request.setAttribute("apellidos", detaoper.Paciente.ApPaterno + " " + detaoper.paciente.ApMaterno);
+//		request.setAttribute("nombres", detaoper.Paciente.Nombres);
+//		request.setAttribute("InterAntOper", detaoper.InterAntOper);
+//		request.setAttribute("FechaIniOper", detaoper.FechaIniOper);
+//		request.setAttribute("FechaFinOper", detaoper.FechaFinOper);
+//		request.setAttribute("HoraIniOper", detaoper.HoraIniOper);
+//		request.setAttribute("HoraFinOper", detaoper.HoraFinOper);
+//		request.setAttribute("DescSalaOper", detaoper.SalaOper.DescSalaOper);
+//		request.setAttribute("OperHoraIni", detaoper.OperHoraIni);
+//		request.setAttribute("OperHoraFin", detaoper.OperHoraFin);
+//		request.setAttribute("DescSalaRecup", detaoper.SalaRecup.DescSalaRecup);
+//		request.setAttribute("RecuFechaIni", detaoper.RecuFechaIni);
+//		request.setAttribute("RecuHoraIni", detaoper.RecuHoraIni);
+//		request.setAttribute("RecuFechaFin", detaoper.RecuFechaFin);
+//		request.setAttribute("RecuHoraFin", detaoper.RecuHoraFin);
+		
+		//request.setAttribute("RecuHoraFin", detaoper.RecuHoraFin);
+		
 		request.getRequestDispatcher("/detalle-info-post.jsp").include(request, response);
+	}
+	
+	private void demo(HttpServletRequest request, HttpServletResponse response) throws SQLException, ParseException, ServletException, IOException{
+		Paciente paciente = new Paciente(null);
+		paciente.idPaciente = "80";
+		paciente.get();
+		request.setAttribute("paciente", paciente);
+		
+		request.getRequestDispatcher("/demo.jsp").include(request, response);
 	}
 	
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{
