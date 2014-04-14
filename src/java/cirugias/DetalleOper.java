@@ -6,6 +6,7 @@
 
 package cirugias;
 
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -16,64 +17,97 @@ import java.util.Map;
  *
  * @author Nino
  */
-class DetalleOper {
-	String IdDetalleOper;
-	String IdDetalleInterv;
+public class DetalleOper{
+	String idDetalleOper;
+	String idDetalleInterv;
 	Paciente paciente;
-	String InterAntOper;
-	String FechaIniOper;
-	String HoraIniOper;
-	String FechaFinOper;
-	String HoraFinOper;
+	String interAntOper;
+	String fechaIniOper;
+	String horaIniOper;
+	String fechaFinOper;
+	String horaFinOper;
 	SalaOper salaOper;
-	String OperHoraIni;
-	String OperHoraFin;
+	String operHoraIni;
+	String operHoraFin;
 	SalaRecup salaRecup;
-	String RecupFechaIni;
-	String RecupFechaFin;
-	String RecupHoraIni;
-	String RecupHoraFin;
-	String ProtocoloOperat;
+	String recupFechaIni;
+	String recupFechaFin;
+	String recupHoraIni;
+	String recupHoraFin;
+	String protocoloOperat;
 	Cie diagPre;
 	Cie diagPost;
-	String DescEnvio;
-	String ObsEnvio;
-	String Patologia;
-	String PatologiaEspec;
+	String descEnvio;
+	String obsEnvio;
+	String patologia;
+	String patologiaEspec;
 	Complicacion comp;
-	String CompEspec;
+	String compEspec;
 	CondEgreso condEgr;
-	String CondEspec;
+	String condEspec;
+	
+	List detaProcs;
+	
+	public DetalleOper(){
+	}
 
 	public void get() throws SQLException, ParseException{
 		String sql = "SELECT * FROM detalle_operacion WHERE IdDetalleOper=? LIMIT 1";
-		List<String> data = Arrays.asList(this.IdDetalleOper);
+		List<String> data = Arrays.asList(this.idDetalleOper);
 		db.ejecutar(sql, data);
 		Map<String,String> row = db.results.get(0);
 		
-		this.IdDetalleInterv = row.get("IdDetalleInterv");
+		this.idDetalleInterv = row.get("IdDetalleInterv");
 		
-		Paciente paciente = new Paciente(null);
-		paciente.idPaciente = row.get("IdPaciente");
-		paciente.get();
-		this.paciente = paciente;
+		Paciente pac = new Paciente(null);
+		pac.idPaciente = row.get("IdPaciente");
+		pac.get();
+		this.paciente = pac;
+		
+		this.interAntOper = row.get("InterAntOper");
+		this.fechaIniOper = row.get("FechaIniOper");
+		this.horaIniOper = row.get("HoraIniOper");
+		this.fechaFinOper = row.get("FechaFinOper");
+		this.horaFinOper = row.get("HoraFinOper");
+		
+		SalaOper salao = new SalaOper();
+		salao.idSalaOper = row.get("IdSalaOper");
+		salao.get();
+		this.salaOper = salao;
+		
+		this.operHoraIni = row.get("OperHoraIni");
+		this.operHoraFin = row.get("OperHoraFin");
+		
+		SalaRecup salar = new SalaRecup();
+		salar.idSalaRecup = row.get("IdSalaRecup");
+		salar.get();
+		this.salaRecup = salar;
+		
+		this.recupFechaIni = row.get("RecupFechaIni");
+		this.recupHoraIni = row.get("RecupHoraIni");
+		this.recupFechaFin = row.get("RecupFechaFin");
+		this.recupHoraFin = row.get("RecupHoraFin");
+		
+		DetalleProcs detaproc = new DetalleProcs();
+		detaproc.idDetalleOper = this.idDetalleOper;
+		this.detaProcs = detaproc.getDetalleProcs();
 	}
 	
 	/////////////////
 	public String getIdDetalleOper() {
-		return IdDetalleOper;
+		return idDetalleOper;
 	}
 
-	public void setIdDetalleOper(String IdDetalleOper) {
-		this.IdDetalleOper = IdDetalleOper;
+	public void setIdDetalleOper(String idDetalleOper) {
+		this.idDetalleOper = idDetalleOper;
 	}
 
 	public String getIdDetalleInterv() {
-		return IdDetalleInterv;
+		return idDetalleInterv;
 	}
 
-	public void setIdDetalleInterv(String IdDetalleInterv) {
-		this.IdDetalleInterv = IdDetalleInterv;
+	public void setIdDetalleInterv(String idDetalleInterv) {
+		this.idDetalleInterv = idDetalleInterv;
 	}
 
 	public Paciente getPaciente() {
@@ -85,43 +119,43 @@ class DetalleOper {
 	}
 
 	public String getInterAntOper() {
-		return InterAntOper;
+		return interAntOper;
 	}
 
-	public void setInterAntOper(String InterAntOper) {
-		this.InterAntOper = InterAntOper;
+	public void setInterAntOper(String interAntOper) {
+		this.interAntOper = interAntOper;
 	}
 
 	public String getFechaIniOper() {
-		return FechaIniOper;
+		return fechaIniOper;
 	}
 
-	public void setFechaIniOper(String FechaIniOper) {
-		this.FechaIniOper = FechaIniOper;
+	public void setFechaIniOper(String fechaIniOper) {
+		this.fechaIniOper = fechaIniOper;
 	}
 
 	public String getHoraIniOper() {
-		return HoraIniOper;
+		return horaIniOper;
 	}
 
-	public void setHoraIniOper(String HoraIniOper) {
-		this.HoraIniOper = HoraIniOper;
+	public void setHoraIniOper(String horaIniOper) {
+		this.horaIniOper = horaIniOper;
 	}
 
 	public String getFechaFinOper() {
-		return FechaFinOper;
+		return fechaFinOper;
 	}
 
-	public void setFechaFinOper(String FechaFinOper) {
-		this.FechaFinOper = FechaFinOper;
+	public void setFechaFinOper(String fechaFinOper) {
+		this.fechaFinOper = fechaFinOper;
 	}
 
 	public String getHoraFinOper() {
-		return HoraFinOper;
+		return horaFinOper;
 	}
 
-	public void setHoraFinOper(String HoraFinOper) {
-		this.HoraFinOper = HoraFinOper;
+	public void setHoraFinOper(String horaFinOper) {
+		this.horaFinOper = horaFinOper;
 	}
 
 	public SalaOper getSalaOper() {
@@ -133,19 +167,19 @@ class DetalleOper {
 	}
 
 	public String getOperHoraIni() {
-		return OperHoraIni;
+		return operHoraIni;
 	}
 
-	public void setOperHoraIni(String OperHoraIni) {
-		this.OperHoraIni = OperHoraIni;
+	public void setOperHoraIni(String operHoraIni) {
+		this.operHoraIni = operHoraIni;
 	}
 
 	public String getOperHoraFin() {
-		return OperHoraFin;
+		return operHoraFin;
 	}
 
-	public void setOperHoraFin(String OperHoraFin) {
-		this.OperHoraFin = OperHoraFin;
+	public void setOperHoraFin(String operHoraFin) {
+		this.operHoraFin = operHoraFin;
 	}
 
 	public SalaRecup getSalaRecup() {
@@ -157,43 +191,43 @@ class DetalleOper {
 	}
 
 	public String getRecupFechaIni() {
-		return RecupFechaIni;
+		return recupFechaIni;
 	}
 
-	public void setRecupFechaIni(String RecupFechaIni) {
-		this.RecupFechaIni = RecupFechaIni;
+	public void setRecupFechaIni(String recupFechaIni) {
+		this.recupFechaIni = recupFechaIni;
 	}
 
 	public String getRecupFechaFin() {
-		return RecupFechaFin;
+		return recupFechaFin;
 	}
 
-	public void setRecupFechaFin(String RecupFechaFin) {
-		this.RecupFechaFin = RecupFechaFin;
+	public void setRecupFechaFin(String recupFechaFin) {
+		this.recupFechaFin = recupFechaFin;
 	}
 
 	public String getRecupHoraIni() {
-		return RecupHoraIni;
+		return recupHoraIni;
 	}
 
-	public void setRecupHoraIni(String RecupHoraIni) {
-		this.RecupHoraIni = RecupHoraIni;
+	public void setRecupHoraIni(String recupHoraIni) {
+		this.recupHoraIni = recupHoraIni;
 	}
 
 	public String getRecupHoraFin() {
-		return RecupHoraFin;
+		return recupHoraFin;
 	}
 
-	public void setRecupHoraFin(String RecupHoraFin) {
-		this.RecupHoraFin = RecupHoraFin;
+	public void setRecupHoraFin(String recupHoraFin) {
+		this.recupHoraFin = recupHoraFin;
 	}
 
 	public String getProtocoloOperat() {
-		return ProtocoloOperat;
+		return protocoloOperat;
 	}
 
-	public void setProtocoloOperat(String ProtocoloOperat) {
-		this.ProtocoloOperat = ProtocoloOperat;
+	public void setProtocoloOperat(String protocoloOperat) {
+		this.protocoloOperat = protocoloOperat;
 	}
 
 	public Cie getDiagPre() {
@@ -213,35 +247,35 @@ class DetalleOper {
 	}
 
 	public String getDescEnvio() {
-		return DescEnvio;
+		return descEnvio;
 	}
 
-	public void setDescEnvio(String DescEnvio) {
-		this.DescEnvio = DescEnvio;
+	public void setDescEnvio(String descEnvio) {
+		this.descEnvio = descEnvio;
 	}
 
 	public String getObsEnvio() {
-		return ObsEnvio;
+		return obsEnvio;
 	}
 
-	public void setObsEnvio(String ObsEnvio) {
-		this.ObsEnvio = ObsEnvio;
+	public void setObsEnvio(String obsEnvio) {
+		this.obsEnvio = obsEnvio;
 	}
 
 	public String getPatologia() {
-		return Patologia;
+		return patologia;
 	}
 
-	public void setPatologia(String Patologia) {
-		this.Patologia = Patologia;
+	public void setPatologia(String patologia) {
+		this.patologia = patologia;
 	}
 
 	public String getPatologiaEspec() {
-		return PatologiaEspec;
+		return patologiaEspec;
 	}
 
-	public void setPatologiaEspec(String PatologiaEspec) {
-		this.PatologiaEspec = PatologiaEspec;
+	public void setPatologiaEspec(String patologiaEspec) {
+		this.patologiaEspec = patologiaEspec;
 	}
 
 	public Complicacion getComp() {
@@ -253,11 +287,11 @@ class DetalleOper {
 	}
 
 	public String getCompEspec() {
-		return CompEspec;
+		return compEspec;
 	}
 
-	public void setCompEspec(String CompEspec) {
-		this.CompEspec = CompEspec;
+	public void setCompEspec(String compEspec) {
+		this.compEspec = compEspec;
 	}
 
 	public CondEgreso getCondEgr() {
@@ -269,12 +303,18 @@ class DetalleOper {
 	}
 
 	public String getCondEspec() {
-		return CondEspec;
+		return condEspec;
 	}
 
-	public void setCondEspec(String CondEspec) {
-		this.CondEspec = CondEspec;
+	public void setCondEspec(String condEspec) {
+		this.condEspec = condEspec;
 	}
-	
-	
+
+	public List getDetaProcs() {
+		return detaProcs;
+	}
+
+	public void setDetaProcs(List detaProcs) {
+		this.detaProcs = detaProcs;
+	}
 }

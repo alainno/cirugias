@@ -485,10 +485,15 @@ public class Servlet extends HttpServlet {
 	public void detalleInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
 		DetalleOper detaoper = new DetalleOper();
 		//detaoper.setIdDetalleOper(request.getParameter("id"));
-		detaoper.IdDetalleOper = request.getParameter("id");
+		//detaoper.IdDetalleOper = request.getParameter("id");
+		detaoper.idDetalleOper = request.getParameter("id");
 		detaoper.get();
-		
 		request.setAttribute("detaoper", detaoper);
+		
+//		Paciente paciente = new Paciente(null);
+//		paciente.idPaciente = "71";
+//		paciente.get();
+//		request.setAttribute("paciente", paciente);
 //		
 //		request.setAttribute("apellidos", detaoper.Paciente.ApPaterno + " " + detaoper.paciente.ApMaterno);
 //		request.setAttribute("nombres", detaoper.Paciente.Nombres);

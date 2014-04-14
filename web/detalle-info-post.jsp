@@ -6,79 +6,79 @@
 		<tr>
 			<th>Apellidos
 			</th>
-			<td>${apellidos}						
+			<td>${detaoper.paciente.apPaterno} ${detaoper.paciente.apMaterno}
 			</td>
 			<th>Nombres
 			</th>
-			<td>${nombres}
+			<td>${detaoper.paciente.nombres}
 			</td>
 		</tr>
 		<tr>
 			<th>Días antes de la operación
 			</th>
-			<td colspan="3">${InterAntOper} 
+			<td colspan="3">${detaoper.interAntOper} 
 			</td>
 		</tr>
 		<tr>
 			<th>Fecha de inicio
 			</th>
-			<td>${FechaIniOper}
+			<td>${detaoper.fechaIniOper}
 			</td>
 			<th>Hora de inicio
 			</th>
-			<td>${HoraIniOper}
+			<td>${detaoper.horaIniOper}
 			</td>
 		</tr>
 		<tr>
 			<th>Fecha de fin
 			</th>
-			<td>${FechaFinOper}
+			<td>${detaoper.fechaFinOper}
 			</td>
 			<th>Hora de fin
 			</th>
-			<td>${HoraFinOper}
+			<td>${detaoper.horaFinOper}
 			</td>
 		</tr>
 		<tr>
 			<th>Sala de operación
 			</th>
-			<td colspan="3">${DescSalaOper}
+			<td colspan="3">${detaoper.salaOper.descSalaOper}
 			</td>
 		</tr>
 		<tr>
 			<th>Hora de ingreso
 			</th>
-			<td>${OperHoraIni}
+			<td>${detaoper.operHoraIni}
 			</td>
 			<th>Hora de egreso
 			</th>
-			<td>${OperHoraFin}	
+			<td>${detaoper.operHoraFin}	
 			</td>
 		</tr>
 		<tr>
 			<th>Sala de recuperación
 			</th>
-			<td colspan="5">${DescSalaRecup}
+			<td colspan="5">${detaoper.salaRecup.descSalaRecup}
 			</td>
 		</tr>
 		<tr>
 			<th>Fecha de ingreso
 			</th>
-			<td>${RecuFechaIni}
+			<td>${detaoper.recupFechaIni}
 			</td>
 			<th>Hora de ingreso
 			</th>
-			<td>${RecupHoraIni}
+			<td>${detaoper.recupHoraIni}
 			</td>
 		</tr>
 		<tr>
 			<th>Fecha de egreso
 			</th>
-			<td>${RecupFechaFin}
+			<td>${detaoper.recupFechaFin}
 			</td>
 			<th>Hora de egreso
 			</th>
-			<td>${RecupHoraFin}
+			<td>${detaoper.recupHoraFin}
 			</td>
 		</tr>
 		<tr>
