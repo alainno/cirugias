@@ -91,6 +91,35 @@ public class DetalleOper{
 		DetalleProcs detaproc = new DetalleProcs();
 		detaproc.idDetalleOper = this.idDetalleOper;
 		this.detaProcs = detaproc.getDetalleProcs();
+		
+		this.protocoloOperat = row.get("ProtocoloOperat");
+		
+		Cie diag_pre = new Cie();
+		diag_pre.idCie = row.get("IdDiagPre");
+		diag_pre.get();
+		this.diagPre = diag_pre;
+		
+		Cie diag_post = new Cie();
+		diag_post.idCie = row.get("IdDiagPost");
+		diag_post.get();
+		this.diagPost = diag_post;
+		
+		this.descEnvio = row.get("DescEnvio");
+		this.obsEnvio = row.get("ObsEnvio");
+		this.patologia = row.get("Patologia").equals("1") ? "SI" : "NO";;
+		this.patologiaEspec = row.get("PatologiaEspec");
+		
+		Complicacion compli = new Complicacion();
+		compli.idComp = row.get("IdComp");
+		compli.get();
+		this.comp = compli;
+		this.compEspec = row.get("CompEspec");
+		
+		CondEgreso conde = new CondEgreso();
+		conde.idCondEgr = row.get("IdCondEgr");
+		conde.get();
+		this.condEgr = conde;
+		this.condEspec = row.get("CondEspec");
 	}
 	
 	/////////////////

@@ -7,9 +7,9 @@
 package cirugias;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -21,9 +21,17 @@ class DetalleProcs {
 	String idProced;
 
 	List getDetalleProcs() throws SQLException {
-		String sql = "SELECT * FROM detalle_procedimientos WHERE IdDetalleOper = ?";
+//		String sql = "SELECT IdProced, DescProced"
+//				+ " FROM detalle_procedimientos dp"
+//				+ " JOIN procedimientos pr ON dp.IdProced = pr.IdProced"
+//				+ " WHERE IdDetalleOper = ?";
+//		String sql = "SELECT * FROM detalle_procedimientos WHERE IdDetalleOper = ?";
+		String sql = "SELECT dp.IdProced AS IdProced, DescProced"
+				+ " FROM detalle_procedimientos dp, procedimientos pr"
+				+ " WHERE IdDetalleOper = ? AND dp.IdProced = pr.IdProced";
 		List<String> data =  Arrays.asList(this.idDetalleOper);
 		db.ejecutar(sql, data);
-		return db.results;
+		List resultados = new ArrayList(db.results);
+		return resultados;
 	}
 }

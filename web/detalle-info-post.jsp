@@ -1,4 +1,5 @@
-<jsp:include page="header.jsp"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="header.jsp"></jsp:include>
 <h1>Detalles del Informe Post Operatorio
 </h1>
 <div class="content">
@@ -46,7 +47,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Hora de ingreso
+			<th>&#8212; Hora de ingreso
 			</th>
 			<td>${detaoper.operHoraIni}
 			</td>
@@ -62,7 +63,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Fecha de ingreso
+			<th>&#8212; Fecha de ingreso
 			</th>
 			<td>${detaoper.recupFechaIni}
 			</td>
@@ -72,7 +73,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th>Fecha de egreso
+			<th>&#8212; Fecha de egreso
 			</th>
 			<td>${detaoper.recupFechaFin}
 			</td>
@@ -81,88 +82,78 @@
 			<td>${detaoper.recupHoraFin}
 			</td>
 		</tr>
+		<c:forEach var="map" items="${detaoper.detaProcs}" varStatus="i">
 		<tr>
-			<th>Intervención Nr. 1
+			<th>Intervención Nro. ${i.count}
 			</th>
-			<td colspan="3">${DescProced1}
+			<td colspan="3">${map['IdProced']} - ${map['DescProced']}
 			</td>
 		</tr>
-		<tr>
-			<th>Intervención Nr. 2
-			</th>
-			<td colspan="3">${DescProced2}
-			</td>
-		</tr>
-		<tr>
-			<th>Intervención Nr. 3
-			</th>
-			<td colspan="3">${DescProced3}
-			</td>
-		</tr>
+		</c:forEach>
 		<tr>
 			<th>Protocolo Operatorio
 			</th>
-			<td colspan="3">${ProtocoloOperat}
+			<td colspan="3">${detaoper.protocoloOperat}
 			</td>
 		</tr>
 		<tr>
 			<th>Diganóstico Pre Operatorio
 			</th>
-			<td colspan="3">${DescDiagPre}
+			<td colspan="3">${detaoper.diagPre.idCie} - ${detaoper.diagPre.descCie}
 			</td>
 		</tr>
 		<tr>
 			<th>Diagnóstico Post Operatorio
 			</th>
-			<td colspan="3">${DescDiagPost}
+			<td colspan="3">${detaoper.diagPost.idCie} - ${detaoper.diagPost.descCie}
 			</td>
 		</tr>
 		<tr>
 			<th>Descripción de Envío
 			</th>
-			<td colspan="3">${DescEnvio}
+			<td colspan="3">${detaoper.descEnvio}
 			</td>
 		</tr>
 		<tr>
 			<th>Observaciones de Envío
 			</th>
-			<td colspan="3">${ObsEnvio}
+			<td colspan="3">${detaoper.obsEnvio}
 			</td>
 		</tr>
 		<tr>
 			<th>¿Muestra enviada a Patología?
 			</th>
-			<td colspan="3">${Patologia}
+			<td colspan="3">${detaoper.patologia}
 			</td>
 		</tr>
 		<tr>
 			<th>&#8212; Especificación
 			</th>
-			<td colspan="3">${PatologiaEspec}
+			<td colspan="3">${detaoper.patologiaEspec}
 			</td>
 		</tr>
 		<tr>
 			<th>Complicación
 			</th>
-			<td colspan="3">${DescComp}
+			<td colspan="3">${detaoper.comp.descComp}
 			</td>
 		<tr>
 		</tr>
 			<th>&#8212; Especificación
 			</th>
-			<td colspan="3">${CompEspec}
+			<td colspan="3">${detaoper.compEspec}
 			</td>
 		</tr>
 		<tr>
 			<th>Condición de Egreso
 			</th>
-			<td colspan="3">${DescCondEgr}
+			<td colspan="3">${detaoper.condEgr.descCondEgr}
 			</td>
 		<tr>
 		</tr>
 			<th>&#8212; Especificación
 			</th>
-			<td colspan="3">${CondEspec}
+			<td colspan="3">${detaoper.condEspec}
 			</td>
 		</tr>
 	</table>
