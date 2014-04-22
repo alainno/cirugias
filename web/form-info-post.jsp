@@ -1,8 +1,12 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="header.jsp">
 	<jsp:param name="masEstilos" value="js/select2/select2.css" />
 	<jsp:param name="masEstilos" value="css/datepicker3.css" />
 </jsp:include>
-<h1>Nuevo Informe Post Operatorio <small>${nombres}</small>
+<h1>
+	${not empty detaoper?"Modificar Informe Post Operatorio":"Nuevo Informe Pre Operatorio"}
+	<small>${nombres}</small>
 </h1>
 <div class="content">
 	<form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${idpac}&iddi=${iddi}&id=${id}">
@@ -10,7 +14,7 @@
 			<label class="col-sm-3 control-label">Días antes de la operación
 			</label>
 			<div class="col-sm-1">
-                <input name="InterAntOper" value="${InterAntOper}" class="form-control input-sm">
+                <input name="InterAntOper" value="${detaoper.interAntOper}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
@@ -18,14 +22,14 @@
 			</label>
 			<div class="col-sm-3">
                 <div class="input-group">
-					<input name="FechaIniOper" value="${FechaIniOper}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
+					<input name="FechaIniOper" value="${detaoper.fechaIniOper}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
                 </div>
 			</div>
 			<label class="col-sm-2 control-label">Hora de inicio
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="HoraIniOper" value="${HoraIniOper}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="HoraIniOper" value="${detaoper.horaIniOper}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 		</div>
@@ -34,14 +38,14 @@
 			</label>
 			<div class="col-sm-3">
                 <div class="input-group">
-					<input name="FechaFinOper" value="${FechaFinOper}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
+					<input name="FechaFinOper" value="${detaoper.fechaFinOper}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
                 </div>
 			</div>
 			<label class="col-sm-2 control-label">Hora de fin
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="HoraFinOper" value="${HoraFinOper}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="HoraFinOper" value="${detaoper.horaFinOper}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 		</div>
@@ -59,14 +63,14 @@
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="OperHoraIni" value="${OperHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="OperHoraIni" value="${detaoper.operHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 			<label class="col-sm-2 control-label">Hora de egreso
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="OperHoraFin" value="${OperHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="OperHoraFin" value="${detaoper.operHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 		</div>
@@ -84,14 +88,14 @@
 			</label>
 			<div class="col-sm-3">
                 <div class="input-group">
-					<input name="RecupFechaIni" value="${RecupFechaIni}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
+					<input name="RecupFechaIni" value="${detaoper.recupFechaIni}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
                 </div>
 			</div>
 			<label class="col-sm-2 control-label">Hora de ingreso
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="RecupHoraIni" value="${RecupHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="RecupHoraIni" value="${detaoper.recupHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 		</div>
@@ -100,30 +104,33 @@
 			</label>
 			<div class="col-sm-3">
                 <div class="input-group">
-					<input name="RecupFechaFin" value="${RecupFechaFin}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
+					<input name="RecupFechaFin" value="${detaoper.recupFechaFin}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
                 </div>
 			</div>
 			<label class="col-sm-2 control-label">Hora de egreso
 			</label>
 			<div class="col-sm-2">
                 <div class="input-group">
-					<input name="RecupHoraFin" value="${RecupHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+					<input name="RecupHoraFin" value="${detaoper.recupHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                 </div>
 			</div>
 		</div>
-				<hr />
+		<hr />
+		
 		<div class="form-group-interv">
+			<c:forEach var="map" items="${detaoper.detaProcs}" varStatus="i">
 			<div class="form-group">
-                <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">1</span>
+                <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">${i.count}</span>
                 </label>
                 <div class="col-sm-6 select2-container">
-					<input type="hidden" name="IdProced[]" value="${IdProced_1}" rel="${DescProced_1}" class="select2-interv">
+					<input type="hidden" name="IdProced[]" value="${map['IdProced']}" rel="${map['IdProced']} - ${map['DescProced']}" class="select2-interv">
                 </div>
                 <div class="col-sm-1">
-					<button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
+					<button type="button" class="remInterv btn btn-default btn-sm${i.count==fn:length(detaoper.detaProcs)&&i.count>1?"":" oculto"}"><span class="glyphicon glyphicon-remove"></span>
 					</button>
                 </div>
 			</div>
+			</c:forEach>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-1 col-sm-offset-3">
@@ -135,42 +142,42 @@
 			<label class="col-sm-3 control-label">Protocolo Operatorio
 			</label>
 			<div class="col-sm-8">
-                <input name="ProtocoloOperat" value="${ProtocoloOperat}" class="form-control input-sm">
+                <input name="ProtocoloOperat" value="${detaoper.protocoloOperat}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPre" value="${IdDiagPre}" rel="${DescDiagPre}" class="select2-diag" />
+                <input type="hidden" name="IdDiagPre" value="${detaoper.diagPre.idCie}" rel="${detaoper.diagPre.idCie} - ${detaoper.diagPre.descCie}" class="select2-diag" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Diagnóstico Post Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPost" value="${IdDiagPost}" rel="${DescDiagPost}" class="select2-diag">
+                <input type="hidden" name="IdDiagPost" value="${detaoper.diagPost.idCie}" rel="${detaoper.diagPost.idCie} - ${detaoper.diagPost.descCie}" class="select2-diag">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Descripción de envío
 			</label>
 			<div class="col-sm-8">
-                <input name="DescEnvio" value="${DescEnvio}" class="form-control input-sm">
+                <input name="DescEnvio" value="${detaoper.descEnvio}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Observaciones de envío
 			</label>
 			<div class="col-sm-8">
-                <input name="ObsEnvio" value="${ObsEnvio}" class="form-control input-sm">
+                <input name="ObsEnvio" value="${detaoper.obsEnvio}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-4 col-sm-offset-3">
                 <div class="checkbox">
 					<label>
-						<input type="checkbox" name="Patologia" ${checkPatologia} id="checkPatologia">¿Muestra enviada a Patología?
+						<input type="checkbox" name="Patologia" ${detaoper.patologia?"checked":""} id="checkPatologia">¿Muestra enviada a Patología?
 					</label>
                 </div>
 			</div>
@@ -179,7 +186,7 @@
 			<label class="col-sm-3 control-label">Especificar
 			</label>
 			<div class="col-sm-8">
-                <input name="PatologiaEspec" value="${PatologiaEspec}" disabled="disabled" id="PatologiaEspec" class="form-control input-sm">
+                <input name="PatologiaEspec" value="${detaoper.patologiaEspec}" disabled="disabled" id="PatologiaEspec" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
@@ -194,7 +201,7 @@
 			<label class="col-sm-3 control-label">Especificar
 			</label>
 			<div class="col-sm-8">
-                <input name="CompEspec" value="${CompEspec}" class="form-control input-sm">
+                <input name="CompEspec" value="${detaoper.compEspec}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">
@@ -209,7 +216,7 @@
 			<label class="col-sm-3 control-label">Especificar
 			</label>
 			<div class="col-sm-8">
-                <input name="CondEgr" value="${CondEgr}" class="form-control input-sm">
+                <input name="CondEgr" value="${detaoper.condEspec}" class="form-control input-sm">
 			</div>
 		</div>
 		<div class="form-group">

@@ -52,7 +52,16 @@ public class DetalleOper{
 	}
 
 	public void get() throws SQLException, ParseException{
-		String sql = "SELECT * FROM detalle_operacion WHERE IdDetalleOper=? LIMIT 1";
+		String sql = "SELECT *"
+				+ ", DATE_FORMAT(HoraIniOper, '%H:%i') AS HoraIniOper"
+				+ ", DATE_FORMAT(HoraFinOper, '%H:%i') AS HoraFinOper"
+				+ ", DATE_FORMAT(OperHoraIni, '%H:%i') AS OperHoraIni"
+				+ ", DATE_FORMAT(OperHoraFin, '%H:%i') AS OperHoraFin"
+				+ ", DATE_FORMAT(RecupFechaIni, '%d/%m/%Y') AS RecupFechaIni"
+				+ ", DATE_FORMAT(RecupFechaFin, '%d/%m/%Y') AS RecupFechaFin"
+				+ ", DATE_FORMAT(RecupHoraIni, '%H:%i') AS RecupHoraIni"
+				+ ", DATE_FORMAT(RecupHoraFin, '%H:%i') AS RecupHoraFin"
+				+ " FROM detalle_operacion WHERE IdDetalleOper=? LIMIT 1";
 		List<String> data = Arrays.asList(this.idDetalleOper);
 		db.ejecutar(sql, data);
 		Map<String,String> row = db.results.get(0);
@@ -65,9 +74,9 @@ public class DetalleOper{
 		this.paciente = pac;
 		
 		this.interAntOper = row.get("InterAntOper");
-		this.fechaIniOper = row.get("FechaIniOper");
+		this.fechaIniOper = db.changeFormatDate(row.get("FechaIniOper"), "yyyy-MM-dd", "dd/MM/yyyy");
 		this.horaIniOper = row.get("HoraIniOper");
-		this.fechaFinOper = row.get("FechaFinOper");
+		this.fechaFinOper = db.changeFormatDate(row.get("FechaFinOper"), "yyyy-MM-dd", "dd/MM/yyyy");
 		this.horaFinOper = row.get("HoraFinOper");
 		
 		SalaOper salao = new SalaOper();

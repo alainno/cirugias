@@ -128,5 +128,6 @@
 		<a href="#" class="btn btn-sm btn-default ml10">Imprimir Detalles</a>
 		<a href="Servlet?v=nuevoInfoPost&idpac=${idpac}" class="btn btn-warning btn-sm ml10">Crear Informe Post Operatorio</a>
 	</div>
+	<p></p>
 </div>
 <jsp:include page="footer.jsp"/>

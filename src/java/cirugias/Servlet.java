@@ -516,6 +516,30 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/detalle-info-post.jsp").include(request, response);
 	}
 	
+	public void modificarInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+		DetalleOper detaoper = new DetalleOper();
+		detaoper.idDetalleOper = request.getParameter("id");
+		detaoper.get();
+		request.setAttribute("detaoper", detaoper);
+		
+		request.setAttribute("nombres", detaoper.paciente.nombres + " " + detaoper.paciente.apPaterno + " " + detaoper.paciente.apMaterno);
+
+		SalaOper salao = new SalaOper();
+		salao.idSalaOper = detaoper.salaOper.idSalaOper;
+		request.setAttribute("optsSalaOper", salao.getHtmlOptions());
+		SalaRecup salar = new SalaRecup();
+		salar.idSalaRecup = detaoper.salaRecup.idSalaRecup;
+		request.setAttribute("optsSalaRecup", salar.getHtmlOptions());
+		Complicacion compli = new Complicacion();
+		compli.idComp = detaoper.comp.idComp;
+		request.setAttribute("optsComp", compli.getHtmlOptions());
+		CondEgreso conde = new CondEgreso();
+		conde.idCondEgr = detaoper.condEgr.idCondEgr;
+		request.setAttribute("optsCondEgr", conde.getHtmlOptions());		
+		
+		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
+	}		
+	
 	private void demo(HttpServletRequest request, HttpServletResponse response) throws SQLException, ParseException, ServletException, IOException{
 		Paciente paciente = new Paciente(null);
 		paciente.idPaciente = "80";

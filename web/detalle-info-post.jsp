@@ -157,7 +157,11 @@
 			</td>
 		</tr>
 	</table>
-	<div class="mt10"><a href="vista-paciente.html" class="btn btn-primary">Detalles del Paciente</a><a href="form-info-post.html" class="btn btn-warning ml10">Modificar Informe</a><a href="#" class="btn btn-default ml10">Imprimir Detalles</a>
+	<div class="mt10">
+		<a href="Servlet?v=detallePaciente&id=${detaoper.paciente.idPaciente}" class="btn btn-primary btn-sm">Detalles del Paciente</a>
+		<a href="Servlet?v=modificarInfoPost&id=${detaoper.idDetalleOper}" class="btn btn-warning btn-sm ml10">Modificar Informe</a>
+		<a href="#" class="btn btn-default btn-sm ml10">Imprimir Detalles</a>
 	</div>
+			<p></p>
 </div>
 <jsp:include page="footer.jsp"/>
