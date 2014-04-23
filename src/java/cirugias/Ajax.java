@@ -11,7 +11,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -147,46 +151,83 @@ public class Ajax extends HttpServlet {
 		this.jsonResponse(cie.buscar(q), this.resp);
 	}
 	
-	public void guardarInfoPost() throws IOException{
-//		DatalleOper detaoper = new DetalleOper();
-//		
-//		detaoper.IdPaciente = this.requ.getParameter("idpac");
-//		detaoper.IdDetalleInterv = this.requ.getParameter("iddi");
-//		//detaoper.IdDetalleOper = this.requ.getParameter("id");
-//		
-//		detaoper.InterAntOper =	this.requ.getParameter("InterAntOper");
-//		detaoper.FechaIniOper =	this.requ.getParameter("FechaIniOper");
-//		detaoper.FechaFinOper =	this.requ.getParameter("FechaFinOper");
-//		detaoper.HoraIniOper = this.requ.getParameter("HoraIniOper");
-//		detaoper.HoraFinOper = this.requ.getParameter("HoraFinOper");
-//		
-//		detaoper.IdSalaOper = this.requ.getParameter("IdSalaOper");
-//		detaoper.OperHoraIni = this.requ.getParameter("OperHoraIni");
-//		detaoper.OperHoraFin = this.requ.getParameter("OperHoraFin");
-//		
-//		detaoper.IdSalaRecup = this.requ.getParameter("IdSalaRecup");
-//		detaoper.RecupFechaIni = this.requ.getParameter("RecupFechaIni");
-//		detaoper.RecupFechaFin = this.requ.getParameter("RecupFechaFin");
-//		detaoper.RecupHoraIni = this.requ.getParameter("RecupHoraIni");
-//		detaoper.RecupHoraFin = this.requ.getParameter("RecupHoraFin");
-//			
-//		detaoper.ProtocoloOperat = this.requ.getParameter("ProtocoloOperat");
-//		detaoper.IdDiagPre = this.requ.getParameter("IdDiagPre");
-//		detaoper.IdDiagPost = this.requ.getParameter("IdDiagPost");
-//		detaoper.DescEnvio = this.requ.getParameter("DescEnvio");
-//		detaoper.ObsEnvio = this.requ.getParameter("ObsEnvio");
-//		detaoper.Patologia = this.requ.getParameter("Patologia");
-//		detaoper.PatologiaEspec = this.requ.getParameter("PatologiaEspec");
-//		detaoper.IdComp = this.requ.getParameter("IdComp");
-//		detaoper.CompEspec = this.requ.getParameter("CompEspec");
-//		detaoper.IdComp = this.requ.getParameter("IdCondEgr");
-//		detaoper.CondEgr = this.requ.getParameter("CondEgr");
-//	
-//		if(!detaoper.validar()){
-//			this.jsonError(detaoper.errorValidacion, this.resp);
-//			return;
-//		}
-//		detaoper.save();
+	public void guardarInfoPost() throws IOException, SQLException, ParseException{
+		DetalleOper detaoper = new DetalleOper();
+		
+		//detaoper.idPaciente = this.requ.getParameter("idpac");
+		Paciente paciente = new Paciente(null);
+		paciente.idPaciente = this.requ.getParameter("idpac");
+		detaoper.paciente = paciente;
+		detaoper.idDetalleInterv = this.requ.getParameter("iddi");
+		detaoper.idDetalleOper = this.requ.getParameter("id");
+		
+		detaoper.interAntOper =	this.requ.getParameter("InterAntOper");
+		detaoper.fechaIniOper =	this.requ.getParameter("FechaIniOper");
+		detaoper.fechaFinOper =	this.requ.getParameter("FechaFinOper");
+		detaoper.horaIniOper = this.requ.getParameter("HoraIniOper");
+		detaoper.horaFinOper = this.requ.getParameter("HoraFinOper");
+		
+		SalaOper salaoper = new SalaOper();
+		salaoper.idSalaOper = this.requ.getParameter("IdSalaOper");
+		detaoper.salaOper = salaoper;
+		detaoper.operHoraIni = this.requ.getParameter("OperHoraIni");
+		detaoper.operHoraFin = this.requ.getParameter("OperHoraFin");
+
+		SalaRecup salarecup = new SalaRecup();
+		salarecup.idSalaRecup = this.requ.getParameter("IdSalaRecup");
+		detaoper.salaRecup = salarecup;
+		detaoper.recupFechaIni = this.requ.getParameter("RecupFechaIni");
+		detaoper.recupFechaFin = this.requ.getParameter("RecupFechaFin");
+		detaoper.recupHoraIni = this.requ.getParameter("RecupHoraIni");
+		detaoper.recupHoraFin = this.requ.getParameter("RecupHoraFin");
+			
+		detaoper.protocoloOperat = this.requ.getParameter("ProtocoloOperat");
+		Cie diagpre = new Cie();
+		diagpre.idCie = this.requ.getParameter("IdDiagPre");
+		detaoper.diagPre = diagpre;
+		Cie diagpost = new Cie();
+		diagpost.idCie = this.requ.getParameter("IdDiagPost");
+		detaoper.diagPost = diagpost;
+
+		detaoper.descEnvio = this.requ.getParameter("DescEnvio");
+		detaoper.obsEnvio = this.requ.getParameter("ObsEnvio");
+		
+		detaoper.patologia = this.requ.getParameter("Patologia");
+		detaoper.patologia = detaoper.patologia == null ? "0" : "1";
+		detaoper.patologiaEspec = this.requ.getParameter("PatologiaEspec");
+		
+		Complicacion comp = new Complicacion();
+		comp.idComp = this.requ.getParameter("IdComp");
+		detaoper.comp = comp;
+		detaoper.compEspec = this.requ.getParameter("CompEspec");
+		
+		CondEgreso cond = new CondEgreso();
+		cond.idCondEgr = this.requ.getParameter("IdCondEgr");
+		detaoper.condEgr = cond;
+		detaoper.condEspec = this.requ.getParameter("CondEgr");
+	
+		if(!detaoper.validar()){
+			this.jsonError(detaoper.errorValidacion, this.resp);
+			return;
+		}
+		detaoper.save();
+		
+		
+		///
+		String sql = "DELETE FROM detalle_procedimientos WHERE IdDetalleOper = ?";
+		List<String> data = Arrays.asList(detaoper.idDetalleOper);
+		db.ejecutar(sql, data);
+		
+		String[] IdProced = this.requ.getParameterValues("IdProced[]");
+		List datos = new ArrayList();
+		for(int i=0;i<IdProced.length;i++){
+			Map fila = new HashMap();
+			fila.put("IdDetalleOper", detaoper.idDetalleOper);
+			fila.put("IdProced", IdProced[i]);
+			datos.add(fila);
+		}
+		
+		db.insertarEnLote("detalle_procedimientos", datos);
 //		
 //		//detaproc.IdProced
 //	
@@ -206,8 +247,7 @@ public class Ajax extends HttpServlet {
 //		}
 //		
 //		this.jsonError(out, resp);
-				
-				
+		this.jsonRedireccion("Servlet?v=detalleInfoPost&id=" + detaoper.idDetalleOper, this.resp);
 		//this.jsonRedireccion("Servlet?v=detalleInfoPost&id=", this.resp);
 	}
 

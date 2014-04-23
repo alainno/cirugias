@@ -153,9 +153,29 @@
 	<% } %>
 	<h2>Informes Post Operatorios
 	</h2>
-	<p>No hay informes registrados
-	</p>
-
+	<% if(request.getAttribute("tablaInfoPost").equals("")){ %>
+	<p>No hay informes registrados</p>	
+	<% } else{ %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+                <th>Fecha de Inicio
+                </th>
+                <th>Fecha de Fin
+                </th>
+                <th>Sala de Oper.
+                </th>
+                <th>Sala de Recup.
+                </th>
+                <th>Opciones
+                </th>
+			</tr>
+		</thead>
+		<tbody>
+			${tablaInfoPost}
+		</tbody>
+	</table>
+	<% } %>
 		<div class="mt15">
 			<a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm">Modificar</a>
 			<a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm ml10">Crear Informe Pre Operatorio</a>

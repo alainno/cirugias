@@ -140,4 +140,51 @@ public class db {
 		}
 		return html;
 	}
+
+	static void insertarEnLote(String tabla, List<Map> lote) throws SQLException {
+		
+		
+		//db.stmt = db.conn.pre
+		//String sql = "insert into employee (name, city, phone) values (?, ?, ?)";
+		//Connection connection = new getConnection();
+		//PreparedStatement ps = db.prepareStatement(sql);
+		//for (Employee employee : employees) {
+		
+		String campos = "", valores = "";
+		Map<String,String> fila0 = lote.get(0);
+		int k = 0;
+		for(Map.Entry<String,String> dato : fila0.entrySet()){
+			campos += (k>0 ? "," : "") + dato.getKey();
+			valores += (k>0 ? "," : "") + "?";
+			k++;
+		}
+
+		db.sql = "INSERT INTO " + tabla + "("+campos+") VALUES("+valores+")";
+		db.conectar();
+		db.preparar();
+		//int i = 0;
+		for(Map<String,String> fila : lote){
+			int j = 0;
+			for(Map.Entry<String,String> dato : fila.entrySet()){
+				/*if(i==0){
+					campos += (j>0 ? "," : "") + dato.getKey();
+					valores += (j>0 ? "," : "") + "?";					
+				}*/
+				db.stmt.setString(j+1, dato.getValue());
+				j++;
+			}
+			
+//			ps.setString(1, employee.getName());
+//			ps.setString(2, employee.getCity());
+//			ps.setString(3, employee.getPhone());
+			db.stmt.addBatch();
+		}
+
+
+//		ps.executeBatch();
+//		ps.close();
+//		connection.close();
+		db.stmt.executeBatch();
+		db.finalizar();	
+	}
 }

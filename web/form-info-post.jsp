@@ -9,7 +9,7 @@
 	<small>${nombres}</small>
 </h1>
 <div class="content">
-	<form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${idpac}&iddi=${iddi}&id=${id}">
+	<form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${empty detaoper?idpac:detaoper.paciente.idPaciente}&iddi=${empty detaoper?iddi:detaoper.idDetalleInterv}&id=${empty detaoper?"":detaoper.idDetalleOper}">
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Días antes de la operación
 			</label>
@@ -118,6 +118,21 @@
 		<hr />
 		
 		<div class="form-group-interv">
+			<c:choose>
+				<c:when test="${empty detaoper}">
+			<div class="form-group">
+                <label class="col-sm-3 control-label">Intervención Nro. 1
+                </label>
+                <div class="col-sm-6 select2-container">
+					<input type="hidden" name="IdProced[]" class="select2-interv">
+                </div>
+                <div class="col-sm-1">
+					<button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
+					</button>
+                </div>
+			</div>
+				</c:when>
+				<c:otherwise>
 			<c:forEach var="map" items="${detaoper.detaProcs}" varStatus="i">
 			<div class="form-group">
                 <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">${i.count}</span>
@@ -131,6 +146,8 @@
                 </div>
 			</div>
 			</c:forEach>
+			</c:otherwise>
+			</c:choose>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-1 col-sm-offset-3">
@@ -149,14 +166,14 @@
 			<label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPre" value="${detaoper.diagPre.idCie}" rel="${detaoper.diagPre.idCie} - ${detaoper.diagPre.descCie}" class="select2-diag" />
+                <input type="hidden" name="IdDiagPre" value="${detaoper.diagPre.idCie}" rel="${detaoper.diagPre.idCie}${empty detaoper?"":" - "}${detaoper.diagPre.descCie}" class="select2-diag" />
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="col-sm-3 control-label">Diagnóstico Post Operatorio
 			</label>
 			<div class="col-sm-6">
-                <input type="hidden" name="IdDiagPost" value="${detaoper.diagPost.idCie}" rel="${detaoper.diagPost.idCie} - ${detaoper.diagPost.descCie}" class="select2-diag">
+                <input type="hidden" name="IdDiagPost" value="${detaoper.diagPost.idCie}" rel="${detaoper.diagPost.idCie}${empty detaoper?"":" - "}${detaoper.diagPost.descCie}" class="select2-diag">
 			</div>
 		</div>
 		<div class="form-group">
@@ -177,7 +194,7 @@
 			<div class="col-sm-4 col-sm-offset-3">
                 <div class="checkbox">
 					<label>
-						<input type="checkbox" name="Patologia" ${detaoper.patologia?"checked":""} id="checkPatologia">¿Muestra enviada a Patología?
+						<input type="checkbox" name="Patologia" ${detaoper.patologia=="SI"?"checked":""} id="checkPatologia" value="1">¿Muestra enviada a Patología?
 					</label>
                 </div>
 			</div>

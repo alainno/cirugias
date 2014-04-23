@@ -252,6 +252,10 @@ public class Servlet extends HttpServlet {
 		
 		DetalleInterv detInterv = new DetalleInterv(detPaciente, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 		request.setAttribute("tablaInfoPre", detInterv.getTableByPaciente());
+		
+		DetalleOper detaoper = new DetalleOper();
+		detaoper.paciente = detPaciente;
+		request.setAttribute("tablaInfoPost", detaoper.getTableByPaciente());
 
 		request.getRequestDispatcher("/detalle-paciente.jsp").include(request, response);
 	}
@@ -463,6 +467,8 @@ public class Servlet extends HttpServlet {
 	
 	public void nuevoInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
 
+		request.setAttribute("iddi", request.getParameter("iddi"));
+		
 		Paciente pac = new Paciente(null);
 		pac.idPaciente = request.getParameter("idpac");
 		pac.get();

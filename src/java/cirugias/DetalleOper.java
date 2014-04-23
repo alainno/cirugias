@@ -47,6 +47,7 @@ public class DetalleOper{
 	String condEspec;
 	
 	List detaProcs;
+	String errorValidacion;
 	
 	public DetalleOper(){
 	}
@@ -115,7 +116,7 @@ public class DetalleOper{
 		
 		this.descEnvio = row.get("DescEnvio");
 		this.obsEnvio = row.get("ObsEnvio");
-		this.patologia = row.get("Patologia").equals("1") ? "SI" : "NO";;
+		this.patologia = row.get("Patologia") == null || row.get("Patologia").equals("0") ? "NO" : "SI";
 		this.patologiaEspec = row.get("PatologiaEspec");
 		
 		Complicacion compli = new Complicacion();
@@ -354,5 +355,80 @@ public class DetalleOper{
 
 	public void setDetaProcs(List detaProcs) {
 		this.detaProcs = detaProcs;
+	}
+
+	public boolean validar() {
+		if(!interAntOper.matches("\\d+(\\.\\d+)?")){
+			this.errorValidacion = "Días antes de la operación incorrecto.";
+			return false;
+		}
+		if(!horaIniOper.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de inicio incorrecta.";
+			return false;
+		}
+		if(!horaFinOper.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de fin incorrecta.";
+			return false;
+		}
+		if(!operHoraIni.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de ingreso de operación incorrecta.";
+			return false;
+		}
+		if(!operHoraFin.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de egreso de operación incorrecta.";
+			return false;
+		}
+		if(!recupHoraIni.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de ingreso de recuperación incorrecta.";
+			return false;
+		}
+		if(!recupHoraFin.matches("^[0-9]{2}:[0-9]{2}$")){
+			this.errorValidacion = "Hora de egreso de recuperación incorrecta.";
+			return false;
+		}
+
+		return true;
+	}
+
+	public void save() throws SQLException, ParseException {
+		
+		fechaIniOper = db.changeFormatDate(fechaIniOper, "dd/MM/yyyy", "yyyy-MM-dd");
+		fechaFinOper = db.changeFormatDate(fechaFinOper, "dd/MM/yyyy", "yyyy-MM-dd");
+		recupFechaIni = db.changeFormatDate(recupFechaIni, "dd/MM/yyyy", "yyyy-MM-dd");
+		recupFechaFin = db.changeFormatDate(recupFechaFin, "dd/MM/yyyy", "yyyy-MM-dd");
+		
+		if(idDetalleOper == null || idDetalleOper.equals("")){
+			String sql = "INSERT INTO detalle_operacion";
+			sql += "(`IdDetalleInterv`, `IdPaciente`, `InterAntOper`, `FechaIniOper`, `HoraIniOper`, `FechaFinOper`, `HoraFinOper`, `IdSalaOper`, `OperHoraIni`, `OperHoraFin`, `IdSalaRecup`, `RecupFechaIni`, `RecupFechaFin`, `RecupHoraIni`, `RecupHoraFin`, `ProtocoloOperat`, `IdDiagPre`, `IdDiagPost`, `DescEnvio`, `ObsEnvio`, `Patologia`, `PatologiaEspec`, `IdComp`, `CompEspec`, `IdCondEgr`, `CondEspec`)";
+			sql += " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			List<String> data = Arrays.asList(idDetalleInterv,paciente.idPaciente,interAntOper,fechaIniOper,horaIniOper,fechaFinOper,horaFinOper,salaOper.idSalaOper,operHoraIni,operHoraFin,salaRecup.idSalaRecup,recupFechaIni,recupFechaFin,recupHoraIni,recupHoraFin,protocoloOperat,diagPre.idCie,diagPost.idCie,descEnvio,obsEnvio,patologia,patologiaEspec,comp.idComp,compEspec,condEgr.idCondEgr,condEspec);
+			db.ejecutar(sql, data);
+			idDetalleOper = db.insertId;
+		} else{
+			String sql = "UPDATE `detalle_operacion` SET `IdDetalleInterv` = ?,`IdPaciente` = ?,`InterAntOper` = ?,`FechaIniOper` = ?,`HoraIniOper` = ?,`FechaFinOper` = ?,`HoraFinOper` = ?,`IdSalaOper` = ?,`OperHoraIni` = ?,`OperHoraFin` = ?,`IdSalaRecup` = ?,`RecupFechaIni` = ?,`RecupFechaFin` = ?,`RecupHoraIni` = ?,`RecupHoraFin` = ?,`ProtocoloOperat` = ?,`IdDiagPre` = ?,`IdDiagPost` = ?,`DescEnvio` = ?,`ObsEnvio` = ?,`Patologia` = ?,`PatologiaEspec` = ?,`IdComp` = ?,`CompEspec` = ?,`IdCondEgr` = ?,`CondEspec` = ? WHERE `IdDetalleOper` = ? LIMIT 1";
+			List<String> data = Arrays.asList(idDetalleInterv,paciente.idPaciente,interAntOper,fechaIniOper,horaIniOper,fechaFinOper,horaFinOper,salaOper.idSalaOper,operHoraIni,operHoraFin,salaRecup.idSalaRecup,recupFechaIni,recupFechaFin,recupHoraIni,recupHoraFin,protocoloOperat,diagPre.idCie,diagPost.idCie,descEnvio,obsEnvio,patologia,patologiaEspec,comp.idComp,compEspec,condEgr.idCondEgr,condEspec,idDetalleOper);
+			db.ejecutar(sql, data);
+		}
+	}
+	
+	public String getTableByPaciente() throws SQLException, ParseException {
+		String sql = "SELECT *"
+				+ ",DATE_FORMAT(FechaIniOper, '%d/%m/%Y') AS FechaIniOper"
+				+ ",DATE_FORMAT(FechaFinOper, '%d/%m/%Y') AS FechaFinOper"
+				+ " FROM detalle_operacion do"
+				+ " WHERE IdPaciente = ?";
+		List<String> data =  Arrays.asList(paciente.idPaciente);
+		db.ejecutar(sql, data);
+		String tableContent = "";
+		for(Map<String,String> row : db.results){
+			tableContent += "<tr>";
+			tableContent += "<td>"+row.get("FechaIniOper")+"</td>";
+			tableContent += "<td>"+row.get("FechaFinOper")+"</td>";
+			tableContent += "<td>"+row.get("IdSalaOper")+"</td>";
+			tableContent += "<td>"+row.get("IdSalaRecup")+"</td>";
+			tableContent += "<td><a href=\"Servlet?v=detalleInfoPost&id="+row.get("IdDetalleOper")+"\" class=\"btn btn-xs btn-warning\">Detalles</a></td>";
+			tableContent += "</tr>";
+		}
+		return tableContent;
 	}
 }
