@@ -29,6 +29,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -50,6 +51,15 @@ public class Servlet extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, NoSuchMethodException {
 		response.setContentType("text/html;charset=UTF-8");
+		
+		HttpSession session = request.getSession(true);
+		if(session.getAttribute("SESS_ACCESO") == null || !session.getAttribute("SESS_ACCESO").equals("CIRUGIAS2904")){
+//		if(!session.getAttribute("SESS_ACCESO").equals("CIRUGIAS2904")){
+			//request.getRequestDispatcher("/form-login.jsp").include(request, response);
+			//response.sendRedirect("Servlet?v=login");
+			iniciarSesion(request, response);
+			return;
+		}
 		
 		String vista = request.getParameter("v");
 		if(vista == null){
@@ -544,15 +554,37 @@ public class Servlet extends HttpServlet {
 		request.setAttribute("optsCondEgr", conde.getHtmlOptions());		
 		
 		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
-	}		
+	}
 	
-	private void demo(HttpServletRequest request, HttpServletResponse response) throws SQLException, ParseException, ServletException, IOException{
-		Paciente paciente = new Paciente(null);
-		paciente.idPaciente = "80";
-		paciente.get();
-		request.setAttribute("paciente", paciente);
+	public void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		request.getRequestDispatcher("/demo.jsp").include(request, response);
+		String usuario = request.getParameter("usuario");
+		String password = request.getParameter("password");
+		
+		if(usuario == null || password == null){
+			request.getRequestDispatcher("/form-login.jsp").include(request, response);
+		}
+		else if(usuario.equals("admin") && password.equals("hrmnb")){
+			HttpSession session = request.getSession();
+			session.setAttribute("SESS_ACCESO", "CIRUGIAS2904");
+			session.setMaxInactiveInterval(12*60*60);
+			response.sendRedirect("");
+		}else{
+			request.setAttribute("error", "Datos incorrectos.");
+			request.getRequestDispatcher("/form-login.jsp").include(request, response);
+		}
+		
+		//request.setAttribute("error", usuario);
+		//request.getRequestDispatcher("/form-login.jsp").include(request, response);		
+		//response.getWriter().write(usuario + password);
+	}
+	
+	public void cerrarSesion(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		HttpSession session = request.getSession(false);
+		if(session != null){
+			session.invalidate();
+		}
+		response.sendRedirect("");
 	}
 	
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{

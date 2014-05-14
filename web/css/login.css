@@ -1,0 +1,27 @@
+body{background:#0ea4d3;font-family:Arial, Helvetica, sans-serif;font-size:12px;margin: 0}
+#envoltura{position:absolute;left:50%;top:50%;margin-left:-165px;margin-top:-150px;width:330px}
+#mensaje{background: #ececec;border: 1px solid #000;border-radius:2px;box-shadow: 0 0 0 2px rgba(255,255,255,.1);/*display: none;*/font-weight: bold;height: 20px;line-height: 20px;left: 30px;position: absolute;right: 30px;text-align: center;top: -50px}
+#mensaje.mensaje-rojo{border-color: #e9322d;color: #e9322d;}
+#mensaje.mensaje-verde{border-color: #46a546;color: #46a546;}
+#contenedor{background-color:#fff;box-shadow: 0 0 0 5px rgba(255,255,255,.3),0 1px 1px #333, 1px 0 1px #333;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;padding: 0 30px}
+#cabecera{border-bottom: 1px solid #ddd;color:#666;font-family:'Trebuchet MS', Helvetica, sans-serif;font-size:24px;height:50px;line-height:50px;text-shadow: 1px 1px 2px #999;text-align:center}
+#cuerpo{padding:10px 0;}
+/*.mensaje{text-align:center; color:red; font-weight:bold; padding:4px; }*/
+form,p{margin:0}
+p{padding-bottom: 5px}
+.mb10{margin-bottom: 10px}
+.tar{text-align: right}
+label{color: #666;font-weight: bold}
+input{border: 1px solid #999;border-radius:2px;box-shadow: 0 0 0 2px rgba(0,0,0,.1);font:bold 12px Arial, Helvetica, sans-serif;height: 24px;line-height: 24px;padding:0 2px;}
+input:focus{box-shadow: 0 0 1px 2px #95e6ff;border-color: #00c2ff}
+input#usuario{background:#fff url(../img/login-sprite.png) no-repeat 0 -23px;padding-left: 20px;width: 246px}
+input#contrasenia{background:#fff url(../img/login-sprite.png) no-repeat 0 -53px;padding-left: 20px;width: 246px}
+.oculto{display: none}
+.captcha img{border:1px solid #999;float: left;margin-right: 10px}
+.captcha input{width: 60px;text-transform: uppercase}
+.boton{background: #ccc;color: #666;cursor:pointer;background: -moz-linear-gradient(top,#eee,#ccc);background: -webkit-linear-gradient(top,#eee,#ccc);background: linear-gradient(top,#eee,#ccc);padding:0 10px;}
+.boton:active{position: relative;top: 1px}
+#pie{border-top: 1px solid #ddd;color: #fff;font-size: 11px;height: 24px;line-height: 24px;text-align: center}
+#nota{padding-top: 20px;}
+#nota a{background:url(../img/login-sprite.png) no-repeat;display: block;height: 18px;margin: 0 auto;opacity:.5;overflow: hidden;text-indent: 100%;-webkit-transition:opacity .3s linear;-moz-transition:opacity .3s linear;transition:opacity .3s linear;width: 125px}
+#nota a:hover{opacity:.78}

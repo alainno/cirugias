@@ -70,8 +70,11 @@
 			</div>
 			<label class="col-sm-1 control-label">Cantidad
 			</label>
-			<div class="col-sm-1">
-                <input class="form-control input-sm tar" name="cantidad" value="${cantidad}" required>
+			<div class="col-sm-2">
+				<div class="input-group">
+					<input class="form-control input-sm tar" name="cantidad" value="${cantidad}" required>
+					<span class="input-group-addon">%</span>
+				</div>
 			</div>
 		</div>
 		<div class="form-group">

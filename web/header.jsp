@@ -39,7 +39,7 @@
                         <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Personal
                             </a>
                         </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Usuarios
+                        <li><a href="Servlet?v=cerrarSesion"><span class="glyphicon glyphicon-user"></span> Cerrar Sesión
                             </a>
                         </li>
                     </ul>
