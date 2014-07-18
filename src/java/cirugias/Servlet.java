@@ -564,7 +564,7 @@ public class Servlet extends HttpServlet {
 		if(usuario == null || password == null){
 			request.getRequestDispatcher("/form-login.jsp").include(request, response);
 		}
-		else if(usuario.equals("admin") && password.equals("hrmnb")){
+		else if(usuario.equals("admin") && password.equals("12345")){
 			HttpSession session = request.getSession();
 			session.setAttribute("SESS_ACCESO", "CIRUGIAS2904");
 			session.setMaxInactiveInterval(12*60*60);
