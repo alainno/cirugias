@@ -59,10 +59,7 @@
                     <li><a href="Servlet?v=nuevoPaciente" class="${param.v == 'nuevoPaciente' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-file"></span> Nuevo Paciente
                         </a>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Informes Pre Operatorios
-                        </a>
-                    </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Informes Post Operatorios
+                    <li><a href="#"><span class="glyphicon glyphicon-book"></span> Informes Operatorios
                         </a>
                     </li>
                 </ul>

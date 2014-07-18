@@ -1,4 +1,4 @@
-// tabs
+/*// tabs
 (function($){
 	$.fn.tab = function(callback){
 		var $tab_nuevo = $(this);
@@ -17,7 +17,7 @@
 		}
 	}
 })(jQuery);
-
+*/
 // alerta de errores ajax
 $.ajaxSetup({error:function(x,e){
 	alert(x.responseText);

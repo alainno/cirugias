@@ -497,7 +497,11 @@ public class Servlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
 	}
-	
+        
+	public void nuevoInforme(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+		request.getRequestDispatcher("/form-informe.jsp").include(request, response);
+	}
+        
 	public void detalleInfoPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
 		DetalleOper detaoper = new DetalleOper();
 		//detaoper.setIdDetalleOper(request.getParameter("id"));
