@@ -53,13 +53,31 @@
                     <div class="col-sm-1">
                         <input name="InterAntOper" value="${detaoper.interAntOper}" class="form-control input-sm">
                     </div>
+                    <label class="col-sm-2 control-label">Intervención:
+                    </label>
+                    <div class="col-sm-2">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="text1" id="text1" value="" /> Programada
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="text1" id="text1" value="" /> de Emergencia
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!--
                     <label class="col-sm-2 control-label">Intervención
                     </label>
                     <div class="col-sm-4">
                         <select class="form-control input-sm" name="IdInterv">
                             ${optsIntervencion}
                         </select>
-                    </div>                    
+                    </div>                    -->
                 </div>
 
                 <hr />
@@ -142,8 +160,12 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Intervención Nro. 1
                                 </label>
-                                <div class="col-sm-6 select2-container">
-                                    <input type="hidden" name="IdProced[]" class="select2-interv">
+                                <div class="col-sm-5">
+                                    <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                                </div>
+                                <label class="col-sm-1 control-label">Código</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                                 </div>
                                 <div class="col-sm-1">
                                     <button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
@@ -227,58 +249,38 @@
 
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Cirujano
+                    <label class="col-sm-3 control-label">Cirujano Nombre
                     </label>
                     <div class="col-sm-4">
-                        <select class="form-control input-sm" name="cirujano">
-                            ${optsCirujano}
-                        </select>
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Primer ayudante
                     </label>
                     <div class="col-sm-4">
-                        <select class="form-control input-sm" name="primerA">
-                            ${optsPrimerAyudante}
-                        </select>
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Segundo ayudante
                     </label>
                     <div class="col-sm-4">
-                        <select class="form-control input-sm" name="segundoA">
-                            ${optsSegundoAyudante}
-                        </select>
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Instrumentista
+                    <label class="col-sm-3 control-label">Instrumentista nombre
                     </label>
                     <div class="col-sm-4">
-                        <select class="form-control input-sm" name="instrumentista">
-                            ${optsInstrumentista}
-                        </select>
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Circulante
+                    <label class="col-sm-3 control-label">Circulante nombre
                     </label>
                     <div class="col-sm-4">
-                        <select class="form-control input-sm" name="circulante">
-                            ${optsCirculante}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Especialista
-                    </label>
-                    <div class="col-sm-4">
-                        <select class="form-control input-sm" name="especialista">
-                            ${optsEspecialista}
-                        </select>
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                     </div>
                 </div>
                         
@@ -304,42 +306,20 @@
                     <label class="col-sm-3 control-label">Diagnóstico Post Operatorio
                     </label>
                     <div class="col-sm-6">
-                        <input type="hidden" name="IdDiagPost" value="${detaoper.diagPost.idCie}" rel="${detaoper.diagPost.idCie}${empty detaoper?"":" - "}${detaoper.diagPost.descCie}" class="select2-diag">
+                        <textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Sala de recuperación
                     </label>
-                    <div class="col-sm-2">
-                        <select name="IdSalaRecup" class="form-control input-sm">${optsSalaRecup}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Fecha de ingreso
-                    </label>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <input name="RecupFechaIni" value="${detaoper.recupFechaIni}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                        </div>
-                    </div>
                     <label class="col-sm-2 control-label">Hora de ingreso
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
                             <input name="RecupHoraIni" value="${detaoper.recupHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Fecha de egreso
-                    </label>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <input name="RecupFechaFin" value="${detaoper.recupFechaFin}" class="form-control input-sm inputfecha"><span class="input-group-addon glyphicon glyphicon-calendar"></span>
-                        </div>
-                    </div>
+                    </div>          
                     <label class="col-sm-2 control-label">Hora de egreso
                     </label>
                     <div class="col-sm-2">
@@ -348,78 +328,144 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Nombre</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    </div>
+                </div>
+
                 <hr />
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Complicación
+                    <label class="col-sm-3 control-label">Complicaciones
                     </label>
-                    <div class="col-sm-4">
-                        <select name="IdComp" class="form-control input-sm">${optsComp}
-                        </select>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Por anestecia
+                    </label>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Especificar
+                    <label class="col-sm-3 control-label">En acto quirurgico
                     </label>
-                    <div class="col-sm-8">
-                        <input name="CompEspec" value="${detaoper.compEspec}" class="form-control input-sm">
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">En sala de recuperación
+                    </label>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
+                    </div>
+                </div>
+                <hr />
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Condición de egreso
                     </label>
-                    <div class="col-sm-4">
-                        <select name="IdCondEgr" class="form-control input-sm">${optsCondEgr}
-                        </select>
+                    <div class="col-sm-1">
+                        <div class="radio">
+                            <label><input type="radio" name="text1" id="text1" value="" /> Vivo</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <div class="radio">
+                            <label><input type="radio" name="text1" id="text1" value="" /> Muerto</label>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Especificar
-                    </label>
-                    <div class="col-sm-8">
-                        <input name="CondEgr" value="${detaoper.condEspec}" class="form-control input-sm">
-                    </div>
-                </div>
-
-                <hr />
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Descripción de envío
-                    </label>
-                    <div class="col-sm-8">
-                        <input name="DescEnvio" value="${detaoper.descEnvio}" class="form-control input-sm">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Observaciones de envío
-                    </label>
-                    <div class="col-sm-8">
-                        <input name="ObsEnvio" value="${detaoper.obsEnvio}" class="form-control input-sm">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-3">
+                    <div class="col-sm-offset-3 col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="Patologia" ${detaoper.patologia=="SI"?"checked":""} id="checkPatologia" value="1">¿Muestra enviada a Patología?
+                                <input type="checkbox" name="text1" id="text1" value="" /> Por anestesia
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> En operación
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> En sala de recuperación
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Especificar
+                    <label class="col-sm-3 control-label">Suspendido
                     </label>
-                    <div class="col-sm-8">
-                        <input name="PatologiaEspec" value="${detaoper.patologiaEspec}" disabled="disabled" id="PatologiaEspec" class="form-control input-sm">
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
                     </div>
                 </div>
 
+                <hr />
+
                 <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-4">
-                        <button type="submit" class="btn btn-primary btn-sm">Guardar
-                        </button>
+                    <label class="col-sm-4 control-label">¿Muestra enviada a patología?
+                    </label>
+                    <div class="col-sm-2">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="Patologia" ${detaoper.patologia=="SI"?"checked":""} id="checkPatologia" value="1">Especificar
+                            </label>
+                        </div>
+                    </div>                    
+                    <div class="col-sm-5">
+                        <input name="PatologiaEspec" value="${detaoper.patologiaEspec}" disabled="disabled" id="PatologiaEspec" class="form-control input-sm">
+                    </div>
+                </div>                
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Observaciones
+                    </label>
+                    <div class="col-sm-8">
+                       <textarea name="texta1" id="texta1" rows="2" class="form-control input-sm"></textarea>
                     </div>
                 </div>
+                <hr />
+                <div class="clearfix">
+                    <button type="button" class="btn btn-default btn-sm left">&laquo; Anterior</button>
+                    <button type="button" class="btn btn-primary btn-sm right">Finalizar &raquo;</button>
+                </div>
+                <p></p>                
             </div>
         </div>
 
