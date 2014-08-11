@@ -147,7 +147,6 @@
                             
                 <hr />
                 <div class="clearfix">
-                    <button type="button" class="btn btn-default btn-sm left">&laquo; Anterior</button>
                     <button type="button" class="btn btn-primary btn-sm right">Siguiente &raquo;</button>
                 </div>
                 <p></p>                            
