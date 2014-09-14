@@ -12,13 +12,13 @@
 <div class="content">
 
     <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#home" role="tab" data-toggle="tab">Datos Pre Operatorios</a></li>
-        <li><a href="#profile" role="tab" data-toggle="tab">Operación</a></li>
-        <li><a href="#messages" role="tab" data-toggle="tab">Datos Post Operatorios</a></li>
+        <li class="active"><a href="#paso1" role="tab" data-toggle="tab">Datos Pre Operatorios</a></li>
+        <li><a href="#paso2" role="tab" data-toggle="tab">Operación</a></li>
+        <li><a href="#paso3" role="tab" data-toggle="tab">Datos Post Operatorios</a></li>
     </ul>
     <form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${empty detaoper?idpac:detaoper.paciente.idPaciente}&iddi=${empty detaoper?iddi:detaoper.idDetalleInterv}&id=${empty detaoper?"":detaoper.idDetalleOper}">
         <div class="tab-content">
-            <div class="tab-pane active" id="home">
+            <div class="tab-pane active" id="paso1">
                 <div class="form-group mt15">
                     <label class="col-sm-3 control-label">Departamento Hospitalario
                     </label>
@@ -103,13 +103,19 @@
                     </label>
                     <label class="col-sm-1 control-label">DE
                     </label>
-                    <div class="col-sm-1">
-                        <input class="form-control input-sm" name="IniAnest" id="IniAnest" value="${inicio}" required>
+                    <div class="col-sm-2">
+						<div class="input-group">
+							<input class="form-control input-sm inputhora" name="IniAnest" id="IniAnest" value="${inicio}" required>
+							<span class="input-group-addon glyphicon glyphicon-time"></span>
+						</div>
                     </div>
                     <label class="col-sm-1 control-label">A
                     </label>
-                    <div class="col-sm-1">
-                        <input class="form-control input-sm" name="FinAnest" id="FinAnest" value="${fin}" required>
+                    <div class="col-sm-2">
+						<div class="input-group">
+							<input class="form-control input-sm inputhora" name="FinAnest" id="FinAnest" value="${fin}" required>
+							<span class="input-group-addon glyphicon glyphicon-time"></span>
+						</div>
                     </div>
                 </div>
                     
@@ -147,12 +153,11 @@
                             
                 <hr />
                 <div class="clearfix">
-                    <button type="button" class="btn btn-primary btn-sm right">Siguiente &raquo;</button>
+                    <a href="#paso2" class="btn btn-primary btn-sm right btn-paso">Siguiente &raquo;</a>
                 </div>
                 <p></p>                            
             </div>
-            <div class="tab-pane" id="profile">
-
+            <div class="tab-pane" id="paso2">
                 <div class="form-group-interv mt15">
                     <c:choose>
                         <c:when test="${empty detaoper}">
@@ -224,8 +229,11 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Fecha de Operación
                     </label>
-                    <div class="col-sm-2">
-                        <input class="form-control input-sm" name="FechaInterv" id="FechaInterv" value="${fechaInterv}" required>
+                    <div class="col-sm-3">
+						<div class="input-group">
+							<input class="form-control input-sm inputfecha" name="FechaInterv" id="FechaInterv" value="${fechaInterv}" required>
+							<span class="input-group-addon glyphicon glyphicon-calendar"></span>
+						</div>
                     </div>
                 </div>                        
                         
@@ -294,13 +302,12 @@
                 </div> 
                 <hr />
                 <div class="clearfix">
-                    <button type="button" class="btn btn-default btn-sm left">&laquo; Anterior</button>
-                    <button type="button" class="btn btn-primary btn-sm right">Siguiente &raquo;</button>
+                    <a href="#paso1" class="btn btn-default btn-sm left btn-paso">&laquo; Anterior</a>
+                    <a href="#paso3" class="btn btn-primary btn-sm right btn-paso">Siguiente &raquo;</a>
                 </div>
                 <p></p>
             </div>
-            <div class="tab-pane" id="messages">
-
+            <div class="tab-pane" id="paso3">
                 <div class="form-group mt15">
                     <label class="col-sm-3 control-label">Diagnóstico Post Operatorio
                     </label>
@@ -461,8 +468,8 @@
                 </div>
                 <hr />
                 <div class="clearfix">
-                    <button type="button" class="btn btn-default btn-sm left">&laquo; Anterior</button>
-                    <button type="button" class="btn btn-primary btn-sm right">Finalizar &raquo;</button>
+                    <a href="#paso2" class="btn btn-default btn-sm left btn-paso">&laquo; Anterior</a>
+                    <button type="submit" class="btn btn-success btn-sm right">Finalizar &raquo;</button>
                 </div>
                 <p></p>                
             </div>

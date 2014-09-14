@@ -47,12 +47,14 @@ var opts_diag = {
 
 function mainInfoPost(){
 
-//	$(".inputfecha").mask("99/99/9999");
-	$(".inputfecha").datepicker({
+	$('.btn-paso').click(pasear);
+
+	$(".inputfecha").mask("99/99/9999");
+	/*$(".inputfecha").datepicker({
 		format: "dd/mm/yyyy"
 		,language: "es"
 		,autoclose: true
-	});
+	});*/
 	$(".inputhora").mask("99:99");
 
 	$('#checkPatologia').change(checkPatologia).trigger("change");
@@ -90,6 +92,12 @@ function mainInfoPost(){
 	$("input.select2-diag").select2(opts_diag);
 	
 	$("#form-info-post").submit(enviarForm);
+}
+
+function pasear(e) {
+	//e.preventDefault();
+	//$(this).tab('show');
+	$('.nav-tabs a[href="'+$(this).attr('href')+'"]').trigger('click');
 }
 
 //function enviarForm(){
