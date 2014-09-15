@@ -1,22 +1,13 @@
 <jsp:include page="header.jsp"/>
-<h1>Detalles del Paciente
-    <div class="btn-group right">
-        <button type="button" data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Opciones <span class="caret"></span>
-        </button>
-        <ul role="menu" class="dropdown-menu dropdown-menu-right">
-            <li><a href="Servlet?v=modificarPaciente&id=${id}">Modificar Paciente</a>
-            </li>
-            <li><a href="Servlet?v=nuevoInfoPre&idpac=${id}">Crear Informe Pre Operatorio</a>
-            </li>
-            <li><a href="#">Crear Informe Post Operatorio</a>
-            </li>
-            <li><a href="#">Imprimir Detalles								</a>
-            </li>
-        </ul>
-    </div>
-</h1>
+<h1>Detalles del Paciente</h1>
 <div class="content">
-    <table class="table table-hover">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="active"><a href="#datos" role="tab" data-toggle="tab">Datos Generales</a></li>
+        <li><a href="#historial" role="tab" data-toggle="tab">Historial de Operaciones</a></li>
+    </ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="datos">
+    <table class="table table-hover mt10">
         <tr>
             <th>Nro. de DNI
             </th>
@@ -114,11 +105,15 @@
             </td>
         </tr>
     </table>
-
-    <div class="mt15">
+    <div>
+		<a href="Servlet?v=nuevoInforme&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Operatorio</a>
+        <a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm">Crear Informe Pre Operatorio</a>		
         <a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm">Modificar Datos</a>
-    </div>               
-
+		<a href="javascript:window.print();" class="btn btn-default btn-sm ml10">Imprimir</a>
+    </div>
+		<p></p>
+	</div>
+		<div class="tab-pane" id="historial">
     <h2>Informes Pre Operatorios
     </h2>
     <% if (request.getAttribute("tablaInfoPre").equals("")) { %>
@@ -170,11 +165,7 @@
         </tbody>
     </table>
     <% }%>
-    <div class="mt15">
-        <a href="Servlet?v=nuevoInforme&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Operatorio</a>
-        <a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm ml10">Crear Informe Pre Operatorio</a>
-        <a href="#" class="btn btn-default btn-sm ml10">Imprimir</a>
-    </div>
-    <p></p>
+	</div>
+	</div>
 </div>
 <jsp:include page="footer.jsp"/>

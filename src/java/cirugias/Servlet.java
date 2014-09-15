@@ -303,6 +303,14 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/modificar-paciente.jsp").include(request, response);
 	}
 	
+	public void listaInformes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/lista-informes.jsp").include(request, response);
+	}
+	
+	public void detalleOperacion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/detalle-operacion.jsp").include(request, response);
+	}
+	
 	// muestra el formulario para guardar un nuevo informe pre operatorio
 	public void nuevoInfoPre(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
 		//String idPaciente = request.getParameter("idpac");
