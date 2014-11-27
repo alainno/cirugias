@@ -24,9 +24,12 @@ function mainPaciente(){
 
 function enviarFormPaciente(){
 	var $form = $(this);
+        var $btn_send = $form.find('button[type=submit]');
+        $btn_send.button('loading');
 	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
 		if(json.error){
 			alert(json.mensaje);
+                        $btn_send.button('reset');
 		} else{
 			if(typeof json.redireccion != 'undefined'){
 				document.location = json.redireccion;	

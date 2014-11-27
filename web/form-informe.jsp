@@ -10,7 +10,6 @@
 </h1>
 
 <div class="content">
-
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a href="#paso1" role="tab" data-toggle="tab">Datos Pre Operatorios</a></li>
         <li><a href="#paso2" role="tab" data-toggle="tab">Operación</a></li>
@@ -86,7 +85,17 @@
                     <label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
                     </label>
                     <div class="col-sm-6">
-                        <textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>
+                        <!--<textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>-->
+                        <select name="select1" id="select1" multiple style="width: 100%">
+                            <option value="1">ABORTO EN CURSO</option>
+                            <option value="2">SANGRADO TV</option>
+                            <option value="3">ABORTO INCOMPLETO</option>
+                            <option value="4">FRACTURA</option>
+                            <option value="5">AMPUTACION</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
                     </div>
                 </div>                 
 
@@ -105,7 +114,7 @@
                     </label>
                     <div class="col-sm-2">
 						<div class="input-group">
-							<input class="form-control input-sm inputhora" name="IniAnest" id="IniAnest" value="${inicio}" required>
+							<input class="form-control input-sm inputhora" name="IniAnest" id="IniAnest" value="${inicio}" >
 							<span class="input-group-addon glyphicon glyphicon-time"></span>
 						</div>
                     </div>
@@ -113,7 +122,7 @@
                     </label>
                     <div class="col-sm-2">
 						<div class="input-group">
-							<input class="form-control input-sm inputhora" name="FinAnest" id="FinAnest" value="${fin}" required>
+							<input class="form-control input-sm inputhora" name="FinAnest" id="FinAnest" value="${fin}" >
 							<span class="input-group-addon glyphicon glyphicon-time"></span>
 						</div>
                     </div>
@@ -137,7 +146,7 @@
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input class="form-control input-sm tar" name="cantidad" value="${cantidad}" required>
+                            <input class="form-control input-sm tar" name="cantidad" value="${cantidad}" >
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
@@ -155,7 +164,8 @@
                 <div class="clearfix">
                     <a href="#paso2" class="btn btn-primary btn-sm right btn-paso">Siguiente &raquo;</a>
                 </div>
-                <p></p>                            
+                <p></p>
+
             </div>
             <div class="tab-pane" id="paso2">
                 <div class="form-group-interv mt15">
@@ -231,7 +241,7 @@
                     </label>
                     <div class="col-sm-3">
 						<div class="input-group">
-							<input class="form-control input-sm inputfecha" name="FechaInterv" id="FechaInterv" value="${fechaInterv}" required>
+							<input class="form-control input-sm inputfecha" name="FechaInterv" id="FechaInterv" value="${fechaInterv}" >
 							<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 						</div>
                     </div>
@@ -306,6 +316,7 @@
                     <a href="#paso3" class="btn btn-primary btn-sm right btn-paso">Siguiente &raquo;</a>
                 </div>
                 <p></p>
+                   <input type="submit" name="button1" id="button1" value="Button" />
             </div>
             <div class="tab-pane" id="paso3">
                 <div class="form-group mt15">
@@ -469,7 +480,7 @@
                 <hr />
                 <div class="clearfix">
                     <a href="#paso2" class="btn btn-default btn-sm left btn-paso">&laquo; Anterior</a>
-                    <button type="submit" class="btn btn-success btn-sm right">Finalizar &raquo;</button>
+                    <button type="submit" id="btn-enviar" class="btn btn-success btn-sm right">Finalizar</button>
                 </div>
                 <p></p>                
             </div>
@@ -480,6 +491,33 @@
 
 
     </form>
+</div>
+<!--Modal-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Diagnóstico</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form1" action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Nombre del diagnóstico</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <jsp:include page="footer.jsp">
     <jsp:param name="masScripts" value="js/jquery.maskedinput.min.js" />

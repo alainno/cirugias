@@ -112,7 +112,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Historia Clínica
+			<label class="col-sm-3 control-label">Nº de H. Clínica
 			</label>
 			<div class="col-sm-2">
                 <input class="form-control input-sm" name="historiac" required>
@@ -120,7 +120,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4">
-                <button type="submit" class="btn btn-sm btn-primary">Guardar
+                <button type="submit" class="btn btn-sm btn-primary" data-loading-text="Loading...">Guardar
                 </button>
 			</div>
 		</div>

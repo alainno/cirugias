@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -194,7 +195,10 @@ public class Servlet extends HttpServlet {
 		request.getRequestDispatcher("/nuevo-paciente.jsp").include(request, response);
 	}
 
-	public void guardarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+	public void guardarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException, InterruptedException{
+		
+		//Thread.sleep(millis);
+		TimeUnit.SECONDS.sleep(3);
 		
 		Pais pais = new Pais();
 		pais.IdPais = request.getParameter("IdPais");
@@ -271,7 +275,11 @@ public class Servlet extends HttpServlet {
 	}
 	
 	// muestra el formulario para modificar el paciente
-	public void modificarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException{
+	public void modificarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException, InterruptedException{
+		
+		//Thread.sleep();
+		TimeUnit.SECONDS.sleep(3);
+		
 		Paciente pac = new Paciente(null);
 		pac.idPaciente = request.getParameter("id");
 		pac.get();

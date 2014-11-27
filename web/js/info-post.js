@@ -92,6 +92,11 @@ function mainInfoPost(){
 	$("input.select2-diag").select2(opts_diag);
 	
 	$("#form-info-post").submit(enviarForm);
+	//$("#form-info-post").on('submit', enviarForm);
+	//$("#formx").on('submit', function(){alert('hi hi')});
+        
+        //$('#btn-enviar').on('click', function(){alert('hi hi')});
+        $('#select1').select2();
 }
 
 function pasear(e) {
@@ -180,6 +185,7 @@ function remInterv(){
 
 
 function enviarForm(){
+    
 	var $form = $(this);
 	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
 		if(json.error){
