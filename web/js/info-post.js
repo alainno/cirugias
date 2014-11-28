@@ -96,7 +96,7 @@ function mainInfoPost(){
 	//$("#formx").on('submit', function(){alert('hi hi')});
         
         //$('#btn-enviar').on('click', function(){alert('hi hi')});
-        $('#select1').select2();
+        $('.select2').select2();
 }
 
 function pasear(e) {

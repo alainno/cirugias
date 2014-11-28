@@ -15,7 +15,7 @@
         </title>
         <!--link(rel='stylesheet', href='css/normalize.css')-->
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=1">
 		<%
 			String[] estilos = request.getParameterValues("masEstilos");
 			if(estilos != null){

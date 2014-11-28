@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp"/>
 <h1>Detalles del Paciente</h1>
-<div class="content">
+
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a href="#datos" role="tab" data-toggle="tab">Datos Generales</a></li>
         <li><a href="#historial" role="tab" data-toggle="tab">Historial de Operaciones</a></li>
@@ -167,5 +167,5 @@
     <% }%>
 	</div>
 	</div>
-</div>
+
 <jsp:include page="footer.jsp"/>

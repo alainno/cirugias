@@ -1,0 +1,209 @@
+@import base
+
+body
+  font: 12px "Lucida Grande",Helvetica,Arial,sans-serif
+
+a
+  color: #00b7ff
+
+.envoltura
+  margin: 0 auto
+  width: 960px
+
+.header
+  height: 62px
+  background: #215A6D
+  position: absolute
+  left: 0
+  right: 0
+  border-bottom: 10px solid #f2f2f2
+  -webkit-box-sizing: content-box
+  -moz-box-sizing: content-box
+  -webkit-box-shadow: 0 0 1px 0 #aaa
+  -moz-box-shadow: 0 0 1px 0 #aaa
+  -ms-box-shadow: 0 0 1px 0 #aaa
+  -o-box-shadow: 0 0 1px 0 #aaa
+  box-shadow: 0 0 1px 0 #aaa
+
+.header .left-col
+  height: 62px
+  display: table
+
+.header .left-col .logo-container
+  display: table-cell
+  vertical-align: middle
+
+.header .left-col .logo-container .logo
+  display: block
+
+.header .menu
+  margin-top: 32px
+
+.header .menu ul
+  margin: 0
+  padding: 0
+
+.header .menu ul li
+  list-style: none
+  display: inline-block
+  margin: 0 2px
+
+.header .menu ul li a
+  font-size: 14px
+  color: #fff
+  padding: 0 14px
+  display: inline-block
+  height: 30px
+  line-height: 30px
+  text-decoration: none
+
+.header .menu ul li a:hover
+  color: #a1f2eb
+
+.header .menu ul li a.actual
+  background: #f2f2f2
+  color: #000
+  text-decoration: none
+
+.cuerpo
+  position: absolute
+  left: 0
+  right: 0
+  top: 72px
+  bottom: 0
+
+.cuerpo .bg-white
+  width: 100%
+  position: absolute
+  height: 100%
+  z-index: -1
+  min-width: 960px
+
+.cuerpo .bg-gray
+  margin-right: 280px
+  position: absolute
+  right: 50%
+  left: 0
+  height: 100%
+  background: #73a7cc
+
+.left-col
+  position: absolute
+  width: 200px
+  top: 0
+  left: 50%
+  bottom: 0
+  margin-left: -480px
+
+.left-col .submenu
+  margin: 10px 0 0 0
+  padding: 0
+
+.left-col .submenu li
+  list-style: none
+  padding-bottom: 5px
+
+.left-col .submenu li a
+  font-size: 13px
+  color: #fff
+  height: 26px
+  line-height: 26px
+  display: block
+  padding: 0 12px 0 8px
+  text-decoration: none
+
+.left-col .submenu li a:hover
+  color: #a1f2eb
+
+.left-col .submenu li a.actual
+  background: #fff
+  color: #73a7cc
+
+.main-col
+  //-moz-box-sizing: content-box
+  vendor(box-sizing,coontent-box)
+  padding: 20px 0 20px 20px
+  width: 720px
+  position: absolute
+  left: 50%
+  top: 0
+  bottom: 0
+  margin-left: -280px
+
+.main-col h1
+  border-bottom: 1px solid #ccc
+  font-size: 16px
+  color: #464646
+  margin-top: 0
+  font-weight: bold
+  padding-bottom: 5px
+
+.main-col .content,.main-col .tab-content
+  position: absolute
+  bottom: 0
+  left: 20px
+  right: 0
+  top: 54px
+  overflow-x: hidden
+  overflow-y: auto
+
+.main-col .content-table,.main-col .tab-content
+  top: 94px
+
+.main-col .main-col-left
+  width: 500px
+
+.main-col .main-col-right
+  width: 200px
+
+.footer
+  margin: 0 10px
+  height: 30px
+  line-height: 30px
+  border-top: 1px solid #cdcdcd
+  font-size: 11px
+  color: #666
+
+.radio input[type="radio"],
+.radio-inline input[type="radio"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"]
+  margin-top: 0
+
+.input-sm
+  padding: 5px 6px
+
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12
+  padding-left: 5px
+  padding-right: 5px
+
+.alert
+  padding: 6px 7px
+  margin-bottom: 0
+
+.table th,
+.table td
+  vertical-align: middle !important
+  
+/*
+.select2-container-multi
+  width 100%
+  .select2-choices
+    min-height 30px
+*/
+.select2
+  width 100%
+  .select2-choices
+    min-height 30px !important
+

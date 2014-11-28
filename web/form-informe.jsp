@@ -9,7 +9,6 @@
     <small>${nombres}</small>
 </h1>
 
-<div class="content">
     <ul class="nav nav-tabs" role="tablist">
         <li class="active"><a href="#paso1" role="tab" data-toggle="tab">Datos Pre Operatorios</a></li>
         <li><a href="#paso2" role="tab" data-toggle="tab">Operación</a></li>
@@ -86,7 +85,7 @@
                     </label>
                     <div class="col-sm-6">
                         <!--<textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>-->
-                        <select name="select1" id="select1" multiple style="width: 100%">
+                        <select name="select1" id="select1" class="select2" multiple>
                             <option value="1">ABORTO EN CURSO</option>
                             <option value="2">SANGRADO TV</option>
                             <option value="3">ABORTO INCOMPLETO</option>
@@ -132,17 +131,39 @@
                     <label class="col-sm-3 control-label">Anestecia
                     </label>
                     <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
+                        <select name="select1" id="select1" class="select2" multiple>
+                            <option value="1">ABORTO EN CURSO</option>
+                            <option value="2">SANGRADO TV</option>
+                            <option value="3">ABORTO INCOMPLETO</option>
+                            <option value="4">FRACTURA</option>
+                            <option value="5">AMPUTACION</option>
+                        </select>                        
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                    </div>                    
                 </div>
                         
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Anestésico
                     </label>
                     <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
+                        <select name="select1" id="select1" class="select2" multiple>
+                            <option value="1">ABORTO EN CURSO</option>
+                            <option value="2">SANGRADO TV</option>
+                            <option value="3">ABORTO INCOMPLETO</option>
+                            <option value="4">FRACTURA</option>
+                            <option value="5">AMPUTACION</option>
+                        </select>                        
                     </div>
-                    <label class="col-sm-1 control-label">Cantidad
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label class="col-sm-3 control-label">Cantidad
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
@@ -156,8 +177,18 @@
                     <label class="col-sm-3 control-label">Anestesiólogo Nombre
                     </label>
                     <div class="col-sm-6">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
+                        <select name="select1" id="select1" class="select2" multiple>
+                            <option value="1">ABORTO EN CURSO</option>
+                            <option value="2">SANGRADO TV</option>
+                            <option value="3">ABORTO INCOMPLETO</option>
+                            <option value="4">FRACTURA</option>
+                            <option value="5">AMPUTACION</option>
+                        </select>                        
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                    </div>					
                 </div>
                             
                 <hr />
@@ -491,7 +522,7 @@
 
 
     </form>
-</div>
+
 <!--Modal-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
