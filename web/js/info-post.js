@@ -47,7 +47,7 @@ var opts_diag = {
 
 function mainInfoPost(){
 
-	$('.btn-paso').click(pasear);
+	//$('.btn-paso').click(pasear);
 
 	$(".inputfecha").mask("99/99/9999");
 	/*$(".inputfecha").datepicker({
@@ -96,7 +96,7 @@ function mainInfoPost(){
 	//$("#formx").on('submit', function(){alert('hi hi')});
         
         //$('#btn-enviar').on('click', function(){alert('hi hi')});
-        $('.select2').select2();
+        //$('.select2').select2();
 }
 
 function pasear(e) {

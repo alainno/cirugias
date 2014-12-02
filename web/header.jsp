@@ -33,10 +33,10 @@
                 </div>
                 <nav class="menu right">
                     <ul>
-                        <li><a href="./" class="curva-sup actual"><span class="glyphicon glyphicon-list"></span> Pacientes
+                        <li><a href="./" class="curva-sup actual"><span class="glyphicon glyphicon-list"></span> Cirugías
                             </a>
                         </li>
-                        <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Personal
+                        <li><a href="#"><span class="glyphicon glyphicon-briefcase"></span> Estadísticas
                             </a>
                         </li>
                         <li><a href="Servlet?v=cerrarSesion"><span class="glyphicon glyphicon-user"></span> Cerrar Sesión
@@ -56,10 +56,19 @@
                     <li><a href="Servlet?v=indexPaciente" class="${param.v == 'indexPaciente' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-search"></span> Buscar Paciente
                         </a>
                     </li>
-                    <li><a href="Servlet?v=nuevoPaciente" class="${param.v == 'nuevoPaciente' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-file"></span> Nuevo Paciente
+                    <li><a href="Servlet?v=listaInformes" class="${param.v == 'listaInformes' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-book"></span> Informes Operatorios
                         </a>
                     </li>
-                    <li><a href="Servlet?v=listaInformes" class="${param.v == 'listaInformes' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-book"></span> Informes Operatorios
+                    <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-briefcase"></span> Personal Médico
+                        </a>
+                    </li>
+                    <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-book"></span> Diagnósticos
+                        </a>
+                    </li>
+                    <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-list-alt"></span> Anestesias
+                        </a>
+                    </li>
+                    <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-list-alt"></span> Anestésicos
                         </a>
                     </li>
                 </ul>

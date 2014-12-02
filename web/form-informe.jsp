@@ -67,15 +67,6 @@
                             </label>
                         </div>
                     </div>
-                    
-                    <!--
-                    <label class="col-sm-2 control-label">Intervención
-                    </label>
-                    <div class="col-sm-4">
-                        <select class="form-control input-sm" name="IdInterv">
-                            ${optsIntervencion}
-                        </select>
-                    </div>                    -->
                 </div>
 
                 <hr />
@@ -84,8 +75,7 @@
                     <label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
                     </label>
                     <div class="col-sm-6">
-                        <!--<textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>-->
-                        <select name="select1" id="select1" class="select2" multiple>
+                        <select name="IdDiagnostico" id="select-diagnostico" class="select2" multiple>
                             <option value="1">ABORTO EN CURSO</option>
                             <option value="2">SANGRADO TV</option>
                             <option value="3">ABORTO INCOMPLETO</option>
@@ -94,7 +84,7 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-nuevo-diagnostico">Nuevo...</a>
                     </div>
                 </div>                 
 
@@ -141,7 +131,7 @@
                         </select>                        
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal2">Nuevo...</a>
                     </div>                    
                 </div>
                         
@@ -159,7 +149,7 @@
                         </select>                        
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal3">Nuevo...</a>
                     </div>
                 </div>
 				<div class="form-group">
@@ -187,7 +177,7 @@
                         </select>                        
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal">Nuevo...</a>
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
                     </div>					
                 </div>
                             
@@ -199,46 +189,21 @@
 
             </div>
             <div class="tab-pane" id="paso2">
-                <div class="form-group-interv mt15">
-                    <c:choose>
-                        <c:when test="${empty detaoper}">
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Intervención Nro. 1
-                                </label>
-                                <div class="col-sm-5">
-                                    <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
-                                </div>
-                                <label class="col-sm-1 control-label">Código</label>
-                                <div class="col-sm-2">
-                                    <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
-                                </div>
-                                <div class="col-sm-1">
-                                    <button type="button" class="remInterv btn btn-default btn-sm oculto"><span class="glyphicon glyphicon-remove"></span>
-                                    </button>
-                                </div>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="map" items="${detaoper.detaProcs}" varStatus="i">
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Intervención Nro. <span class="nro">${i.count}</span>
-                                    </label>
-                                    <div class="col-sm-6 select2-container">
-                                        <input type="hidden" name="IdProced[]" value="${map['IdProced']}" rel="${map['IdProced']} - ${map['DescProced']}" class="select2-interv">
-                                    </div>
-                                    <div class="col-sm-1">
-                                        <button type="button" class="remInterv btn btn-default btn-sm${i.count==fn:length(detaoper.detaProcs)&&i.count>1?"":" oculto"}"><span class="glyphicon glyphicon-remove"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
+                <div class="form-group mt15">
+					<label class="col-sm-3 control-label">Intervenciones</label>
+					<div class="col-sm-8">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
+					</div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-1 col-sm-offset-3">
-                        <button type="button" id="addInterv" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span>
-                        </button>
+						<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal5">Nuevo...</a>
                     </div>
                 </div>
                
@@ -286,7 +251,7 @@
                             <input name="HoraIniOper" value="${detaoper.horaIniOper}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
                     </div>
-                    <label class="col-sm-2 control-label">Hora de termino
+                    <label class="col-sm-2 control-label">Hora de término
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
@@ -299,37 +264,82 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Cirujano Nombre
                     </label>
-                    <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    <div class="col-sm-5">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Primer ayudante
                     </label>
-                    <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    <div class="col-sm-5">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Segundo ayudante
                     </label>
-                    <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    <div class="col-sm-5">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Instrumentista nombre
                     </label>
-                    <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    <div class="col-sm-5">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Circulante nombre
                     </label>
-                    <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                    <div class="col-sm-5">
+						<select name="select1" id="select1" class="select2" multiple>
+							<option value="1">ABORTO EN CURSO</option>
+							<option value="2">SANGRADO TV</option>
+							<option value="3">ABORTO INCOMPLETO</option>
+							<option value="4">FRACTURA</option>
+							<option value="5">AMPUTACION</option>
+						</select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
                         
                 <hr />
@@ -347,15 +357,22 @@
                     <a href="#paso3" class="btn btn-primary btn-sm right btn-paso">Siguiente &raquo;</a>
                 </div>
                 <p></p>
-                   <input type="submit" name="button1" id="button1" value="Button" />
             </div>
             <div class="tab-pane" id="paso3">
                 <div class="form-group mt15">
-                    <label class="col-sm-3 control-label">Diagnóstico Post Operatorio
-                    </label>
+                    <label class="col-sm-3 control-label">Diagnóstico Post Operatorio</label>
                     <div class="col-sm-6">
-                        <textarea name="text1" id="text1" rows="3" class="form-control input-sm"></textarea>
+                        <select name="select1" id="select1" class="select2" multiple>
+                            <option value="1">ABORTO EN CURSO</option>
+                            <option value="2">SANGRADO TV</option>
+                            <option value="3">ABORTO INCOMPLETO</option>
+                            <option value="4">FRACTURA</option>
+                            <option value="5">AMPUTACION</option>
+                        </select>
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                    </div>						
                 </div>
 
                 <div class="form-group">
@@ -524,7 +541,7 @@
     </form>
 
 <!--Modal-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal" id="modal-nuevo-diagnostico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -532,9 +549,36 @@
                 <h4 class="modal-title" id="myModalLabel">Nuevo Diagnóstico</h4>
             </div>
             <div class="modal-body">
-                <form name="form1" action="" method="post" class="form-horizontal">
+                <form name="form1" action="test-data.json" method="post" class="form-horizontal" id="form-diagnostico">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nombre del diagnóstico</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="nombre" value="" class="form-control input-sm" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nueva Anestecia</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form1" action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Nombre de la anestecia</label>
                         <div class="col-sm-6">
                             <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
                         </div>
@@ -550,11 +594,64 @@
         </div>
     </div>
 </div>
+<div class="modal" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Anestésico</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form1" action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Nombre del anestésico</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Personal</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form1" action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Nombre del personal</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="footer.jsp">
     <jsp:param name="masScripts" value="js/jquery.maskedinput.min.js" />
     <jsp:param name="masScripts" value="js/select2/select2.js" />
     <jsp:param name="masScripts" value="js/select2/select2_locale_es.js" />
     <jsp:param name="masScripts" value="js/bootstrap-datepicker.js" />
     <jsp:param name="masScripts" value="js/bootstrap-datepicker.es.js" />
-    <jsp:param name="masScripts" value="js/info-post.js" />
+    <jsp:param name="masScripts" value="js/informe.js" />
 </jsp:include>

@@ -106,14 +106,33 @@
         </tr>
     </table>
     <div>
-		<a href="Servlet?v=nuevoInforme&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Operatorio</a>
-        <a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm">Crear Informe Pre Operatorio</a>		
-        <a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm">Modificar Datos</a>
+		<a href="Servlet?v=nuevoInforme&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Operatorio</a>		
+        <a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm ml10">Modificar Datos</a>
 		<a href="javascript:window.print();" class="btn btn-default btn-sm ml10">Imprimir</a>
     </div>
 		<p></p>
 	</div>
 		<div class="tab-pane" id="historial">
+			
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Nombres y Apellidos</th>
+					<th>Departamento</th>
+					<th>Servicio</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<td>14/09/2014</td>
+				<td>Alain Melquiades Alejo Huarachi</td>
+				<td>xxxxxxxxxxxxx</td>
+				<td>yyyyyyyy</td>
+				<td><a href="Servlet?v=detalleOperacion&id=x" class="btn btn-info btn-xs">Detalles</a></td>
+			</tbody>
+		</table>			
+
     <h2>Informes Pre Operatorios
     </h2>
     <% if (request.getAttribute("tablaInfoPre").equals("")) { %>
@@ -165,7 +184,8 @@
         </tbody>
     </table>
     <% }%>
-	</div>
+
+   </div>
 	</div>
 
 <jsp:include page="footer.jsp"/>

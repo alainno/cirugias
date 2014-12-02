@@ -3,11 +3,14 @@
 </h1>
 <form role="form" class="form-inline" action="Servlet?v=indexPaciente" method="get">
 	<div class="form-group">
-		<input type="text" placeholder="DNI, Nombre y Apellido ó Nro. de Historia Clínica" size="50" class="form-control input-sm" name="q" value="${q}">
-	</div>
-	<button type="submit" class="btn btn-sm btn-default">Buscar
-	</button>&nbsp;
-	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary">Nuevo Paciente</a>
+		<div class="input-group">
+			<input type="text" placeholder="DNI, Nombre y Apellido ó Nro. de Historia Clínica" size="50" class="form-control input-sm" name="q" value="${q}">
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-search"></span></button>
+			</span>
+		</div>
+	</div>		
+	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary ml10"><span class="glyphicon glyphicon-file"></span> Nuevo Paciente</a>
 </form>
 <div class="content content-table">
 <% if(request.getAttribute("q") != null){ if(request.getAttribute("tabla").equals("")){ %>

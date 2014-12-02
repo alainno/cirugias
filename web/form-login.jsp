@@ -15,7 +15,7 @@
 <div id="contenedor" class="curva">
 	<div id="cabecera" class="tac">
 		<!--<img src="img/logo.png" alt="Form Login" />-->
-		Quiro
+		SiGeCi
 	</div>
 	<div id="cuerpo">
 	<form id="form-login" action="Servlet?v=iniciarSesion" method="post">

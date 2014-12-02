@@ -120,8 +120,8 @@
 		</div>
 		<div class="form-group">
 			<div class="col-sm-offset-3 col-sm-4">
-                <button type="submit" class="btn btn-sm btn-primary" data-loading-text="Loading...">Guardar
-                </button>
+                <button type="submit" class="btn btn-sm btn-primary" data-loading-text="Loading..."><span class="glyphicon glyphicon-ok"></span> Guardar</button>
+				<a href="Servlet?v=indexPaciente" class="btn btn-sm btn-default ml10"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>				
 			</div>
 		</div>
 	</form>
