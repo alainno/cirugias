@@ -75,16 +75,10 @@
                     <label class="col-sm-3 control-label">Diagnóstico Pre Operatorio
                     </label>
                     <div class="col-sm-6">
-                        <select name="IdDiagnostico" id="select-diagnostico" class="select2" multiple>
-                            <option value="1">ABORTO EN CURSO</option>
-                            <option value="2">SANGRADO TV</option>
-                            <option value="3">ABORTO INCOMPLETO</option>
-                            <option value="4">FRACTURA</option>
-                            <option value="5">AMPUTACION</option>
-                        </select>
+						<input type="hidden" name="IdDiagnosticoPre" id="IdDiagnosticoPre" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal-nuevo-diagnostico">Nuevo...</a>
+                        <a href="#modal-nuevo-diagnostico" class="btn btn-default btn-sm lnk-open-dialog" data-toggle="modal" data-input="IdDiagnosticoPre">Nuevo...</a>
                     </div>
                 </div>                 
 
@@ -121,17 +115,10 @@
                     <label class="col-sm-3 control-label">Anestecia
                     </label>
                     <div class="col-sm-4">
-                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
-                        <select name="select1" id="select1" class="select2" multiple>
-                            <option value="1">ABORTO EN CURSO</option>
-                            <option value="2">SANGRADO TV</option>
-                            <option value="3">ABORTO INCOMPLETO</option>
-                            <option value="4">FRACTURA</option>
-                            <option value="5">AMPUTACION</option>
-                        </select>                        
+						<input type="hidden" name="IdAnestecia" id="IdAnestecia" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal2">Nuevo...</a>
+                        <a href="#myModal2" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdAnestecia">Nuevo...</a>
                     </div>                    
                 </div>
                         
@@ -139,17 +126,10 @@
                     <label class="col-sm-3 control-label">Anestésico
                     </label>
                     <div class="col-sm-4">
-                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
-                        <select name="select1" id="select1" class="select2" multiple>
-                            <option value="1">ABORTO EN CURSO</option>
-                            <option value="2">SANGRADO TV</option>
-                            <option value="3">ABORTO INCOMPLETO</option>
-                            <option value="4">FRACTURA</option>
-                            <option value="5">AMPUTACION</option>
-                        </select>                        
+						<input type="hidden" name="IdAnestesico" id="IdAnestesico" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal3">Nuevo...</a>
+                        <a href="#myModal3" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdAnestesico">Nuevo...</a>
                     </div>
                 </div>
 				<div class="form-group">
@@ -167,17 +147,10 @@
                     <label class="col-sm-3 control-label">Anestesiólogo Nombre
                     </label>
                     <div class="col-sm-6">
-                        <!--<input type="text" name="text1" id="text1" value="" class="form-control input-sm" />-->
-                        <select name="select1" id="select1" class="select2" multiple>
-                            <option value="1">ABORTO EN CURSO</option>
-                            <option value="2">SANGRADO TV</option>
-                            <option value="3">ABORTO INCOMPLETO</option>
-                            <option value="4">FRACTURA</option>
-                            <option value="5">AMPUTACION</option>
-                        </select>                        
+						<input type="hidden" name="IdAnestesiologo" id="IdAnestesiologo" class="select2" value="" />                     
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdAnestesiologo">Nuevo...</a>
                     </div>					
                 </div>
                             
@@ -192,18 +165,12 @@
                 <div class="form-group mt15">
 					<label class="col-sm-3 control-label">Intervenciones</label>
 					<div class="col-sm-8">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdIntervecion" id="IdIntervencion" class="select2" value="" />
 					</div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-1 col-sm-offset-3">
-						<a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal5">Nuevo...</a>
+						<a href="#myModal5" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdIntervencion">Nuevo...</a>
                     </div>
                 </div>
                
@@ -265,80 +232,50 @@
                     <label class="col-sm-3 control-label">Cirujano Nombre
                     </label>
                     <div class="col-sm-5">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdCirujano" id="IdCirujano" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdCirujano">Nuevo...</a>
                     </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Primer ayudante
                     </label>
                     <div class="col-sm-5">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdPrimerAyudante" id="IdPrimerAyudante" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
-                    </div>						
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdPrimerAyudante">Nuevo...</a>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Segundo ayudante
                     </label>
                     <div class="col-sm-5">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdSegundoAyudante" id="IdSegundoAyudante" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdSegundoAyudante">Nuevo...</a>
                     </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Instrumentista nombre
                     </label>
                     <div class="col-sm-5">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdInstrumentista" id="IdInstrumentista" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdInstrumentista">Nuevo...</a>
                     </div>						
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Circulante nombre
                     </label>
                     <div class="col-sm-5">
-						<select name="select1" id="select1" class="select2" multiple>
-							<option value="1">ABORTO EN CURSO</option>
-							<option value="2">SANGRADO TV</option>
-							<option value="3">ABORTO INCOMPLETO</option>
-							<option value="4">FRACTURA</option>
-							<option value="5">AMPUTACION</option>
-						</select>
+						<input type="hidden" name="IdCirculante" id="IdCirculante" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdCirculante">Nuevo...</a>
                     </div>						
                 </div>
                         
@@ -362,16 +299,10 @@
                 <div class="form-group mt15">
                     <label class="col-sm-3 control-label">Diagnóstico Post Operatorio</label>
                     <div class="col-sm-6">
-                        <select name="select1" id="select1" class="select2" multiple>
-                            <option value="1">ABORTO EN CURSO</option>
-                            <option value="2">SANGRADO TV</option>
-                            <option value="3">ABORTO INCOMPLETO</option>
-                            <option value="4">FRACTURA</option>
-                            <option value="5">AMPUTACION</option>
-                        </select>
+						<input type="hidden" name="IdDiagnosticoPost" id="IdDiagnosticoPost" class="select2" value="" />
                     </div>
                     <div class="col-sm-2">
-                        <a href="#" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal4">Nuevo...</a>
+                        <a href="#modal-nuevo-diagnostico" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdDiagnosticoPost">Nuevo...</a>
                     </div>						
                 </div>
 
@@ -544,28 +475,29 @@
 <div class="modal" id="modal-nuevo-diagnostico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Diagnóstico</h4>
-            </div>
-            <div class="modal-body">
-                <form name="form1" action="test-data.json" method="post" class="form-horizontal" id="form-diagnostico">
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Nombre del diagnóstico</label>
-                        <div class="col-sm-6">
-                            <input type="text" name="nombre" value="" class="form-control input-sm" required />
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-6 col-sm-offset-4">
-                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
-                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Nuevo Diagnóstico</h4>
+			</div>
+			<div class="modal-body">
+				<form name="form1" action="json/test-data.json" method="post" class="form-horizontal form-modal">
+					<div class="form-group">
+						<label class="col-sm-4 control-label">Nombre del diagnóstico</label>
+						<div class="col-sm-6">
+							<input type="text" name="nombre" value="" class="form-control input-sm" required />
+							<input type="hidden" id="input-target" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-6 col-sm-offset-4">
+							<button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+							<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="modal" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -576,11 +508,12 @@
                 <h4 class="modal-title" id="myModalLabel">Nueva Anestecia</h4>
             </div>
             <div class="modal-body">
-                <form name="form1" action="" method="post" class="form-horizontal">
+                <form name="form1" action="json/test-data.json" method="post" class="form-horizontal form-modal">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nombre de la anestecia</label>
                         <div class="col-sm-6">
-                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                            <input type="text" name="nombre" id="text1" value="" class="form-control input-sm" />
+							<input type="hidden" id="input-target" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -602,11 +535,12 @@
                 <h4 class="modal-title" id="myModalLabel">Nuevo Anestésico</h4>
             </div>
             <div class="modal-body">
-                <form name="form1" action="" method="post" class="form-horizontal">
+                <form name="form1" action="json/test-data.json" method="post" class="form-horizontal form-modal">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nombre del anestésico</label>
                         <div class="col-sm-6">
-                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                            <input type="text" name="nombre" id="text1" value="" class="form-control input-sm" />
+							<input type="hidden" id="input-target" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -628,11 +562,40 @@
                 <h4 class="modal-title" id="myModalLabel">Nuevo Personal</h4>
             </div>
             <div class="modal-body">
-                <form name="form1" action="" method="post" class="form-horizontal">
+                <form name="form1" action="json/test-data.json" method="post" class="form-horizontal form-modal">
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nombre del personal</label>
                         <div class="col-sm-6">
-                            <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                            <input type="text" name="nombre" id="text1" value="" class="form-control input-sm" />
+							<input type="hidden" id="input-target" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-4">
+                            <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="myModal5" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nueva Intervención</h4>
+            </div>
+            <div class="modal-body">
+                <form name="form1" action="json/test-data.json" method="post" class="form-horizontal form-modal">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Nombre de la intervención</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="nombre" id="text1" value="" class="form-control input-sm" />
+							<input type="hidden" id="input-target" />
                         </div>
                     </div>
                     <div class="form-group">

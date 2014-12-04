@@ -1,20 +1,41 @@
 $(document).on('ready',mainInforme);
 
 function mainInforme(){
-	$('.select2').select2();
-	$('#form-diagnostico').on('submit', enviarFormDiagnostico);
+	//$('select.select2').select2();
+	$('form.form-modal').on('submit', enviarFormModal);
 	$('.btn-paso').click(pasear);
 
 	$(".inputfecha").mask("99/99/9999");
-	$(".inputhora").mask("99:99");	
+	$(".inputhora").mask("99:99");
+	
+	
+    $("input.select2").select2({
+		multiple:true,
+		placeholder: "- Buscar -",
+		minimumInputLength: 3,
+		ajax: {
+			url: "json/test-search.json",
+			dataType: 'json',
+			quietMillis: 250,
+			data: function (term, page) { // page is the one-based page number tracked by Select2
+				return {
+					q: term, //search term
+				};
+			},
+			results: function (data, page) {
+				return { results: data.items};
+			}
+		}
+    });
+	
+	$(document).on("click", "a[data-toggle=modal]", function () {
+		 var myBookId = $(this).data('input');
+		 $(".modal-body #input-target").val(myBookId);
+	});
 }
 
-function enviarFormDiagnostico(e){
+function enviarFormModal(e){
 	e.preventDefault();
-	
-	//return false;
-	//alert('hi hi');
-	
 	
 	var $form = $(this);
 	var $btn_send = $form.find('button[type=submit]');
@@ -22,13 +43,16 @@ function enviarFormDiagnostico(e){
 	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
 		if(json.error){
 			alert(json.mensaje);
-			$btn_send.button('reset');
 		} else{
-			var data = $("#select-diagnostico").select2("data");
+			//console.log($form.find('#input-target').val());
+			var $input_target = $('#' + $form.find('#input-target').val());
+			var data = $input_target.select2("data");
 			data.push({id: json.id, text: json.nombre});
-			$("#select-diagnostico").select2("data", data, true);			
-			$('#modal-nuevo-diagnostico').modal('hide');
+			$input_target.select2("data", data, true);
+			$form[0].reset();
+			$form.closest('div.modal').modal('hide');
 		}
+		$btn_send.button('reset');
 	}, 'json');	
 }
 
