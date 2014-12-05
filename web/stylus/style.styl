@@ -121,9 +121,9 @@ a
 
 .main-col
   //-moz-box-sizing: content-box
-  vendor(box-sizing,coontent-box)
+  vendor(box-sizing,content-box)
   padding: 20px 0 20px 20px
-  width: 720px
+  width: 740px
   position: absolute
   left: 50%
   top: 0
@@ -206,4 +206,24 @@ a
   width 100%
   .select2-choices
     min-height 30px !important
+    
+@media print
+  header.header,.bg-white,.left-col
+    display none
+  .cuerpo
+    position static
+    page-break-before always
+    .col-main
+      width 100%
+      position static
+      margin-left 0
+      padding 0
+      .content
+        position static
+        overflow visible
+  body
+    width 100%
+  @page
+    margin 2cm
+      
 

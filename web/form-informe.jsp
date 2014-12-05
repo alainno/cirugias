@@ -10,11 +10,11 @@
 </h1>
 
     <ul class="nav nav-tabs" role="tablist">
-        <li class="active"><a href="#paso1" role="tab" data-toggle="tab">Datos Pre Operatorios</a></li>
-        <li><a href="#paso2" role="tab" data-toggle="tab">Operación</a></li>
-        <li><a href="#paso3" role="tab" data-toggle="tab">Datos Post Operatorios</a></li>
+        <li class="active"><a href="#paso1" role="tab" data-toggle="tab">Paso 1: Datos Pre Operatorios</a></li>
+        <li><a href="#paso2" role="tab" data-toggle="tab">Paso 2: Operación</a></li>
+        <li><a href="#paso3" role="tab" data-toggle="tab">Paso 3: Datos Post Operatorios</a></li>
     </ul>
-    <form role="form" id="form-info-post" class="form-horizontal" method="post" action="Ajax?v=guardarInfoPost&idpac=${empty detaoper?idpac:detaoper.paciente.idPaciente}&iddi=${empty detaoper?iddi:detaoper.idDetalleInterv}&id=${empty detaoper?"":detaoper.idDetalleOper}">
+    <form role="form" id="form-informe" class="form-horizontal" method="post" action="json/test-form-informe.json">
         <div class="tab-content">
             <div class="tab-pane active" id="paso1">
                 <div class="form-group mt15">
@@ -23,6 +23,9 @@
                     <div class="col-sm-4">
                         <select class="form-control input-sm" name="IdDepartH" id="IdDepartH">
                             ${optsDepartHosp}
+							<option>- Seleccionar -</option>
+							<option value="1">Padre 1</option>
+							<option value="2">Padre 2</option>
                         </select>
                     </div>
                 </div>
@@ -32,38 +35,44 @@
                     <div class="col-sm-4">
                         <select class="form-control input-sm" name="IdServHosp" id="IdServHosp">
                             ${optsServicioHosp}
+							<option value="11" class="conditional 1">Hijo 11</option>
+							<option value="12" class="conditional 1">Hijo 12</option>
+							<option value="13" class="conditional 1">Hijo 13</option>
+							<option value="14" class="conditional 1">Hijo 14</option>
+							<option value="21" class="conditional 2">Hijo 21</option>
+							<option value="22" class="conditional 2">Hijo 22</option>
                         </select>
                     </div>
                     <label class="col-sm-1 control-label">Sala Nº
                     </label>
                     <div class="col-sm-1">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <input type="text" name="SalaNro" id="SalaNro" value="" class="form-control input-sm" />
                     </div>
                     <label class="col-sm-1 control-label">Cama Nº
                     </label>
                     <div class="col-sm-1">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <input type="text" name="CamaNro" id="CamaNro" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Días antes de la operación
                     </label>
                     <div class="col-sm-1">
-                        <input name="InterAntOper" value="${detaoper.interAntOper}" class="form-control input-sm">
+                        <input name="DiasAntOper" value="${detaoper.interAntOper}" class="form-control input-sm">
                     </div>
                     <label class="col-sm-2 control-label">Intervención:
                     </label>
                     <div class="col-sm-2">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="text1" id="text1" value="" /> Programada
+                                <input type="radio" name="IdTipoInterv" id="IdTipoInterv" value="1" /> Programada
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="radio">
                             <label>
-                                <input type="radio" name="text1" id="text1" value="" /> de Emergencia
+                                <input type="radio" name="IdTipoInterv" id="IdTipoInterv" value="2" /> de Emergencia
                             </label>
                         </div>
                     </div>
@@ -86,7 +95,7 @@
                     <label class="col-sm-3 control-label">Pre medicación
                     </label>
                     <div class="col-sm-4">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <input type="text" name="Premed" id="Premed" value="" class="form-control input-sm" />
                     </div>
                 </div>
 
@@ -97,7 +106,7 @@
                     </label>
                     <div class="col-sm-2">
 						<div class="input-group">
-							<input class="form-control input-sm inputhora" name="IniAnest" id="IniAnest" value="${inicio}" >
+							<input class="form-control input-sm inputhora" name="HoraIniAnest" id="HoraIniAnest" value="${inicio}" >
 							<span class="input-group-addon glyphicon glyphicon-time"></span>
 						</div>
                     </div>
@@ -105,7 +114,7 @@
                     </label>
                     <div class="col-sm-2">
 						<div class="input-group">
-							<input class="form-control input-sm inputhora" name="FinAnest" id="FinAnest" value="${fin}" >
+							<input class="form-control input-sm inputhora" name="HoraFinAnest" id="HoraFinAnest" value="${fin}" >
 							<span class="input-group-addon glyphicon glyphicon-time"></span>
 						</div>
                     </div>
@@ -137,7 +146,7 @@
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input class="form-control input-sm tar" name="cantidad" value="${cantidad}" >
+                            <input class="form-control input-sm tar" name="Cantidad" value="${cantidad}" >
                             <span class="input-group-addon">%</span>
                         </div>
                     </div>
@@ -179,13 +188,13 @@
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input name="OperHoraIni" value="${detaoper.operHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+                            <input name="HoraIngresoSala" value="${detaoper.operHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
                     </div>
                     <label class="col-sm-3 control-label">Sala de Operación Nº
                     </label>
                     <div class="col-sm-1">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <input type="text" name="SalaOperNro" id="SalaOperNro" value="" class="form-control input-sm" />
                     </div>                        
                 </div>
 
@@ -194,7 +203,7 @@
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input name="OperHoraFin" value="${detaoper.operHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+                            <input name="HoraEgresoSala" value="${detaoper.operHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
                     </div>
                 </div>
@@ -204,7 +213,7 @@
                     </label>
                     <div class="col-sm-3">
 						<div class="input-group">
-							<input class="form-control input-sm inputfecha" name="FechaInterv" id="FechaInterv" value="${fechaInterv}" >
+							<input class="form-control input-sm inputfecha" name="FechaOper" id="FechaOper" value="${fechaInterv}" >
 							<span class="input-group-addon glyphicon glyphicon-calendar"></span>
 						</div>
                     </div>
@@ -285,7 +294,7 @@
                     <label class="col-sm-3 control-label">Protocolo Operatorio
                     </label>
                     <div class="col-sm-8">
-                        <textarea name="texta1" id="texta1" rows="2" class="form-control input-sm"></textarea> 
+                        <textarea name="ProtocoloOper" id="ProtocoloOper" rows="2" class="form-control input-sm"></textarea> 
                     </div>
                 </div> 
                 <hr />
@@ -313,22 +322,25 @@
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input name="RecupHoraIni" value="${detaoper.recupHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+                            <input name="HoraIngresoRecup" value="${detaoper.recupHoraIni}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
                     </div>          
                     <label class="col-sm-2 control-label">Hora de egreso
                     </label>
                     <div class="col-sm-2">
                         <div class="input-group">
-                            <input name="RecupHoraFin" value="${detaoper.recupHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
+                            <input name="HoraEgresoRecup" value="${detaoper.recupHoraFin}" class="form-control input-sm inputhora"><span class="input-group-addon glyphicon glyphicon-time"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-3">Nombre</label>
                     <div class="col-sm-5">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" />
+                        <input type="hidden" name="IdNombre" id="IdNombre" value="" class="select2" />
                     </div>
+                    <div class="col-sm-2">
+                        <a href="#myModal4" class="btn btn-default btn-sm" data-toggle="modal" data-input="IdNombre">Nuevo...</a>
+                    </div>					
                 </div>
 
                 <hr />
@@ -343,12 +355,12 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                                <input type="checkbox" name="CompAnest" id="CompAnest" value="1" data-input="CompAnestEspec" class="check-espec" /> Especifique:
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
+                        <input type="text" name="CompAnestEspec" id="CompAnestEspec" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -357,12 +369,12 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                                <input type="checkbox" name="CompActo" id="CompActo" value="1" data-input="CompActoEspec" class="check-espec" /> Especifique:
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
+                        <input type="text" name="CompActoEspec" id="CompActoEspec" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -371,12 +383,12 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                                <input type="checkbox" name="CompRecup" id="CompRecup" value="1" data-input="CompRecupEspec" class="check-espec" /> Especifique:
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
+                        <input type="text" name="CompRecupEspec" id="CompRecupEspec" value="" class="form-control input-sm" />
                     </div>
                 </div>
                 <hr />
@@ -385,12 +397,12 @@
                     </label>
                     <div class="col-sm-1">
                         <div class="radio">
-                            <label><input type="radio" name="text1" id="text1" value="" /> Vivo</label>
+                            <label><input type="radio" name="CondEgreso" id="CondEgreso" value="1" /> Vivo</label>
                         </div>
                     </div>
                     <div class="col-sm-1">
                         <div class="radio">
-                            <label><input type="radio" name="text1" id="text1" value="" /> Muerto</label>
+                            <label><input type="radio" name="CondEgreso" id="CondEgreso" value="0" /> Muerto</label>
                         </div>
                     </div>
                 </div>
@@ -398,21 +410,21 @@
                     <div class="col-sm-offset-3 col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> Por anestesia
+                                <input type="checkbox" name="CondEgrAnest" id="CondEgrAnest" value="" /> Por anestesia
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> En operación
+                                <input type="checkbox" name="CondEgrActo" id="CondEgrActo" value="" /> En operación
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> En sala de recuperación
+                                <input type="checkbox" name="CondEgrRecup" id="CondEgrRecup" value="" /> En sala de recuperación
                             </label>
                         </div>
                     </div>
@@ -423,12 +435,12 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="text1" id="text1" value="" /> Especifique:
+                                <input type="checkbox" name="Suspendido" id="Suspendido" value="1" data-input="SuspendidoEspec" class="check-espec" /> Especifique:
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-5">
-                        <input type="text" name="text1" id="text1" value="" class="form-control input-sm" disabled="disabled" />
+                        <input type="text" name="SuspendidoEspec" id="SuspendidoEspec" value="" class="form-control input-sm" />
                     </div>
                 </div>
 
@@ -440,12 +452,12 @@
                     <div class="col-sm-2">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="Patologia" ${detaoper.patologia=="SI"?"checked":""} id="checkPatologia" value="1">Especificar
+                                <input type="checkbox" name="Muestra" ${detaoper.patologia=="SI"?"checked":""} id="Muestra" value="1" data-input="MuestraEspec" class="check-espec">Especificar
                             </label>
                         </div>
                     </div>                    
                     <div class="col-sm-5">
-                        <input name="PatologiaEspec" value="${detaoper.patologiaEspec}" disabled="disabled" id="PatologiaEspec" class="form-control input-sm">
+                        <input name="MuestraEspec" value="${detaoper.patologiaEspec}" id="MuestraEspec" class="form-control input-sm">
                     </div>
                 </div>                
                 
@@ -453,13 +465,13 @@
                     <label class="col-sm-3 control-label">Observaciones
                     </label>
                     <div class="col-sm-8">
-                       <textarea name="texta1" id="texta1" rows="2" class="form-control input-sm"></textarea>
+                       <textarea name="Observaciones" id="Observaciones" rows="2" class="form-control input-sm"></textarea>
                     </div>
                 </div>
                 <hr />
                 <div class="clearfix">
                     <a href="#paso2" class="btn btn-default btn-sm left btn-paso">&laquo; Anterior</a>
-                    <button type="submit" id="btn-enviar" class="btn btn-success btn-sm right">Finalizar</button>
+                    <button type="submit" id="btn-enviar" class="btn btn-success btn-sm right" data-loading-text="Guardando..." >Guardar</button>
                 </div>
                 <p></p>                
             </div>
@@ -471,7 +483,7 @@
 
     </form>
 
-<!--Modal-->
+<!--Modals -->
 <div class="modal" id="modal-nuevo-diagnostico" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -616,5 +628,5 @@
     <jsp:param name="masScripts" value="js/select2/select2_locale_es.js" />
     <jsp:param name="masScripts" value="js/bootstrap-datepicker.js" />
     <jsp:param name="masScripts" value="js/bootstrap-datepicker.es.js" />
-    <jsp:param name="masScripts" value="js/informe.js" />
+    <jsp:param name="masScripts" value="js/form-informe.js" />
 </jsp:include>

@@ -1,0 +1,6 @@
+{
+	"nuevo_id": "123",
+	"error": false,
+	"mensaje": "Error inesperado",
+	"redireccion": "Servlet?v=detalleOperacion&id=123"
+}

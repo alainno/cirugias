@@ -1,277 +1,275 @@
 <jsp:include page="header.jsp"/>
-<h1>Detalles del Informe Operatorio Nro. xx
+<h1>INFORME OPERATORIO
 </h1>
 <div class="content">
 	<table class="table table-hover">
 		<tr>
+			<th>Informe Nro.</th>
+			<td></td>
+			<th>Fecha de Inscripción</th>
+			<td>dd/mm/YYY</td>
+			<th>Nro. de H. Clínica</th>
+			<td></td>
+		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
+		<tr>
 			<th>Apellidos
 			</th>
-			<td>${apellidos}				
+			<td colspan="2">${apellidos}				
 			</td>
 			<th>Nombres
 			</th>
-			<td colspan="3">${nombres}
+			<td colspan="2">${nombres}
 			</td>
+		</tr>
+		<tr>
+			<th>Edad</th>
+			<td colspan="2"></td>
+			<th>Sexo</th>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+			<th>Ocupación</th>
+			<td colspan="2"></td>
+			<th>Procedencia</th>
+			<td colspan="2"></td>
 		</tr>
 		<tr>
 			<th>Departamento
 			</th>
-			<td>${departamento}
+			<td colspan="2">${departamento}
 			</td>
-			<th>Piso
+			<th>Servicio
 			</th>
-			<td colspan="3">${piso}
+			<td colspan="2">${servicio}
 			</td>
 		</tr>
 		<tr>
-			<th>Servicio
+			<th>Piso
 			</th>
-			<td>${servicio}
+			<td>${piso}
 			</td>
-			<th>Sala
+			<th>Sala Nº
 			</th>
 			<td>${sala}
 			</td>
-			<th>Cama
+			<th>Cama Nº
 			</th>
 			<td>${cama}
 			</td>
 		</tr>
 		<tr>
+			<th colspan="3">Dias de internamiento antes de la operación</th>
+			<td></td>
 			<th>Tipo de Intervención
 			</th>
-			<td colspan="5">${tipoIntervencion}
+			<td>${tipoIntervencion}
 			</td>
+		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
+		<tr>
+			<th colspan="2">Diagnóstico Pre Operatorio</th>
+			<th colspan="4"></th>
 		</tr>
 		<tr>
 			<th>Premedicación
 			</th>
-			<td colspan="5">${premedicacion}
+			<td colspan="2">${premedicacion}
 			</td>
+			<th>Hora Inicio Anestecia</th>
+			<td colspan="2">DE: A:</td>
 		</tr>
 		<tr>
+			<th>Anestecia</th>
+			<td></td>
 			<th>Anestésicos
 			</th>
 			<td>${anestesicos}
 			</td>
 			<th>Cantidad
 			</th>
-			<td colspan="3">${cantidad}
-			</td>
-		</tr>
-		<tr>
-			<th>Antestesia
-			</th>
-			<td>${anestesia}
-			</td>
-			<th>Inicio
-			</th>
-			<td>${inicio} Hrs.
-			</td>
-			<th>Final
-			</th>
-			<td>${fin} Hrs.
-			</td>
-		</tr>
-		<tr>
-			<th>Fecha interveción
-			</th>
-			<td colspan="5">${fechaInterv}
-			</td>
-		</tr>
-		<tr>
-			<th>Cirujano
-			</th>
-			<td colspan="5">${cirujano}
-			</td>
-		</tr>
-		<tr>
-			<th>Primer ayudante
-			</th>
-			<td colspan="5">${primerAyudante}
-			</td>
-		</tr>
-		<tr>
-			<th>Segundo Ayudante
-			</th>
-			<td colspan="5">${segundoAyudante}
-			</td>
-		</tr>
-		<tr>
-			<th>Instrumentista
-			</th>
-			<td colspan="5">${instrumentista}
-			</td>
-		</tr>
-		<tr>
-			<th>Circulante
-			</th>
-			<td colspan="5">${circulante}
+			<td>${cantidad}
 			</td>
 		</tr>
 		<tr>
 			<th>Anestesiólogo
 			</th>
-			<td colspan="5">${anestesiologo}
+			<td colspan="3">
 			</td>
-		</tr>
-		<tr>
-			<th>Especialista
+			<th>Firma
 			</th>
-			<td colspan="5">${especialista}
+			<td>
 			</td>
 		</tr>
 	</table>
-			
-<table class="table table-hover">
+	<table class="table table-hover table-bordered">
 		<tr>
-			<th>Días antes de la operación
-			</th>
-			<td colspan="3">${detaoper.interAntOper} 
-			</td>
+			<th>Intervención 1</th>
+			<td colspan="3"></td>
+			<th>Código</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>Fecha de inicio
-			</th>
-			<td>${detaoper.fechaIniOper}
-			</td>
-			<th>Hora de inicio
-			</th>
-			<td>${detaoper.horaIniOper}
-			</td>
+			<th>Intervención 2</th>
+			<td colspan="3"></td>
+			<th>Código</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>Fecha de fin
-			</th>
-			<td>${detaoper.fechaFinOper}
-			</td>
-			<th>Hora de fin
-			</th>
-			<td>${detaoper.horaFinOper}
-			</td>
+			<th>Intervención 3</th>
+			<td colspan="3"></td>
+			<th>Código</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>Sala de operación
+			<th>Hora de Ingreso
 			</th>
-			<td colspan="3">${detaoper.salaOper.descSalaOper}
-			</td>
+			<td></td>
+			<th>Sala Operación Nº</th>
+			<td></td>
+			<th>Hora de Egreso</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>&#8212; Hora de ingreso
-			</th>
-			<td>${detaoper.operHoraIni}
-			</td>
-			<th>Hora de egreso
-			</th>
-			<td>${detaoper.operHoraFin}	
-			</td>
+			<th>Fecha de Operación</th>
+			<td colspan="5"> ... de ........ del ......</td>
 		</tr>
 		<tr>
-			<th>Sala de recuperación
-			</th>
-			<td colspan="5">${detaoper.salaRecup.descSalaRecup}
-			</td>
+			<th>Hora de Inicio</th>
+			<td></td>
+			<th>Hora de Término</th>
+			<td></td>
+			<th>Duración</th>
+			<td>hh:mm</td>
 		</tr>
 		<tr>
-			<th>&#8212; Fecha de ingreso
+			<th>Cirujano nombre
 			</th>
-			<td>${detaoper.recupFechaIni}
+			<td colspan="3">${cirujano}
 			</td>
-			<th>Hora de ingreso
-			</th>
-			<td>${detaoper.recupHoraIni}
-			</td>
+			<th>Firma</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>&#8212; Fecha de egreso
+			<th>Primer ayudante
 			</th>
-			<td>${detaoper.recupFechaFin}
+			<td colspan="3">${primerAyudante}
 			</td>
-			<th>Hora de egreso
-			</th>
-			<td>${detaoper.recupHoraFin}
-			</td>
-		</tr>
-		<c:forEach var="map" items="${detaoper.detaProcs}" varStatus="i">
-		<tr>
-			<th>Intervención Nro. ${i.count}
-			</th>
-			<td colspan="3">${map['IdProced']} - ${map['DescProced']}
-			</td>
-		</tr>
-		</c:forEach>
-		<tr>
-			<th>Protocolo Operatorio
-			</th>
-			<td colspan="3">${detaoper.protocoloOperat}
-			</td>
+			<th>Firma</th>
+			<td></td>		
 		</tr>
 		<tr>
-			<th>Diganóstico Pre Operatorio
+			<th>Segundo Ayudante
 			</th>
-			<td colspan="3">${detaoper.diagPre.idCie} - ${detaoper.diagPre.descCie}
+			<td colspan="3">${segundoAyudante}
 			</td>
+			<th>Firma</th>
+			<td></td>			
 		</tr>
+		<tr>
+			<th>Instrumentista
+			</th>
+			<td colspan="3">${instrumentista}
+			</td>
+			<th>Firma</th>
+			<td></td>		
+		</tr>
+		<tr>
+			<th>Circulante
+			</th>
+			<td colspan="3">${circulante}
+			</td>
+			<th>Firma</th>
+			<td></td>			
+		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
+		<tr>
+			<th>Protocolo Operatorio</th>
+		</tr>
+		<tr><td>text</td></tr>
+	</table>
+
+	<table class="table table-hover table-bordered">
 		<tr>
 			<th>Diagnóstico Post Operatorio
 			</th>
-			<td colspan="3">${detaoper.diagPost.idCie} - ${detaoper.diagPost.descCie}
+			<td colspan="5">${detaoper.diagPost.idCie} - ${detaoper.diagPost.descCie}
 			</td>
 		</tr>
 		<tr>
-			<th>Descripción de Envío
-			</th>
-			<td colspan="3">${detaoper.descEnvio}
-			</td>
+			<th colspan="2">Sala de Recuperación</th>
+			<th>Hora de Ingreso</th>
+			<td></td>
+			<th>Hora de Egreso</th>
+			<td></td>
 		</tr>
 		<tr>
-			<th>Observaciones de Envío
-			</th>
-			<td colspan="3">${detaoper.obsEnvio}
-			</td>
+			<th>Nombre</th>
+			<td colspan="5"></td>
 		</tr>
+		<tr>
+			<th colspan="6">Complicaciones</th>
+		</tr>
+		<tr>
+			<th>Por anestecia</th>
+			<td></td>
+			<th>Especifique:</th>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<th>En acto quirurgico</th>
+			<td></td>
+			<th>Especifique:</th>
+			<td colspan="3"></td>
+		</tr>
+		<tr>
+			<th>En sala de recuperación</th>
+			<td></td>
+			<th>Especifique:</th>
+			<td colspan="3"></td>
+		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
+		<tr>
+			<th>Condición de egreso</th>
+			<td colspan="5"></td>
+		<tr>
+			<th>Por anestecia</th>
+			<td></td>
+			<th>En Operación</th>
+			<td></td>
+			<th>En recuperación</th>
+			<td></td>
+		</tr>
+		<tr>
+			<th>Suspendido</th>
+			<td></td>
+			<th>Especifique:</th>
+			<td colspan="3"></td>
+		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
 		<tr>
 			<th>¿Muestra enviada a Patología?
 			</th>
-			<td colspan="3">${detaoper.patologia}
-			</td>
+			<td></td>
+			<th>Especifique</th>
+			<td colspan="3"></td>
 		</tr>
+	</table>
+	<table class="table table-hover table-bordered">
 		<tr>
-			<th>&#8212; Especificación
-			</th>
-			<td colspan="3">${detaoper.patologiaEspec}
-			</td>
+			<th>Observaciones</th>
 		</tr>
-		<tr>
-			<th>Complicación
-			</th>
-			<td colspan="3">${detaoper.comp.descComp}
-			</td>
-		<tr>
-		</tr>
-			<th>&#8212; Especificación
-			</th>
-			<td colspan="3">${detaoper.compEspec}
-			</td>
-		</tr>
-		<tr>
-			<th>Condición de Egreso
-			</th>
-			<td colspan="3">${detaoper.condEgr.descCondEgr}
-			</td>
-		<tr>
-		</tr>
-			<th>&#8212; Especificación
-			</th>
-			<td colspan="3">${detaoper.condEspec}
-			</td>
-		</tr>
+		<tr><td>text</td></tr>
 	</table>		
 	<div class="mt10">
-		<a href="Servlet?v=detallePaciente&id=${idpac}" class="btn btn-sm btn-primary">Detalles del Paciente</a>
-		<a href="Servlet?v=modificarInfoPre&id=${id}" class="btn btn-sm btn-success ml10">Modificar Informe</a>
-		<a href="#" class="btn btn-sm btn-default ml10">Imprimir Detalles</a>
-		<a href="Servlet?v=nuevoInfoPost&idpac=${idpac}&iddi=${id}" class="btn btn-warning btn-sm ml10">Crear Informe Post Operatorio</a>
+		<a href="#" class="btn btn-sm btn-default lnk-print"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+		<a href="Servlet?v=nuevoInforme&id=${id}" class="btn btn-sm btn-success ml10">Modificar Informe</a>
+		<a href="Servlet?v=detallePaciente&id=${idpac}" class="btn btn-sm btn-primary ml10">Detalles del Paciente</a>
 	</div>
 	<p></p>
 </div>

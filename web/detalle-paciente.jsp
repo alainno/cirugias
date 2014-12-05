@@ -110,6 +110,10 @@
         <a href="Servlet?v=modificarPaciente&id=${id}" class="btn btn-primary btn-sm ml10">Modificar Datos</a>
 		<a href="javascript:window.print();" class="btn btn-default btn-sm ml10">Imprimir</a>
     </div>
+	<div class="mt5">
+		<a href="Servlet?v=nuevoInfoPost&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Post Operatorio</a>		
+		<a href="Servlet?v=nuevoInfoPre&idpac=${id}" class="btn btn-success btn-sm">Nuevo Informe Pre Operatorio</a>		
+    </div>
 		<p></p>
 	</div>
 		<div class="tab-pane" id="historial">
