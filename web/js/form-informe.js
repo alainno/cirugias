@@ -45,7 +45,7 @@ function enviarFormInforme(e){
 	e.preventDefault();
 	var $form = $(this);
 	var $btn_send = $form.find('button[type=submit]');
-    $btn_send.button('loading');
+        $btn_send.button('loading');
 	$.post($form.attr('action'), $form.serialize() + "&ajax=1", function(json){
 		if(json.error){
 			alert(json.mensaje);

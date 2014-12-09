@@ -24,6 +24,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelos.Personal;
 
 /**
  *
@@ -249,6 +250,21 @@ public class Ajax extends HttpServlet {
 //		this.jsonError(out, resp);
 		this.jsonRedireccion("Servlet?v=detalleInfoPost&id=" + detaoper.idDetalleOper, this.resp);
 		//this.jsonRedireccion("Servlet?v=detalleInfoPost&id=", this.resp);
+	}
+	
+	public void guardarPersonal() throws IOException{
+		/*Personal personal = new Personal();
+		personal.IdPersonal = this.requ.getParameter("id");
+		personal.Nombre = this.requ.getParameter("nombre");
+		
+		if(!personal.validar()){
+			this.jsonError(personal.errorValidacion, this.resp);
+			return;
+		}
+		
+		personal.save();*/
+		
+		this.jsonRedireccion("Servlet?v=listaPersonal", this.resp);
 	}
 
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{

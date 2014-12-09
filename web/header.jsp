@@ -59,7 +59,7 @@
                     <li><a href="Servlet?v=listaInformes" class="${param.v == 'listaInformes' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-book"></span> Informes Operatorios
                         </a>
                     </li>
-                    <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-briefcase"></span> Personal Médico
+                    <li><a href="Servlet?v=listaPersonal" class="${param.v == 'listaPersonal' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-briefcase"></span> Personal Médico
                         </a>
                     </li>
                     <li><a href="#" class="${param.v == '' ? 'actual curva-izq' : ''}"><span class="glyphicon glyphicon-book"></span> Diagnósticos

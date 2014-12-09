@@ -575,7 +575,11 @@ public class Servlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/form-info-post.jsp").include(request, response);
 	}
-	
+        
+	public void listaPersonal(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/lista-personal.jsp").include(request, response);
+	}
+
 	public void iniciarSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		String usuario = request.getParameter("usuario");
