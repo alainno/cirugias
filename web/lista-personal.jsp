@@ -2,7 +2,7 @@
 <h1>Personal Médico</h1>
 <form role="form" class="form-inline" action="Servlet?v=listaPersonal" method="get">
 	<div class="form-group">
-		<div class="input-group">
+		<div class="input-group w200">
 			<input type="text" placeholder="Buscar..." size="50" class="form-control input-sm" name="q" value="${q}" disabled="disabled">
 			<span class="input-group-btn">
 				<button type="submit" class="btn btn-sm btn-default" disabled="disabled"><span class="glyphicon glyphicon-search"></span></button>

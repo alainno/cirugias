@@ -40,7 +40,7 @@ public class Estadisticas extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String vista = request.getParameter("v");
 		if(vista == null){
-			vista = "indexPaciente";
+			vista = "indicador01";
 		}
 //		Method method = getClass().getDeclaredMethod(vista, HttpServletRequest.class, HttpServletResponse.class);		
 		this.requ = request;
@@ -108,4 +108,11 @@ public class Estadisticas extends HttpServlet {
 	public void indexPaciente() throws ServletException, IOException, SQLException{	
 		this.requ.getRequestDispatcher("/index-paciente.jsp?v=indexPaciente").include(this.requ, this.resp);
 	}
+	
+	public void indicador01() throws ServletException, IOException{	
+		this.requ.getRequestDispatcher("/indicador01.jsp?v=indicador01").include(this.requ, this.resp);
+	}	
+	public void predicciones() throws ServletException, IOException{	
+		this.requ.getRequestDispatcher("/predicciones.jsp").include(this.requ, this.resp);
+	}	
 }

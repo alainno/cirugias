@@ -10,7 +10,7 @@
 			</span>
 		</div>
 	</div>		
-	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary ml10"><span class="glyphicon glyphicon-file"></span> Nuevo Paciente</a>
+	<a href="Servlet?v=nuevoPaciente" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-file"></span> Nuevo Paciente</a>
 </form>
 <div class="content content-table">
 <% if(request.getAttribute("q") != null){ if(request.getAttribute("tabla").equals("")){ %>

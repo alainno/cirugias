@@ -100,7 +100,7 @@
                 </ul>
 				</c:when>
 					<c:otherwise>
-						otro menu
+						<jsp:include page="includes/menu-estadisticas.jsp"/>
 					</c:otherwise>
 				</c:choose>						
             </div>
