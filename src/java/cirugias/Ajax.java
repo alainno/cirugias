@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -265,6 +266,14 @@ public class Ajax extends HttpServlet {
 		personal.save();*/
 		
 		this.jsonRedireccion("Servlet?v=listaPersonal", this.resp);
+	}
+	
+	public void test() throws IOException, InterruptedException{
+		TimeUnit.SECONDS.sleep(3);
+		Map json = new HashMap();
+		json.put("error", false);
+		json.put("nombre", "DR. JUAN LUQUE MAMANI");
+		this.jsonResponse(json, this.resp);
 	}
 
 	private void jsonError(String mensaje, HttpServletResponse response) throws IOException{

@@ -103,7 +103,7 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Ocupacion
+			<label class="col-sm-3 control-label">Ocupación
 			</label>
 			<div class="col-sm-3">
                 <select class="form-control input-sm" name="idOcup" id="selOcupacion">

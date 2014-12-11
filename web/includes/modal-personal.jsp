@@ -10,7 +10,7 @@
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Nombre del personal</label>
                         <div class="col-sm-6">
-                            <input type="text" name="nombre" id="text1" value="" class="form-control input-sm" required="" />
+                            <input type="text" name="nombre" id="nombre" value="" class="form-control input-sm" required="" />
                             <input type="hidden" id="input-target" />
                         </div>
                     </div>

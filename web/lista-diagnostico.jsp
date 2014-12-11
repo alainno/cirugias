@@ -1,5 +1,5 @@
 <jsp:include page="header.jsp"/>
-<h1>Personal Médico</h1>
+<h1>Diagnósticos</h1>
 <form role="form" class="form-inline" action="Servlet?v=listaPersonal" method="get">
 	<div class="form-group">
 		<div class="input-group">

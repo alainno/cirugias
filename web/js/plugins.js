@@ -210,8 +210,9 @@ function extStopUpload(id, json)
 					'top':'0',
 					'right':'0',
 					'bottom':'0',
-					'background':'#fff url(img/loader.gif) no-repeat center',
-					'opacity':'0.75'
+					'background':'#000 url(img/loader.gif) no-repeat center',
+					'opacity':'0.75',
+					'z-index':9999
 				});
 				$(this).css('position','relative').append($capa);
 			});

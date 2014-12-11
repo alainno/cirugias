@@ -278,7 +278,7 @@ public class Servlet extends HttpServlet {
 	public void modificarPaciente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, ParseException, InterruptedException{
 		
 		//Thread.sleep();
-		TimeUnit.SECONDS.sleep(3);
+		//TimeUnit.SECONDS.sleep(3);
 		
 		Paciente pac = new Paciente(null);
 		pac.idPaciente = request.getParameter("id");
@@ -313,6 +313,15 @@ public class Servlet extends HttpServlet {
 	
 	public void listaInformes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.getRequestDispatcher("/lista-informes.jsp").include(request, response);
+	}
+	public void listaDiagnostico(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/lista-diagnostico.jsp").include(request, response);
+	}
+	public void listaAnestecia(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/lista-anestecia.jsp").include(request, response);
+	}
+	public void listaAnestesico(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		request.getRequestDispatcher("/lista-anestesico.jsp").include(request, response);
 	}
 	
 	public void detalleOperacion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
