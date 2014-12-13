@@ -43,7 +43,7 @@ public class db {
 		}
 		try {
 
-			db.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cirugia4", "root", "");
+			db.conn = DriverManager.getConnection("jdbc:mysql://192.168.1.2:3306/cirugias", "root", "12345");
 //			db.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/alainpe_cirugias","alainpe_cirugias","cirujano2404");
 		} catch (SQLException ex) {
 			// handle any errors

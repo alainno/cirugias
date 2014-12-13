@@ -16,27 +16,13 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th>Año</th>
 				<th>Mes</th>
 				<th>Intervenciones</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>Enero 2012</td>
-				<td>20</td>
-			</tr>
-			<tr>
-				<td>Febrero 2012</td>
-				<td>21</td>
-			</tr>
-			<tr>
-				<td>Marzo 2012</td>
-				<td>22</td>
-			</tr>
-			<tr>
-				<td>...</td>
-				<td>...</td>
-			</tr>
+			${tabla}
 		</tbody>
 	</table>
 </div>

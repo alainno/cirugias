@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -109,7 +110,20 @@ public class Estadisticas extends HttpServlet {
 		this.requ.getRequestDispatcher("/index-paciente.jsp?v=indexPaciente").include(this.requ, this.resp);
 	}
 	
-	public void indicador01() throws ServletException, IOException{	
+	public void indicador01() throws ServletException, IOException, SQLException{	
+		
+		db.ejecutar("SELECT YEAR(FechaOper) AS Anio,MONTH(FechaOper) AS Mes, COUNT(*) AS Intervenciones FROM informe GROUP BY YEAR(FechaOper), MONTH(FechaOper)", null);
+		String tableContent = "";
+		for(Map<String,String> row : db.results){
+			tableContent += "<tr>";
+			tableContent += "<td>"+row.get("Anio")+"</td>";
+			tableContent += "<td>"+row.get("Mes")+"</td>";
+			tableContent += "<td>"+row.get("Intervenciones")+"</td>";
+			tableContent += "</tr>";
+		}
+		
+		this.requ.setAttribute("tabla", tableContent);
+		
 		this.requ.getRequestDispatcher("/indicador01.jsp?v=indicador01").include(this.requ, this.resp);
 	}	
 	public void predicciones() throws ServletException, IOException{	
